@@ -332,6 +332,189 @@ def compute_model_criteria_stats(absolute_folder):
 
 compute_model_criteria_stats(absolute_folder)
 
+def save_summary_stats_per_file(absolute_folder):
+    """
+    For each cleaned CSV in absolute_folder / 'cleaned':
+
+      1) Row-wise stats (per id)  -> {stem}_row_stats.csv
+      2) Column-wise stats        -> {stem}_column_stats.csv
+      3) Model-wise criteria stats-> {stem}_model_criteria_stats.csv
+
+    All files are written into absolute_folder / 'summary_stats'.
+    """
+
+    absolute_folder = Path(absolute_folder)
+    cleaned_folder = absolute_folder / "cleaned"
+    if not cleaned_folder.exists():
+        print(f"No 'cleaned' folder found at {cleaned_folder}. Run create_clean_csv_files() first.")
+        return
+
+    csv_files = list(cleaned_folder.glob("*.csv"))
+    if not csv_files:
+        print(f"No cleaned CSV files found in {cleaned_folder}.")
+        return
+
+    summary_folder = absolute_folder / "summary_stats"
+    summary_folder.mkdir(exist_ok=True)
+
+    for file in csv_files:
+        print(f"Processing summary stats for: {file.name}")
+        df = pd.read_csv(file, na_values=["-"])
+
+        # --- identify grading columns ---
+        if "id" not in df.columns:
+            print(f"  Skipping {file.name}: no 'id' column.")
+            continue
+
+        non_grade_cols = ["id"]
+        for c in ["Question", "Model"]:
+            if c in df.columns:
+                non_grade_cols.append(c)
+        grade_cols = [c for c in df.columns if c not in non_grade_cols]
+
+        if not grade_cols:
+            print(f"  Skipping {file.name}: no grading columns found.")
+            continue
+
+        # Ensure grading columns are numeric
+        df[grade_cols] = df[grade_cols].apply(pd.to_numeric, errors="coerce")
+
+        stem = file.stem
+
+        # ======================================================
+        # 1) ROW-WISE STATS (per id)
+        # ======================================================
+        row_means    = []
+        row_mins     = []
+        row_maxes    = []
+        row_min_cols = []
+        row_max_cols = []
+
+        for _, row in df[grade_cols].iterrows():
+            s = row.dropna()
+            if len(s) == 0:
+                row_means.append(pd.NA)
+                row_mins.append(pd.NA)
+                row_maxes.append(pd.NA)
+                row_min_cols.append(pd.NA)
+                row_max_cols.append(pd.NA)
+            else:
+                row_means.append(s.mean())
+                row_mins.append(s.min())
+                row_maxes.append(s.max())
+                row_min_cols.append(s.idxmin())
+                row_max_cols.append(s.idxmax())
+
+        row_stats = pd.DataFrame({
+            "id": df["id"],
+            "row_mean": pd.Series(row_means).round(3),
+            "row_min": pd.Series(row_mins).round(3),
+            "row_max": pd.Series(row_maxes).round(3),
+            "row_min_col": row_min_cols,
+            "row_max_col": row_max_cols,
+        })
+
+        row_out = summary_folder / f"{stem}_row_stats.csv"
+        row_stats.to_csv(row_out, index=False)
+        print(f"  Saved row-wise stats to: {row_out}")
+
+        # ======================================================
+        # 2) COLUMN-WISE STATS (exclude Model == 'RAG')
+        # ======================================================
+        if "Model" in df.columns:
+            rag_mask = df["Model"] == "RAG"
+        else:
+            rag_mask = pd.Series(False, index=df.index)
+
+        df_no_rag = df.loc[~rag_mask, grade_cols]
+
+        col_means = []
+        col_mins  = []
+        col_maxes = []
+        min_ids   = []
+        max_ids   = []
+
+        for col in grade_cols:
+            s = df_no_rag[col]
+            if s.notna().any():
+                col_means.append(s.mean(skipna=True))
+                col_mins.append(s.min(skipna=True))
+                col_maxes.append(s.max(skipna=True))
+
+                idx_min = s.idxmin()
+                idx_max = s.idxmax()
+
+                min_ids.append(df.loc[idx_min, "id"])
+                max_ids.append(df.loc[idx_max, "id"])
+            else:
+                col_means.append(pd.NA)
+                col_mins.append(pd.NA)
+                col_maxes.append(pd.NA)
+                min_ids.append(pd.NA)
+                max_ids.append(pd.NA)
+
+        col_stats = pd.DataFrame({
+            "column": grade_cols,
+            "col_mean": pd.Series(col_means, dtype="Float64").round(3),
+            "col_min": pd.Series(col_mins, dtype="Float64").round(3),
+            "col_max": pd.Series(col_maxes, dtype="Float64").round(3),
+            "min_id": min_ids,
+            "max_id": max_ids,
+        })
+
+        col_out = summary_folder / f"{stem}_column_stats.csv"
+        col_stats.to_csv(col_out, index=False)
+        print(f"  Saved column-wise stats to: {col_out}")
+
+        # ======================================================
+        # 3) MODEL-WISE CRITERIA STATS (per Model x criterion)
+        # ======================================================
+        if ("Model" in df.columns) and ("Question" in df.columns):
+            results = []
+
+            for model in df["Model"].unique():
+                df_model = df[df["Model"] == model]
+                if df_model.empty:
+                    continue
+
+                for col in grade_cols:
+                    s = df_model[col]
+                    if not s.notna().any():
+                        continue
+
+                    mean_val = s.mean(skipna=True)
+                    min_val  = s.min(skipna=True)
+                    max_val  = s.max(skipna=True)
+
+                    idx_min = s.idxmin()
+                    idx_max = s.idxmax()
+
+                    min_question = df_model.loc[idx_min, "Question"]
+                    max_question = df_model.loc[idx_max, "Question"]
+
+                    results.append({
+                        "model": model,
+                        "criterion": col,
+                        "mean": round(mean_val, 3),
+                        "min": round(min_val, 3),
+                        "max": round(max_val, 3),
+                        "min_question": min_question,
+                        "max_question": max_question,
+                    })
+
+            if results:
+                model_crit_stats = pd.DataFrame(results)
+                model_out = summary_folder / f"{stem}_model_criteria_stats.csv"
+                model_crit_stats.to_csv(model_out, index=False)
+                print(f"  Saved model-wise criteria stats to: {model_out}")
+            else:
+                print("  No grading data found for any model in this file (for model-wise stats).")
+
+    print("Done saving per-file summary statistics.")
+
+
+
+
 def compute_global_means_separate_files(
     absolute_folder,
     model_criterion_filename="global_model_criterion_means.csv",
@@ -436,3 +619,4 @@ def compute_global_means_separate_files(
 
 compute_global_means_separate_files(absolute_folder)
 
+save_summary_stats_per_file(absolute_folder)
