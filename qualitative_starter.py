@@ -142,6 +142,11 @@ def compute_stats_for_cleaned_files(absolute_folder):
         # Read cleaned file, treat "-" as NaN
         df = pd.read_csv(file, na_values=["-"])
         
+        # Skip files without id
+        if "id" not in df.columns:
+            print(f"Skipping {file.name}: no 'id' column. Columns: {list(df.columns)}")
+            continue
+        
         # Identify non-grading columns
         non_grade_cols = ["id"]
         for c in ["Question", "Model"]:
@@ -225,12 +230,12 @@ def compute_stats_for_cleaned_files(absolute_folder):
         
         col_stats = pd.DataFrame({
             "column": grade_cols,
-            "col_mean": pd.Series(col_means).round(3),
-            "col_min": pd.Series(col_mins).round(3),
-            "col_max": pd.Series(col_maxes).round(3),
+            "col_mean": pd.Series(col_means, dtype="Float64").round(3),
+            "col_min": pd.Series(col_mins, dtype="Float64").round(3),
+            "col_max": pd.Series(col_maxes, dtype="Float64").round(3),
             "min_id": min_ids,
             "max_id": max_ids,
-        })
+})
         
         print("\nColumn-wise statistics (per grading column, excluding Model == 'RAG'):")
         print(col_stats.to_string(index=False))
@@ -334,12 +339,12 @@ def compute_global_means_separate_files(
 ):
     """
     From all cleaned CSV files in absolute_folder / 'cleaned':
-      1) Compute mean for every model per criterion (header).
-      2) Compute mean for every criterion per question per model.
+    1) Compute mean for every model per criterion (header).
+    2) Compute mean for every criterion per question per model.
     
     Save results into two separate CSV files:
-      - model_criterion_filename
-      - model_question_criterion_filename
+    - model_criterion_filename
+    - model_question_criterion_filename
     """
     cleaned_folder = absolute_folder / "cleaned"
     if not cleaned_folder.exists():
@@ -391,10 +396,14 @@ def compute_global_means_separate_files(
     
     # Keep only rows with numeric values
     all_long = all_long.dropna(subset=["value"])
+
+    global_gradings_folder = absolute_folder / "global_gradings"
+    global_gradings_folder.mkdir(exist_ok=True)
     
     # ---------------------------------------------------
     # 1) Mean for every model per criterion (all files combined)
     # ---------------------------------------------------
+
     model_criterion = (
         all_long
         .groupby(["Model", "criterion"])["value"]
@@ -403,13 +412,14 @@ def compute_global_means_separate_files(
         .rename(columns={"value": "mean_value"})
     )
     
-    model_criterion_path = cleaned_folder / model_criterion_filename
+    model_criterion_path = global_gradings_folder / model_criterion_filename
     model_criterion.to_csv(model_criterion_path, index=False)
     print(f"Saved model-per-criterion means to {model_criterion_path}")
     
     # ---------------------------------------------------
     # 2) Mean for every criterion per question per model (all files combined)
     # ---------------------------------------------------
+
     model_question_criterion = (
         all_long
         .groupby(["Model", "Question", "criterion"])["value"]
@@ -418,16 +428,11 @@ def compute_global_means_separate_files(
         .rename(columns={"value": "mean_value"})
     )
     
-    model_question_criterion_path = cleaned_folder / model_question_criterion_filename
+    model_question_criterion_path = global_gradings_folder / model_question_criterion_filename
     model_question_criterion.to_csv(model_question_criterion_path, index=False)
     print(f"Saved criterion-per-question-per-model means to {model_question_criterion_path}")
     
     return model_criterion, model_question_criterion
 
-absolute_folder = Path("qualitative_starter_final_gradings").resolve()
-compute_global_means_separate_files(
-    absolute_folder,
-    model_criterion_filename="global_model_criterion_means.csv",
-    model_question_criterion_filename="global_model_question_criterion_means.csv",
-)
+compute_global_means_separate_files(absolute_folder)
 
