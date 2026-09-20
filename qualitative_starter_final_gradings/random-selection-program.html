@@ -1,0 +1,890 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Answer Rating Randomizer</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f7f9;
+      --ink: #18202a;
+      --muted: #5d6a79;
+      --panel: #ffffff;
+      --line: #d9dee6;
+      --accent: #0f766e;
+      --accent-dark: #0b5f59;
+      --accent-soft: #d9f4ef;
+      --warn: #a55700;
+      --shadow: 0 18px 50px rgba(24, 32, 42, 0.09);
+      font-family: Inter, "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(120deg, rgba(15, 118, 110, 0.10), transparent 34%),
+        linear-gradient(280deg, rgba(196, 88, 16, 0.10), transparent 36%),
+        var(--bg);
+      color: var(--ink);
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    .shell {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 28px 0 36px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(26px, 4vw, 42px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+      max-width: 760px;
+    }
+
+    .seed-badge {
+      min-width: 170px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--muted);
+      text-align: right;
+      font-size: 13px;
+    }
+
+    .seed-badge strong {
+      display: block;
+      color: var(--ink);
+      font-size: 17px;
+      margin-top: 3px;
+      word-break: break-all;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 330px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .controls {
+      position: sticky;
+      top: 18px;
+      padding: 18px;
+    }
+
+    .control-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: #314052;
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid #cbd3df;
+      border-radius: 7px;
+      background: #fff;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    input {
+      height: 42px;
+      padding: 0 12px;
+    }
+
+    textarea {
+      min-height: 118px;
+      resize: vertical;
+      padding: 11px 12px;
+      line-height: 1.5;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15);
+    }
+
+    .range-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .btn-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .btn-row.single {
+      grid-template-columns: 1fr;
+    }
+
+    button {
+      min-height: 42px;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      padding: 0 13px;
+      cursor: pointer;
+      color: var(--ink);
+      background: #eef2f6;
+      font-weight: 700;
+      transition: transform 0.12s ease, background 0.12s ease, border-color 0.12s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      border-color: #b8c2cf;
+    }
+
+    button.primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    button.primary:hover {
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
+    }
+
+    .status {
+      margin-top: 14px;
+      min-height: 22px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .status.warn {
+      color: var(--warn);
+      font-weight: 650;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .metric {
+      padding: 15px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.82);
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+    .metric strong {
+      font-size: 22px;
+      line-height: 1.1;
+    }
+
+    .results {
+      padding: 18px;
+      min-height: 560px;
+    }
+
+    .empty-state {
+      min-height: 520px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: var(--muted);
+      border: 1px dashed #c9d1dc;
+      border-radius: 8px;
+      background:
+        repeating-linear-gradient(135deg, rgba(15, 118, 110, 0.055) 0 10px, transparent 10px 20px),
+        #fbfcfd;
+    }
+
+    .empty-state strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--ink);
+      font-size: 20px;
+    }
+
+    .member-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .member-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .member-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 13px 14px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .member-head h2 {
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 66px;
+      height: 28px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      font-size: 14px;
+    }
+
+    th,
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #edf0f4;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: #425166;
+      background: #fff;
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .qno {
+      width: 72px;
+      font-weight: 750;
+    }
+
+    .answer-order {
+      color: #263445;
+      word-break: break-word;
+    }
+
+    .copy-note {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .coverage-card {
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .coverage-card h2 {
+      margin: 0;
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--line);
+      background: #f8fafc;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+
+    @media (max-width: 920px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .controls {
+        position: static;
+      }
+
+      .summary {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .member-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .seed-badge {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .shell {
+        width: min(100vw - 20px, 1180px);
+        padding-top: 18px;
+      }
+
+      .range-row,
+      .btn-row,
+      .summary {
+        grid-template-columns: 1fr;
+      }
+
+      .results,
+      .controls {
+        padding: 14px;
+      }
+
+      table {
+        font-size: 13px;
+      }
+
+      th,
+      td {
+        padding: 9px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <h1>AI Answer Rating Randomizer</h1>
+        <p class="subtitle">Assign each question to a randomized set of reviewers, then randomize every member's question order and GPT4/GPT5 answer order.</p>
+      </div>
+      <div class="seed-badge">
+        Current Seed
+        <strong id="seedDisplay">Not generated</strong>
+      </div>
+    </header>
+
+    <section class="layout">
+      <aside class="panel controls" aria-label="Randomization settings">
+        <div class="control-title">
+          <span>Randomization Settings</span>
+          <span class="pill">5 members</span>
+        </div>
+
+        <div class="field">
+          <label for="members">Team Members</label>
+          <textarea id="members" spellcheck="false">Arav
+Kevin
+Leah
+Sisi
+Yuki</textarea>
+        </div>
+
+        <div class="range-row">
+          <div class="field">
+            <label for="startQuestion">Start Question</label>
+            <input id="startQuestion" type="number" min="1" value="4">
+          </div>
+          <div class="field">
+            <label for="endQuestion">End Question</label>
+            <input id="endQuestion" type="number" min="1" value="24">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="reviewersPerQuestion">Reviewers per Question</label>
+          <input id="reviewersPerQuestion" type="number" min="3" value="3">
+        </div>
+
+        <div class="field">
+          <label for="seedInput">Random Seed</label>
+          <input id="seedInput" type="text" placeholder="Leave blank to auto-generate">
+        </div>
+
+        <div class="btn-row single">
+          <button class="primary" id="generateBtn" type="button">Generate Randomization</button>
+        </div>
+        <div class="btn-row">
+          <button id="csvBtn" type="button">Download CSV</button>
+          <button id="jsonBtn" type="button">Copy JSON</button>
+        </div>
+
+        <div class="status" id="status">Default range is 4-24, with 3 reviewers assigned to each question.</div>
+      </aside>
+
+      <section class="results panel" aria-live="polite">
+        <div class="summary" id="summary" hidden>
+          <div class="metric">
+            <span>Members</span>
+            <strong id="memberCount">0</strong>
+          </div>
+          <div class="metric">
+            <span>Questions</span>
+            <strong id="questionCount">0</strong>
+          </div>
+          <div class="metric">
+            <span>Total Assignments</span>
+            <strong id="assignmentCount">0</strong>
+          </div>
+          <div class="metric">
+            <span>Reviewers / Question</span>
+            <strong id="reviewersPerQuestionCount">0</strong>
+          </div>
+        </div>
+
+        <div id="output">
+          <div class="empty-state">
+            <div>
+              <strong>Ready to Generate</strong>
+              <span>Set the question range and reviewers per question, then click generate.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const answers = ["GPT4", "GPT5"];
+    const state = {
+      seed: "",
+      assignments: []
+    };
+
+    const membersInput = document.querySelector("#members");
+    const startInput = document.querySelector("#startQuestion");
+    const endInput = document.querySelector("#endQuestion");
+    const reviewersInput = document.querySelector("#reviewersPerQuestion");
+    const seedInput = document.querySelector("#seedInput");
+    const generateBtn = document.querySelector("#generateBtn");
+    const csvBtn = document.querySelector("#csvBtn");
+    const jsonBtn = document.querySelector("#jsonBtn");
+    const output = document.querySelector("#output");
+    const statusEl = document.querySelector("#status");
+    const seedDisplay = document.querySelector("#seedDisplay");
+    const summary = document.querySelector("#summary");
+    const memberCount = document.querySelector("#memberCount");
+    const questionCount = document.querySelector("#questionCount");
+    const assignmentCount = document.querySelector("#assignmentCount");
+    const reviewersPerQuestionCount = document.querySelector("#reviewersPerQuestionCount");
+
+    function cyrb128(text) {
+      let h1 = 1779033703;
+      let h2 = 3144134277;
+      let h3 = 1013904242;
+      let h4 = 2773480762;
+
+      for (let i = 0; i < text.length; i += 1) {
+        const k = text.charCodeAt(i);
+        h1 = h2 ^ Math.imul(h1 ^ k, 597399067);
+        h2 = h3 ^ Math.imul(h2 ^ k, 2869860233);
+        h3 = h4 ^ Math.imul(h3 ^ k, 951274213);
+        h4 = h1 ^ Math.imul(h4 ^ k, 2716044179);
+      }
+
+      h1 = Math.imul(h3 ^ (h1 >>> 18), 597399067);
+      h2 = Math.imul(h4 ^ (h2 >>> 22), 2869860233);
+      h3 = Math.imul(h1 ^ (h3 >>> 17), 951274213);
+      h4 = Math.imul(h2 ^ (h4 >>> 19), 2716044179);
+
+      return [(h1 ^ h2 ^ h3 ^ h4) >>> 0, (h2 ^ h1) >>> 0, (h3 ^ h1) >>> 0, (h4 ^ h1) >>> 0];
+    }
+
+    function sfc32(a, b, c, d) {
+      return function random() {
+        a >>>= 0;
+        b >>>= 0;
+        c >>>= 0;
+        d >>>= 0;
+        const t = (a + b | 0) + d | 0;
+        d = d + 1 | 0;
+        a = b ^ b >>> 9;
+        b = c + (c << 3) | 0;
+        c = c << 21 | c >>> 11;
+        c = c + t | 0;
+        return (t >>> 0) / 4294967296;
+      };
+    }
+
+    function createRandom(seed) {
+      return sfc32(...cyrb128(seed));
+    }
+
+    function shuffle(items, random) {
+      const result = [...items];
+      for (let i = result.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(random() * (i + 1));
+        [result[i], result[j]] = [result[j], result[i]];
+      }
+      return result;
+    }
+
+    function parseMembers() {
+      return membersInput.value
+        .split(/\r?\n|,/)
+        .map((name) => name.trim())
+        .filter(Boolean);
+    }
+
+    function buildQuestionRange(start, end) {
+      return Array.from({ length: end - start + 1 }, (_, index) => start + index);
+    }
+
+    function makeSeed() {
+      const typedSeed = seedInput.value.trim();
+      if (typedSeed) {
+        return typedSeed;
+      }
+
+      return `rating-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    }
+
+    function validateInputs(members, start, end, reviewersPerQuestion) {
+      if (members.length === 0) {
+        return "Please enter at least one team member.";
+      }
+
+      if (members.length < 3) {
+        return "At least 3 team members are required because every question needs at least 3 reviewers.";
+      }
+
+      if (!Number.isInteger(start) || !Number.isInteger(end)) {
+        return "Question numbers must be integers.";
+      }
+
+      if (!Number.isInteger(reviewersPerQuestion)) {
+        return "Reviewers per question must be an integer.";
+      }
+
+      if (start < 1 || end < 1) {
+        return "Question numbers must be greater than or equal to 1.";
+      }
+
+      if (reviewersPerQuestion < 3) {
+        return "Each question must have at least 3 reviewers.";
+      }
+
+      if (start > end) {
+        return "Start question cannot be greater than end question.";
+      }
+
+      if (reviewersPerQuestion > members.length) {
+        return "Reviewers per question cannot be greater than the number of team members.";
+      }
+
+      if (new Set(members).size !== members.length) {
+        return "The member list contains duplicate names. Please merge them first.";
+      }
+
+      return "";
+    }
+
+    function chooseReviewers(members, loads, count, random) {
+      return members
+        .map((member) => ({
+          member,
+          load: loads.get(member) || 0,
+          tieBreaker: random()
+        }))
+        .sort((a, b) => a.load - b.load || a.tieBreaker - b.tieBreaker)
+        .slice(0, count)
+        .map((item) => item.member);
+    }
+
+    function generateAssignments() {
+      const members = parseMembers();
+      const start = Number(startInput.value);
+      const end = Number(endInput.value);
+      const reviewersPerQuestion = Number(reviewersInput.value);
+      const error = validateInputs(members, start, end, reviewersPerQuestion);
+
+      if (error) {
+        state.assignments = [];
+        statusEl.textContent = error;
+        statusEl.classList.add("warn");
+        return;
+      }
+
+      const seed = makeSeed();
+      const questions = buildQuestionRange(start, end);
+      const memberQuestions = new Map(members.map((member) => [member, []]));
+      const loads = new Map(members.map((member) => [member, 0]));
+      const coverage = {};
+      const coverageOrder = shuffle(questions, createRandom(`${seed}::coverage-order`));
+
+      coverageOrder.forEach((question) => {
+        const reviewerRandom = createRandom(`${seed}::Q${question}::reviewers`);
+        const selectedReviewers = chooseReviewers(members, loads, reviewersPerQuestion, reviewerRandom);
+        coverage[`Q${question}`] = selectedReviewers;
+
+        selectedReviewers.forEach((member) => {
+          memberQuestions.get(member).push(question);
+          loads.set(member, (loads.get(member) || 0) + 1);
+        });
+      });
+
+      const assignments = members.map((member, memberIndex) => {
+        const random = createRandom(`${seed}::${member}::${memberIndex}::question-order`);
+        const orderedQuestions = shuffle(memberQuestions.get(member), random);
+        return {
+          member,
+          items: orderedQuestions.map((question) => {
+            const answerRandom = createRandom(`${seed}::${member}::${question}::answers`);
+            return {
+              question,
+              answerOrder: shuffle(answers, answerRandom)
+            };
+          })
+        };
+      });
+
+      state.seed = seed;
+      state.assignments = assignments;
+      state.coverage = coverage;
+      state.reviewersPerQuestion = reviewersPerQuestion;
+      render(assignments, questions.length, reviewersPerQuestion);
+      statusEl.textContent = `Generated. Each question is assigned to ${reviewersPerQuestion} reviewers, with balanced member workloads.`;
+      statusEl.classList.remove("warn");
+    }
+
+    function render(assignments, totalQuestions, reviewersPerQuestion) {
+      seedDisplay.textContent = state.seed;
+      summary.hidden = false;
+      memberCount.textContent = assignments.length;
+      questionCount.textContent = totalQuestions;
+      assignmentCount.textContent = assignments.reduce((total, assignment) => total + assignment.items.length, 0);
+      reviewersPerQuestionCount.textContent = reviewersPerQuestion;
+
+      output.innerHTML = "";
+      const grid = document.createElement("div");
+      grid.className = "member-grid";
+
+      assignments.forEach((assignment) => {
+        const card = document.createElement("article");
+        card.className = "member-card";
+
+        const head = document.createElement("div");
+        head.className = "member-head";
+        head.innerHTML = `<h2>${escapeHtml(assignment.member)}</h2><span class="pill">${assignment.items.length} questions</span>`;
+
+        const table = document.createElement("table");
+        table.innerHTML = `
+          <thead>
+            <tr>
+              <th class="qno">Order</th>
+              <th>Question</th>
+              <th>Answer Display Order</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${assignment.items.map((item, index) => `
+              <tr>
+                <td class="qno">${index + 1}</td>
+                <td>Q${item.question}</td>
+                <td class="answer-order">${item.answerOrder.join(" -> ")}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        `;
+
+        card.append(head, table);
+        grid.append(card);
+      });
+
+      output.append(grid);
+      output.append(renderCoverage());
+    }
+
+    function renderCoverage() {
+      const card = document.createElement("article");
+      card.className = "coverage-card";
+      const coverageRows = Object.entries(state.coverage)
+        .sort(([left], [right]) => Number(left.slice(1)) - Number(right.slice(1)))
+        .map(([question, reviewers]) => `
+          <tr>
+            <td class="qno">${escapeHtml(question)}</td>
+            <td>${reviewers.map(escapeHtml).join(", ")}</td>
+            <td>${reviewers.length}</td>
+          </tr>
+        `)
+        .join("");
+
+      card.innerHTML = `
+        <h2>Question Coverage</h2>
+        <table>
+          <thead>
+            <tr>
+              <th class="qno">Question</th>
+              <th>Assigned Reviewers</th>
+              <th>Count</th>
+            </tr>
+          </thead>
+          <tbody>${coverageRows}</tbody>
+        </table>
+      `;
+      return card;
+    }
+
+    function escapeHtml(value) {
+      return value
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function toCsvRows() {
+      const rows = [["Seed", "Member", "Order", "Question", "First Answer", "Second Answer"]];
+      state.assignments.forEach((assignment) => {
+        assignment.items.forEach((item, index) => {
+          rows.push([
+            state.seed,
+            assignment.member,
+            index + 1,
+            `Q${item.question}`,
+            item.answerOrder[0],
+            item.answerOrder[1]
+          ]);
+        });
+      });
+      return rows;
+    }
+
+    function csvEscape(value) {
+      const text = String(value);
+      if (/[",\n\r]/.test(text)) {
+        return `"${text.replaceAll('"', '""')}"`;
+      }
+      return text;
+    }
+
+    function downloadCsv() {
+      if (!state.assignments.length) {
+        setTemporaryStatus("Please generate the randomization first.", true);
+        return;
+      }
+
+      const csv = toCsvRows().map((row) => row.map(csvEscape).join(",")).join("\r\n");
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const anchor = document.createElement("a");
+      anchor.href = url;
+      anchor.download = `ai-rating-randomization-${state.seed}.csv`.replace(/[\\/:*?"<>|]+/g, "-");
+      anchor.click();
+      URL.revokeObjectURL(url);
+      setTemporaryStatus("CSV downloaded.", false);
+    }
+
+    async function copyJson() {
+      if (!state.assignments.length) {
+        setTemporaryStatus("Please generate the randomization first.", true);
+        return;
+      }
+
+      const payload = JSON.stringify({
+        seed: state.seed,
+        generatedAt: new Date().toISOString(),
+        answerLabels: answers,
+        reviewersPerQuestion: state.reviewersPerQuestion,
+        coverage: state.coverage,
+        assignments: state.assignments
+      }, null, 2);
+
+      try {
+        await navigator.clipboard.writeText(payload);
+        setTemporaryStatus("JSON copied to clipboard.", false);
+      } catch {
+        setTemporaryStatus("Clipboard access was blocked by the browser. Please use CSV download instead.", true);
+      }
+    }
+
+    function setTemporaryStatus(message, warning) {
+      statusEl.textContent = message;
+      statusEl.classList.toggle("warn", warning);
+      window.clearTimeout(setTemporaryStatus.timer);
+      setTemporaryStatus.timer = window.setTimeout(() => {
+        statusEl.textContent = state.assignments.length
+          ? `Generated. Each question is assigned to ${state.reviewersPerQuestion} reviewers, with balanced member workloads.`
+          : "Default range is 4-24, with 3 reviewers assigned to each question.";
+        statusEl.classList.remove("warn");
+      }, 2600);
+    }
+
+    generateBtn.addEventListener("click", generateAssignments);
+    csvBtn.addEventListener("click", downloadCsv);
+    jsonBtn.addEventListener("click", copyJson);
+  </script>
+</body>
+</html>
