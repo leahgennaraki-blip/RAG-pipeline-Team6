@@ -1,3 +1,5 @@
+import re
+import unicodedata
 import pandas as pd
 from pathlib import Path
 
@@ -17,48 +19,67 @@ data = df.iloc[1:].copy().reset_index(drop=True)
 # Keep only actual question rows
 data = data[data["Question"].str.strip().ne("")].copy()
 
-# Create question numbers: 1, 2, ..., 24
-data["question_number"] = range(1, len(data) + 1)
-
 def clean_text(value):
-    """Remove invisible characters and surrounding whitespace."""
-    return (
-        str(value)
-        .replace("\ufeff", "")
-        .replace("\u200b", "")
-        .replace("\xa0", " ")
-        .strip()
+    """Lightly normalise text while retaining linguistic content."""
+    text = str(value)
+
+    # Normalise Unicode variants
+    text = unicodedata.normalize("NFKC", text)
+
+    # Remove invisible characters and normalise non-breaking spaces
+    text = (
+        text.replace("\ufeff", "")  # Byte-order mark
+            .replace("\u200b", "")  # Zero-width space
+            .replace("\u200c", "")  # Zero-width non-joiner
+            .replace("\u200d", "")  # Zero-width joiner
+            .replace("\xa0", " ")   # Non-breaking space
     )
 
-# Output filename, doc_id prefix, and corresponding source column
+    # Standardise line breaks
+    text = text.replace("\r\n", "\n").replace("\r", "\n")
+
+    # Remove repeated spaces/tabs within lines but retain paragraph structure
+    lines = [re.sub(r"[ \t]+", " ", line).strip() for line in text.split("\n")]
+    text = "\n".join(lines)
+
+    # Reduce excessive blank lines to one blank line
+    text = re.sub(r"\n{3,}", "\n\n", text)
+
+    return text.strip()
+
+# Output filename and corresponding source CSV column
 models = {
     "gpt_4": {
         "column": "A",
-        "doc_id_prefix": "gpt4",
     },
     "gpt_5_2": {
         "column": "Unnamed: 3",
-        "doc_id_prefix": "gpt5.2",
     },
     "rag": {
         "column": "B",
-        "doc_id_prefix": "rag",
     },
 }
 
 for filename, model_info in models.items():
     source_column = model_info["column"]
-    prefix = model_info["doc_id_prefix"]
 
-    output = pd.DataFrame({
-        "doc_id": prefix + "_" + data["question_number"].astype(str),
-        "text": data[source_column].map(clean_text),
-    })
+    # Check that the expected column exists before proceeding
+    if source_column not in data.columns:
+        raise KeyError(
+            f"Column '{source_column}' was not found. "
+            f"Available columns: {list(data.columns)}"
+        )
 
-    # Omit missing or blank model responses
-    output = output[output["text"].ne("")]
+    # Clean answers and discard missing/empty responses
+    responses = data[source_column].map(clean_text)
+    responses = responses[responses.ne("")]
 
-    output_path = output_dir / f"{filename}.csv"
-    output.to_csv(output_path, index=False, encoding="utf-8")
+    # Combine every response from this model into one document.
+    # A blank line separates original responses without adding labels or IDs.
+    combined_text = "\n\n".join(responses)
 
-    print(f"Created: {output_path}")
+    # Write one UTF-8 plain-text file per model
+    output_path = output_dir / f"{filename}.txt"
+    output_path.write_text(combined_text, encoding="utf-8")
+
+    print(f"Created: {output_path} ({len(responses)} responses combined)")
