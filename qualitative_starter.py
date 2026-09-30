@@ -336,9 +336,9 @@ def save_summary_stats_per_file(absolute_folder):
     """
     For each cleaned CSV in absolute_folder / 'cleaned':
 
-      1) Row-wise stats (per id)  -> {stem}_row_stats.csv
-      2) Column-wise stats        -> {stem}_column_stats.csv
-      3) Model-wise criteria stats-> {stem}_model_criteria_stats.csv
+    1) Row-wise stats (per id)  -> {stem}_row_stats.csv
+    2) Column-wise stats        -> {stem}_column_stats.csv
+    3) Model-wise criteria stats-> {stem}_model_criteria_stats.csv
 
     All files are written into absolute_folder / 'summary_stats'.
     """

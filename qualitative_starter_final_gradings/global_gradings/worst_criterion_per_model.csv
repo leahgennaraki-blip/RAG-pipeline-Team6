@@ -1,0 +1,4 @@
+Model,criterion,mean_value
+GPT4,Factuality,2.84
+GPT5,Narrativity,2.8933333333333335
+RAG,Narrativity,4.466666666666667
