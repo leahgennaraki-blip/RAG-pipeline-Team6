@@ -54,7 +54,7 @@ def clean_text(value):
 def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    df = pd.read_csv(INPUT_FILE, dtype=str, keep_default_na=False)
+    df = pd.read_csv(INPUT_FILE, sep=";", dtype=str, keep_default_na=False)
 
     # Row 0 holds the model labels; keep only rows with a question.
     data = df.iloc[1:]

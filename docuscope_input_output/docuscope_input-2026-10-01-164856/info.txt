@@ -2,5 +2,5 @@ CORPUS Folder:   /Users/leah/coding-humanities/rag-pipeline-team-6/docuscope_inp
 GROUPS:          no groups
 OUTPUT Folder:   /Users/leah/coding-humanities/rag-pipeline-team-6/docuscope_input_output
 DICTIONARY:      ds_dict (2024.01.11)
-STARTED AT:      2026-10-01 14:27:01 (CEST)
-COMPLETED AT:    2026-10-01 14:27:03 (CEST)
+STARTED AT:      2026-10-01 16:48:56 (CEST)
+COMPLETED AT:    2026-10-01 16:48:58 (CEST)

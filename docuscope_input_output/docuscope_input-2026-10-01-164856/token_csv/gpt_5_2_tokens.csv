@@ -208,7 +208,6 @@ and,and,s,OtherSyntacticComplexityOther,0
 culturally,culturally,s,SpecialTopicsMiscellanyNeutral,0
 dislocating,dislocating,c,NarrSceneShiftNeg,0
 .,.,n,,0
-Goodreads,goodreads,n,,0
 Oral,oral,s,ExpoOtherNeutral,0
 History,history,s,ExpoOtherNeutral,1
 and,and,s,OtherSyntacticComplexityOther,0
@@ -330,11 +329,6 @@ the,the,s,OtherSyntacticComplexityOther,1
 Indo-Trinidadian,indo-trinidadian,s,,0
 community,community,c,SpecialTopicsMiscellanyNeutral,0
 .,.,n,,0
-Women's,women's,s,CharTypesNeutral,0
-Writing,writing,s,ResponsibilityAssignNeutral,0
-Assignments,assignments,c,ResponsibilityAssignNeutral,1
-",",",",s,CitationReferenceNeutral,0
-2013,2013,n,CitationReferenceNeutral,1
 Women’s,women’s,s,CharTypesNeutral,0
 Agency,agency,c,PubAdministrationNeutral,0
 :,:,s,,0
