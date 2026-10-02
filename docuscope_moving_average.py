@@ -197,6 +197,17 @@ def moving_average(model, token_dir):
     middle = per_sentence.index.get_indexer(result.index) - WINDOW // 2
     result.insert(0, "first_sentence", middle - WINDOW // 2)
     result.insert(1, "position", middle / (n_sentences - 1))
+    # Position aligned to the questions, so the models line up in one plot:
+    # question q spans q - 0.5 to q + 0.5, and the window sits inside it by
+    # where its middle sentence falls within that question's answer.
+    sentence_question = pd.Series(question_of_sentence)
+    index_in_question = sentence_question.groupby(sentence_question).cumcount()
+    question_length = sentence_question.map(sentence_question.value_counts())
+    middle_ids = per_sentence.index[middle]
+    result.insert(2, "question_position", (
+        sentence_question[middle_ids].values - 0.5
+        + (index_in_question[middle_ids].values + 0.5) / question_length[middle_ids].values
+    ))
     result.insert(0, "model", MODELS[model])
 
     # Whole-text values for reference (same as DocuScope's N_ csv).
@@ -273,6 +284,44 @@ def plot(results):
     return fig
 
 
+def plot_category(results, category):
+    """One plot for a category with a line per model, the x-axis aligned by question."""
+    fig, ax = plt.subplots(figsize=(14, 4.5))
+    questions = sorted(set().union(*(w["question"] for w, _ in results.values())))
+
+    # Shade every other question and number them, so the questions stay apart.
+    for q in questions:
+        if q % 2 == 0:
+            ax.axvspan(q - 0.5, q + 0.5, color="#f4f3f0", lw=0, zorder=0)
+        if q != questions[0]:
+            ax.axvline(q - 0.5, color="#b5b4af", lw=0.7, ls="--", zorder=1)
+
+    for model, (windows, overall) in results.items():
+        colour = MODEL_COLOURS[model]
+        ax.plot(windows["question_position"], windows[category], color=colour,
+                lw=1.4, zorder=3, label=MODELS[model])
+        ax.axhline(overall[category], color=colour, lw=1, ls=":", zorder=2)
+
+    ax.set_xlim(questions[0] - 0.5, questions[-1] + 0.5)
+    ax.set_xticks(questions)
+    ax.tick_params(axis="x", length=0)
+    ax.set_ylim(0, None)
+    ax.yaxis.set_major_formatter(PercentFormatter(xmax=1))
+    ax.grid(axis="y", color="#ecebe8", lw=0.8)
+    ax.set_axisbelow(True)
+    ax.spines[["top", "right"]].set_visible(False)
+    ax.set_xlabel("Question (window placed by where its middle sentence falls in that answer)")
+    ax.set_ylabel("Share of tokens in window")
+    ax.legend(loc="upper left", bbox_to_anchor=(1.0, 1.0), frameon=False)
+    ax.set_title(
+        f"{category}: DocuScope {WINDOW}-sentence moving window by model. "
+        "Dotted: whole-text value.",
+        loc="left", fontweight="bold",
+    )
+    fig.tight_layout()
+    return fig
+
+
 def main():
     try:
         nltk.data.find("tokenizers/punkt_tab")
@@ -297,9 +346,19 @@ def main():
     table.to_csv(OUTPUT_DIR / f"docuscope_moving_average_{WINDOW}.csv", index=False)
 
     fig = plot(results)
-    plot_path = OUTPUT_DIR / f"docuscope_moving_average_{WINDOW}.png"
-    fig.savefig(plot_path, dpi=200, bbox_inches="tight")
-    print(f"Saved: {plot_path}")
+    for extension in ("png", "pdf"):
+        plot_path = OUTPUT_DIR / f"docuscope_moving_average_{WINDOW}.{extension}"
+        fig.savefig(plot_path, dpi=200, bbox_inches="tight")
+        print(f"Saved: {plot_path}")
+
+    for category in CATEGORIES:
+        fig = plot_category(results, category)
+        for extension in ("png", "pdf"):
+            plot_path = OUTPUT_DIR / (f"docuscope_moving_average_{WINDOW}_models_compared_"
+                                      f"{category.lower()}.{extension}")
+            fig.savefig(plot_path, dpi=200, bbox_inches="tight")
+            print(f"Saved: {plot_path}")
+        plt.close(fig)
 
 
 if __name__ == "__main__":

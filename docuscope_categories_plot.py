@@ -95,9 +95,10 @@ def main():
     table.to_csv(OUTPUT_DIR / f"top_{TOP_N}_docuscope_categories.csv")
 
     fig = plot(top)
-    plot_path = OUTPUT_DIR / f"top_{TOP_N}_docuscope_categories.png"
-    fig.savefig(plot_path, dpi=200, bbox_inches="tight")
-    print(f"Saved: {plot_path}")
+    for extension in ("png", "pdf"):
+        plot_path = OUTPUT_DIR / f"top_{TOP_N}_docuscope_categories.{extension}"
+        fig.savefig(plot_path, dpi=200, bbox_inches="tight")
+        print(f"Saved: {plot_path}")
 
 
 if __name__ == "__main__":

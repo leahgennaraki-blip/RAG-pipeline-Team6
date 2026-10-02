@@ -22,7 +22,7 @@ EXCLUDE_OTHER_TAGS = True
 
 # Token CSV filename prefix -> plot label.
 MODELS = {"gpt_4": "GPT-4", "gpt_5_2": "GPT 5.2", "rag": "RAG"}
-MODEL_COLOURS = {"gpt_4": "#1f77b4", "gpt_5_2": "#d62728", "rag": "#2ca02c"}
+MODEL_COLOURS = {"gpt_4": "#2a78d6", "gpt_5_2": "#eb6834", "rag": "#1baf7a"}
 
 # Columns of a DocuScope token CSV (the files have no header row).
 TOKEN_COLUMNS = ["token", "token_lower", "token_type", "tag", "position_in_pattern"]
@@ -100,9 +100,10 @@ def main():
     table.to_csv(OUTPUT_DIR / f"top_{TOP_N}_token_tags.csv")
 
     fig = plot(results)
-    plot_path = OUTPUT_DIR / f"top_{TOP_N}_token_tags.png"
-    fig.savefig(plot_path, dpi=200, bbox_inches="tight")
-    print(f"Saved: {plot_path}")
+    for extension in ("png", "pdf"):
+        plot_path = OUTPUT_DIR / f"top_{TOP_N}_token_tags.{extension}"
+        fig.savefig(plot_path, dpi=200, bbox_inches="tight")
+        print(f"Saved: {plot_path}")
 
 
 if __name__ == "__main__":
