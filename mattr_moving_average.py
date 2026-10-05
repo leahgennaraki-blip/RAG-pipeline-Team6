@@ -84,7 +84,7 @@ def plot(results):
     ax.set_ylabel("Type-token ratio in window")
     ax.legend(loc="upper left", bbox_to_anchor=(1.0, 1.0), frameon=False)
     ax.set_title(
-        f"MATTR: {WINDOW}-lemma moving window by model. Dotted: mean over all "
+        f"MATTR: moving window of {WINDOW} by model. Dotted: mean over all "
         "windows (the model's MATTR).",
         loc="left", fontweight="bold",
     )
@@ -110,7 +110,7 @@ def plot_scores(results):
     ax.grid(axis="y", color="#ecebe8", lw=0.8)
     ax.set_axisbelow(True)
     ax.spines[["top", "right"]].set_visible(False)
-    ax.set_title(f"MATTR per model (window = {WINDOW} lemmas)", loc="left",
+    ax.set_title(f"MATTR per model (window = {WINDOW})", loc="left",
                  fontweight="bold", fontsize=13)
     fig.tight_layout()
     return fig
