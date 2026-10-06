@@ -8,8 +8,10 @@ through the text one sentence at a time. Per window, each category's value is
 
 which is the same normalization as DocuScope's N_ csv, just per window.
 
-Each window is also assigned the question whose response most of its tokens
-come from; dashed lines in the plot mark where that question changes. The
+Each window is also assigned a question, by two rules (QUESTION_RULES): the
+question whose response most of its tokens come from (majority), and the
+question its middle sentence comes from (middle). Every plot is made once
+per rule; dashed lines mark where the window's question changes. The
 responses are rebuilt from the source CSV with cleaned_model_responses.py's
 cleaning, since the .txt files don't mark where one response ends.
 
@@ -22,6 +24,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 from matplotlib.ticker import PercentFormatter
 import nltk
+import numpy as np
 import pandas as pd
 
 from cleaned_model_responses import INPUT_FILE, MODELS as RESPONSE_COLUMNS, clean_text
@@ -44,6 +47,17 @@ CATEGORIES = {
     "Description": "Descript",
     "Negative": "Neg",
     "Exposition": "Expo",
+}
+
+# How a window is assigned to a question. Every plot is made once per rule.
+QUESTION_RULES = {
+    "majority": "the question most of its tokens come from",
+    "middle": "the question its middle sentence comes from",
+}
+QUESTION_AXIS_LABELS = {
+    "majority": "Question (windows spread evenly over the question most of their tokens "
+                "come from, in text order)",
+    "middle": "Question (window placed by where its middle sentence falls in that answer)",
 }
 
 # How many characters ahead to look for a token that doesn't line up with the
@@ -153,6 +167,37 @@ def assign_sentences(tokens, sentences):
     return sentence_ids, unmatched
 
 
+def middle_question_position(question_of_unit, middle_ids):
+    """Return each window's position on an x-axis aligned to the questions,
+    placed by its middle unit (sentence or lemma).
+
+    Question q spans q - 0.5 to q + 0.5, and the window sits inside it by
+    where its middle unit falls within that question's answer.
+    question_of_unit: the question of every unit, in text order.
+    """
+    question = pd.Series(question_of_unit)
+    index_in_question = question.groupby(question).cumcount()
+    question_length = question.map(question.value_counts())
+    return (
+        question[middle_ids].values - 0.5
+        + (index_in_question[middle_ids].values + 0.5) / question_length[middle_ids].values
+    )
+
+
+def majority_question_position(window_questions):
+    """Return each window's position on an x-axis aligned to the questions,
+    placed by its majority question.
+
+    Question q spans q - 0.5 to q + 0.5, and the windows assigned to it are
+    spread evenly over that span in text order. A question that no window
+    mostly consists of gets no windows.
+    """
+    question = pd.Series(window_questions).reset_index(drop=True)
+    rank = question.groupby(question).cumcount()
+    count = question.map(question.value_counts())
+    return (question - 0.5 + (rank + 0.5) / count).values
+
+
 def moving_average(model, token_dir):
     tokens = read_tokens(token_dir / f"{model}_tokens.csv")
 
@@ -181,51 +226,95 @@ def moving_average(model, token_dir):
     n_sentences = len(per_sentence)
     if n_sentences < WINDOW:
         print(f"Skipping {model}: only {n_sentences} sentences (window is {WINDOW}).")
-        return None, None
+        return None, None, None
 
     windows = per_sentence.rolling(WINDOW).sum().dropna()
     result = windows[list(CATEGORIES)].div(windows["tokens"], axis=0)
     result.insert(0, "window_tokens", windows["tokens"].astype(int))
 
-    # The question most of the window's tokens come from.
-    question = pd.Series(question_of_sentence).loc[per_sentence.index]
-    tokens_per_question = pd.get_dummies(question).mul(per_sentence["tokens"], axis=0)
-    result.insert(0, "question", tokens_per_question.rolling(WINDOW).sum().loc[
-        result.index].idxmax(axis=1).astype(int))
     # Rolling windows are labelled by their last sentence; position the
     # window by its middle sentence, as a share of the text.
     middle = per_sentence.index.get_indexer(result.index) - WINDOW // 2
+    middle_ids = per_sentence.index[middle]
     result.insert(0, "first_sentence", middle - WINDOW // 2)
     result.insert(1, "position", middle / (n_sentences - 1))
-    # Position aligned to the questions, so the models line up in one plot:
-    # question q spans q - 0.5 to q + 0.5, and the window sits inside it by
-    # where its middle sentence falls within that question's answer.
-    sentence_question = pd.Series(question_of_sentence)
-    index_in_question = sentence_question.groupby(sentence_question).cumcount()
-    question_length = sentence_question.map(sentence_question.value_counts())
-    middle_ids = per_sentence.index[middle]
-    result.insert(2, "question_position", (
-        sentence_question[middle_ids].values - 0.5
-        + (index_in_question[middle_ids].values + 0.5) / question_length[middle_ids].values
-    ))
+
+    # The window's question by each rule in QUESTION_RULES. Majority ties go
+    # to the earlier question.
+    question = pd.Series(question_of_sentence).loc[per_sentence.index]
+    tokens_per_question = pd.get_dummies(question).mul(per_sentence["tokens"], axis=0)
+    result.insert(2, "majority_question", tokens_per_question.rolling(WINDOW).sum().loc[
+        result.index].idxmax(axis=1).astype(int))
+    result.insert(3, "middle_question", pd.Series(question_of_sentence)[middle_ids].values)
+    # Positions aligned to the questions, so the models line up in one plot.
+    result.insert(4, "majority_question_position",
+                  majority_question_position(result["majority_question"]))
+    result.insert(5, "middle_question_position",
+                  middle_question_position(question_of_sentence, middle_ids))
     result.insert(0, "model", MODELS[model])
 
     # Whole-text values for reference (same as DocuScope's N_ csv).
     overall = {c: tokens[c].sum() / len(tokens) for c in CATEGORIES}
-    return result.reset_index(drop=True), overall
+    # Sentences per answer, for the plots whose question widths follow length.
+    question_lengths = pd.Series(question_of_sentence).value_counts().sort_index()
+    return result.reset_index(drop=True), overall, question_lengths
 
 
-def question_segments(windows):
+def question_segments(windows, rule):
     """Return (first position, last position, question) for each run of windows
-    whose tokens mostly come from the same question."""
-    run = windows["question"].ne(windows["question"].shift()).cumsum()
+    assigned to the same question by the rule."""
+    column = f"{rule}_question"
+    run = windows[column].ne(windows[column].shift()).cumsum()
     return [
-        (group["position"].iloc[0], group["position"].iloc[-1], group["question"].iloc[0])
+        (group["position"].iloc[0], group["position"].iloc[-1], group[column].iloc[0])
         for _, group in windows.groupby(run)
     ]
 
 
-def plot(results):
+def question_slots(results, question_lengths=None):
+    """Return each question's span on the x-axis, as (start, width) Series
+    indexed by question.
+
+    Without question_lengths, question q spans q - 0.5 to q + 0.5. With them
+    ({model: answer length per question}), a question is as wide as its mean
+    answer length over the models. Uses the questions found by either rule,
+    so both rules' plots get the same axis.
+    """
+    questions = pd.Index(sorted(set().union(*(
+        windows[column] for windows, _ in results.values()
+        for column in ("majority_question", "middle_question")
+    ))))
+    if question_lengths is None:
+        return pd.Series(questions - 0.5, index=questions), pd.Series(1.0, index=questions)
+    widths = pd.DataFrame(question_lengths).mean(axis=1).loc[questions]
+    return widths.cumsum() - widths, widths
+
+
+def slot_position(question_position, slots):
+    """Move positions from the one-wide question spans (q - 0.5 to q + 0.5)
+    into the given spans, keeping where they sit within their question."""
+    starts, widths = slots
+    question_position = np.asarray(question_position)
+    question = np.floor(question_position + 0.5).astype(int)
+    within = question_position - (question - 0.5)
+    return starts.loc[question].values + within * widths.loc[question].values
+
+
+def question_axis(ax, slots):
+    """Lay out the x-axis by question, with every other question shaded and
+    dashed lines between them."""
+    starts, widths = slots
+    for i, q in enumerate(starts.index):
+        if q % 2 == 0:
+            ax.axvspan(starts[q], starts[q] + widths[q], color="#f4f3f0", lw=0, zorder=0)
+        if i > 0:
+            ax.axvline(starts[q], color="#b5b4af", lw=0.7, ls="--", zorder=1)
+    ax.set_xlim(starts.iloc[0], starts.iloc[-1] + widths.iloc[-1])
+    ax.set_xticks(starts + widths / 2, starts.index)
+    ax.tick_params(axis="x", length=0)
+
+
+def plot(results, rule):
     fig, axes = plt.subplots(
         len(results), len(CATEGORIES), figsize=(4.6 * len(CATEGORIES), 3.3 * len(results)),
         sharex=True, sharey="col", squeeze=False,
@@ -233,10 +322,10 @@ def plot(results):
 
     for row, (model, (windows, overall)) in zip(axes, results.items()):
         colour = MODEL_COLOURS[model]
-        segments = question_segments(windows)
+        segments = question_segments(windows, rule)
 
         for ax, category in zip(row, CATEGORIES):
-            # Dashed partitions where the window's main question changes.
+            # Dashed partitions where the window's question changes.
             for start, _end, _q in segments[1:]:
                 ax.axvline(start, color="#b5b4af", lw=0.7, ls="--", zorder=1)
 
@@ -261,7 +350,7 @@ def plot(results):
     # heights so the labels of short neighbouring segments don't overlap.
     for row, (windows, _) in zip(axes, results.values()):
         for ax in row:
-            for i, (start, end, question) in enumerate(question_segments(windows)):
+            for i, (start, end, question) in enumerate(question_segments(windows, rule)):
                 ax.annotate(
                     str(question), xy=((start + end) / 2, 1),
                     xycoords=("data", "axes fraction"),
@@ -276,46 +365,43 @@ def plot(results):
 
     fig.suptitle(
         f"DocuScope categories, {WINDOW}-sentence moving window. Dotted: whole-text "
-        "value. Dashed lines split the windows by the question (numbered) most of "
-        "their tokens come from.",
+        f"value.\nEach window is assigned {QUESTION_RULES[rule]} (numbered); dashed "
+        "lines mark where that changes.",
         x=0.01, ha="left", fontsize=12,
     )
     fig.tight_layout()
     return fig
 
 
-def plot_category(results, category):
-    """One plot for a category with a line per model, the x-axis aligned by question."""
-    fig, ax = plt.subplots(figsize=(14, 4.5))
-    questions = sorted(set().union(*(w["question"] for w, _ in results.values())))
+def plot_category(results, category, rule, question_lengths=None):
+    """One plot for a category with a line per model, the x-axis aligned by question.
 
-    # Shade every other question and number them, so the questions stay apart.
-    for q in questions:
-        if q % 2 == 0:
-            ax.axvspan(q - 0.5, q + 0.5, color="#f4f3f0", lw=0, zorder=0)
-        if q != questions[0]:
-            ax.axvline(q - 0.5, color="#b5b4af", lw=0.7, ls="--", zorder=1)
+    With question_lengths, each question is as wide as its mean answer length.
+    """
+    fig, ax = plt.subplots(figsize=(14, 4.5))
+    slots = question_slots(results, question_lengths)
+    question_axis(ax, slots)
 
     for model, (windows, overall) in results.items():
         colour = MODEL_COLOURS[model]
-        ax.plot(windows["question_position"], windows[category], color=colour,
-                lw=1.4, zorder=3, label=MODELS[model])
+        ax.plot(slot_position(windows[f"{rule}_question_position"], slots), windows[category],
+                color=colour, lw=1.4, zorder=3, label=MODELS[model])
         ax.axhline(overall[category], color=colour, lw=1, ls=":", zorder=2)
 
-    ax.set_xlim(questions[0] - 0.5, questions[-1] + 0.5)
-    ax.set_xticks(questions)
-    ax.tick_params(axis="x", length=0)
     ax.set_ylim(0, None)
     ax.yaxis.set_major_formatter(PercentFormatter(xmax=1))
     ax.grid(axis="y", color="#ecebe8", lw=0.8)
     ax.set_axisbelow(True)
     ax.spines[["top", "right"]].set_visible(False)
-    ax.set_xlabel("Question (window placed by where its middle sentence falls in that answer)")
+    ax.set_xlabel(QUESTION_AXIS_LABELS[rule] + (
+        "" if question_lengths is None
+        else "\nQuestion width: its mean answer length over the models, in sentences"
+    ))
     ax.set_ylabel("Share of tokens in window")
     ax.legend(loc="upper left", bbox_to_anchor=(1.0, 1.0), frameon=False)
     ax.set_title(
         f"{category}: DocuScope {WINDOW}-sentence moving window by model. "
-        "Dotted: whole-text value.",
+        f"Dotted: whole-text value.\nEach window is assigned {QUESTION_RULES[rule]}.",
         loc="left", fontweight="bold",
     )
     fig.tight_layout()
@@ -336,29 +422,36 @@ def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     token_dir = latest_run_folder() / "token_csv"
 
-    results = {}
+    results, question_lengths = {}, {}
     for model in MODELS:
-        windows, overall = moving_average(model, token_dir)
+        windows, overall, lengths = moving_average(model, token_dir)
         if windows is not None:
             results[model] = (windows, overall)
+            question_lengths[model] = lengths
 
     table = pd.concat([windows for windows, _ in results.values()])
     table.to_csv(OUTPUT_DIR / f"docuscope_moving_average_{WINDOW}.csv", index=False)
 
-    fig = plot(results)
-    for extension in ("png", "pdf"):
-        plot_path = OUTPUT_DIR / f"docuscope_moving_average_{WINDOW}.{extension}"
-        fig.savefig(plot_path, dpi=200, bbox_inches="tight")
-        print(f"Saved: {plot_path}")
-
-    for category in CATEGORIES:
-        fig = plot_category(results, category)
+    for rule in QUESTION_RULES:
+        fig = plot(results, rule)
         for extension in ("png", "pdf"):
-            plot_path = OUTPUT_DIR / (f"docuscope_moving_average_{WINDOW}_models_compared_"
-                                      f"{category.lower()}.{extension}")
+            plot_path = OUTPUT_DIR / f"docuscope_moving_average_{WINDOW}_{rule}.{extension}"
             fig.savefig(plot_path, dpi=200, bbox_inches="tight")
             print(f"Saved: {plot_path}")
         plt.close(fig)
+
+        # Equal question widths, and widths following the answers' length.
+        for lengths, suffix in ((None, ""), (question_lengths, "_by_length")):
+            for category in CATEGORIES:
+                fig = plot_category(results, category, rule, lengths)
+                for extension in ("png", "pdf"):
+                    plot_path = OUTPUT_DIR / (
+                        f"docuscope_moving_average_{WINDOW}_models_compared_"
+                        f"{category.lower()}_{rule}{suffix}.{extension}"
+                    )
+                    fig.savefig(plot_path, dpi=200, bbox_inches="tight")
+                    print(f"Saved: {plot_path}")
+                plt.close(fig)
 
 
 if __name__ == "__main__":
