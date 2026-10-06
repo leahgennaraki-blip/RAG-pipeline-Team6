@@ -1,4 +1,4 @@
-"""Plot a 25-sentence moving average of four DocuScope categories per model.
+"""Plot a 25-sentence moving average of seven DocuScope categories per model.
 
 For each model, the text is split into sentences and every DocuScope token is
 assigned to its sentence. A window of WINDOW whole sentences then moves
@@ -47,6 +47,16 @@ CATEGORIES = {
     "Description": "Descript",
     "Negative": "Neg",
     "Exposition": "Expo",
+    "Citation": "Citation",
+    "Forceful": "Forceful",
+    "Confidence": "Confidence",
+}
+
+# The overview grid is drawn once per group, so it doesn't get too wide.
+# Group name -> filename suffix and its categories.
+OVERVIEW_GROUPS = {
+    "": ["Narrative", "Description", "Negative", "Exposition"],
+    "_citation_forceful_confidence": ["Citation", "Forceful", "Confidence"],
 }
 
 # How a window is assigned to a question. Every plot is made once per rule.
@@ -314,9 +324,9 @@ def question_axis(ax, slots):
     ax.tick_params(axis="x", length=0)
 
 
-def plot(results, rule):
+def plot(results, rule, categories):
     fig, axes = plt.subplots(
-        len(results), len(CATEGORIES), figsize=(4.6 * len(CATEGORIES), 3.3 * len(results)),
+        len(results), len(categories), figsize=(4.6 * len(categories), 3.3 * len(results)),
         sharex=True, sharey="col", squeeze=False,
     )
 
@@ -324,7 +334,7 @@ def plot(results, rule):
         colour = MODEL_COLOURS[model]
         segments = question_segments(windows, rule)
 
-        for ax, category in zip(row, CATEGORIES):
+        for ax, category in zip(row, categories):
             # Dashed partitions where the window's question changes.
             for start, _end, _q in segments[1:]:
                 ax.axvline(start, color="#b5b4af", lw=0.7, ls="--", zorder=1)
@@ -342,7 +352,7 @@ def plot(results, rule):
                           fontweight="bold")
 
     # Same y-range for all models per category, so the rows are comparable.
-    for col, category in zip(axes.T, CATEGORIES):
+    for col, category in zip(axes.T, categories):
         top = max(windows[category].max() for windows, _ in results.values())
         col[0].set_ylim(0, top * 1.05)
 
@@ -358,7 +368,7 @@ def plot(results, rule):
                     ha="center", va="bottom", fontsize=6, color="#52514e",
                 )
 
-    for ax, category in zip(axes[0], CATEGORIES):
+    for ax, category in zip(axes[0], categories):
         ax.set_title(category, loc="left", fontweight="bold", pad=27)
     for ax in axes[-1]:
         ax.set_xlabel("Position in text (window middle)")
@@ -433,12 +443,13 @@ def main():
     table.to_csv(OUTPUT_DIR / f"docuscope_moving_average_{WINDOW}.csv", index=False)
 
     for rule in QUESTION_RULES:
-        fig = plot(results, rule)
-        for extension in ("png", "pdf"):
-            plot_path = OUTPUT_DIR / f"docuscope_moving_average_{WINDOW}_{rule}.{extension}"
-            fig.savefig(plot_path, dpi=200, bbox_inches="tight")
-            print(f"Saved: {plot_path}")
-        plt.close(fig)
+        for group, categories in OVERVIEW_GROUPS.items():
+            fig = plot(results, rule, categories)
+            for extension in ("png", "pdf"):
+                plot_path = OUTPUT_DIR / f"docuscope_moving_average_{WINDOW}_{rule}{group}.{extension}"
+                fig.savefig(plot_path, dpi=200, bbox_inches="tight")
+                print(f"Saved: {plot_path}")
+            plt.close(fig)
 
         # Equal question widths, and widths following the answers' length.
         for lengths, suffix in ((None, ""), (question_lengths, "_by_length")):
