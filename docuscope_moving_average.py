@@ -24,6 +24,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 from matplotlib.ticker import PercentFormatter
 import nltk
+import numpy as np
 import pandas as pd
 
 from cleaned_model_responses import INPUT_FILE, MODELS as RESPONSE_COLUMNS, clean_text
@@ -225,7 +226,7 @@ def moving_average(model, token_dir):
     n_sentences = len(per_sentence)
     if n_sentences < WINDOW:
         print(f"Skipping {model}: only {n_sentences} sentences (window is {WINDOW}).")
-        return None, None
+        return None, None, None
 
     windows = per_sentence.rolling(WINDOW).sum().dropna()
     result = windows[list(CATEGORIES)].div(windows["tokens"], axis=0)
@@ -254,7 +255,9 @@ def moving_average(model, token_dir):
 
     # Whole-text values for reference (same as DocuScope's N_ csv).
     overall = {c: tokens[c].sum() / len(tokens) for c in CATEGORIES}
-    return result.reset_index(drop=True), overall
+    # Sentences per answer, for the plots whose question widths follow length.
+    question_lengths = pd.Series(question_of_sentence).value_counts().sort_index()
+    return result.reset_index(drop=True), overall, question_lengths
 
 
 def question_segments(windows, rule):
@@ -268,24 +271,46 @@ def question_segments(windows, rule):
     ]
 
 
-def question_axis(ax, results):
-    """Lay out the x-axis by question: question q spans q - 0.5 to q + 0.5,
-    with every other question shaded and dashed lines between them.
+def question_slots(results, question_lengths=None):
+    """Return each question's span on the x-axis, as (start, width) Series
+    indexed by question.
 
-    Uses the questions found by either rule, so both rules' plots get the
-    same axis.
+    Without question_lengths, question q spans q - 0.5 to q + 0.5. With them
+    ({model: answer length per question}), a question is as wide as its mean
+    answer length over the models. Uses the questions found by either rule,
+    so both rules' plots get the same axis.
     """
-    questions = sorted(set().union(*(
+    questions = pd.Index(sorted(set().union(*(
         windows[column] for windows, _ in results.values()
         for column in ("majority_question", "middle_question")
-    )))
-    for q in questions:
+    ))))
+    if question_lengths is None:
+        return pd.Series(questions - 0.5, index=questions), pd.Series(1.0, index=questions)
+    widths = pd.DataFrame(question_lengths).mean(axis=1).loc[questions]
+    return widths.cumsum() - widths, widths
+
+
+def slot_position(question_position, slots):
+    """Move positions from the one-wide question spans (q - 0.5 to q + 0.5)
+    into the given spans, keeping where they sit within their question."""
+    starts, widths = slots
+    question_position = np.asarray(question_position)
+    question = np.floor(question_position + 0.5).astype(int)
+    within = question_position - (question - 0.5)
+    return starts.loc[question].values + within * widths.loc[question].values
+
+
+def question_axis(ax, slots):
+    """Lay out the x-axis by question, with every other question shaded and
+    dashed lines between them."""
+    starts, widths = slots
+    for i, q in enumerate(starts.index):
         if q % 2 == 0:
-            ax.axvspan(q - 0.5, q + 0.5, color="#f4f3f0", lw=0, zorder=0)
-        if q != questions[0]:
-            ax.axvline(q - 0.5, color="#b5b4af", lw=0.7, ls="--", zorder=1)
-    ax.set_xlim(questions[0] - 0.5, questions[-1] + 0.5)
-    ax.set_xticks(questions)
+            ax.axvspan(starts[q], starts[q] + widths[q], color="#f4f3f0", lw=0, zorder=0)
+        if i > 0:
+            ax.axvline(starts[q], color="#b5b4af", lw=0.7, ls="--", zorder=1)
+    ax.set_xlim(starts.iloc[0], starts.iloc[-1] + widths.iloc[-1])
+    ax.set_xticks(starts + widths / 2, starts.index)
     ax.tick_params(axis="x", length=0)
 
 
@@ -348,15 +373,19 @@ def plot(results, rule):
     return fig
 
 
-def plot_category(results, category, rule):
-    """One plot for a category with a line per model, the x-axis aligned by question."""
+def plot_category(results, category, rule, question_lengths=None):
+    """One plot for a category with a line per model, the x-axis aligned by question.
+
+    With question_lengths, each question is as wide as its mean answer length.
+    """
     fig, ax = plt.subplots(figsize=(14, 4.5))
-    question_axis(ax, results)
+    slots = question_slots(results, question_lengths)
+    question_axis(ax, slots)
 
     for model, (windows, overall) in results.items():
         colour = MODEL_COLOURS[model]
-        ax.plot(windows[f"{rule}_question_position"], windows[category], color=colour,
-                lw=1.4, zorder=3, label=MODELS[model])
+        ax.plot(slot_position(windows[f"{rule}_question_position"], slots), windows[category],
+                color=colour, lw=1.4, zorder=3, label=MODELS[model])
         ax.axhline(overall[category], color=colour, lw=1, ls=":", zorder=2)
 
     ax.set_ylim(0, None)
@@ -364,7 +393,10 @@ def plot_category(results, category, rule):
     ax.grid(axis="y", color="#ecebe8", lw=0.8)
     ax.set_axisbelow(True)
     ax.spines[["top", "right"]].set_visible(False)
-    ax.set_xlabel(QUESTION_AXIS_LABELS[rule])
+    ax.set_xlabel(QUESTION_AXIS_LABELS[rule] + (
+        "" if question_lengths is None
+        else "\nQuestion width: its mean answer length over the models, in sentences"
+    ))
     ax.set_ylabel("Share of tokens in window")
     ax.legend(loc="upper left", bbox_to_anchor=(1.0, 1.0), frameon=False)
     ax.set_title(
@@ -390,11 +422,12 @@ def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     token_dir = latest_run_folder() / "token_csv"
 
-    results = {}
+    results, question_lengths = {}, {}
     for model in MODELS:
-        windows, overall = moving_average(model, token_dir)
+        windows, overall, lengths = moving_average(model, token_dir)
         if windows is not None:
             results[model] = (windows, overall)
+            question_lengths[model] = lengths
 
     table = pd.concat([windows for windows, _ in results.values()])
     table.to_csv(OUTPUT_DIR / f"docuscope_moving_average_{WINDOW}.csv", index=False)
@@ -407,14 +440,18 @@ def main():
             print(f"Saved: {plot_path}")
         plt.close(fig)
 
-        for category in CATEGORIES:
-            fig = plot_category(results, category, rule)
-            for extension in ("png", "pdf"):
-                plot_path = OUTPUT_DIR / (f"docuscope_moving_average_{WINDOW}_models_compared_"
-                                          f"{category.lower()}_{rule}.{extension}")
-                fig.savefig(plot_path, dpi=200, bbox_inches="tight")
-                print(f"Saved: {plot_path}")
-            plt.close(fig)
+        # Equal question widths, and widths following the answers' length.
+        for lengths, suffix in ((None, ""), (question_lengths, "_by_length")):
+            for category in CATEGORIES:
+                fig = plot_category(results, category, rule, lengths)
+                for extension in ("png", "pdf"):
+                    plot_path = OUTPUT_DIR / (
+                        f"docuscope_moving_average_{WINDOW}_models_compared_"
+                        f"{category.lower()}_{rule}{suffix}.{extension}"
+                    )
+                    fig.savefig(plot_path, dpi=200, bbox_inches="tight")
+                    print(f"Saved: {plot_path}")
+                plt.close(fig)
 
 
 if __name__ == "__main__":

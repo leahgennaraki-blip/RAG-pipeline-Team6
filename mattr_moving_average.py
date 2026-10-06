@@ -30,6 +30,7 @@ import spacy
 
 from docuscope_moving_average import (
     load_responses, majority_question_position, middle_question_position, question_axis,
+    question_slots, slot_position,
 )
 
 PROJECT_DIR = Path.cwd()
@@ -88,7 +89,8 @@ def moving_ttr(tokens):
 
 
 def mattr(nlp, model):
-    """Return one row per window (its position, question and TTR), plus the model's MATTR."""
+    """Return one row per window (its position, question and TTR), the model's
+    MATTR, and the number of lemmas per answer."""
     tokens, question_of_lemma = lemmas(nlp, model)
     ttr = moving_ttr(tokens)
     window = min(WINDOW, len(tokens))
@@ -109,24 +111,33 @@ def mattr(nlp, model):
     windows.insert(5, "middle_question_position",
                    middle_question_position(question_of_lemma, middle))
     windows.insert(0, "model", MODELS[model])
-    return windows, windows["ttr"].mean()
+    question_lengths = pd.Series(question_of_lemma).value_counts().sort_index()
+    return windows, windows["ttr"].mean(), question_lengths
 
 
-def plot(results, rule):
-    """The windows of all models in one plot, the x-axis aligned by question."""
+def plot(results, rule, question_lengths=None):
+    """The windows of all models in one plot, the x-axis aligned by question.
+
+    With question_lengths, each question is as wide as its mean answer length.
+    """
     fig, ax = plt.subplots(figsize=(14, 4.5))
-    question_axis(ax, results)
+    slots = question_slots(results, question_lengths)
+    question_axis(ax, slots)
 
     for model, (windows, overall) in results.items():
         colour = MODEL_COLOURS[model]
-        ax.plot(windows[f"{rule}_question_position"], windows["ttr"], color=colour,
-                lw=1.4, zorder=3, label=f"{MODELS[model]} (MATTR {overall:.4f})")
+        ax.plot(slot_position(windows[f"{rule}_question_position"], slots), windows["ttr"],
+                color=colour, lw=1.4, zorder=3,
+                label=f"{MODELS[model]} (MATTR {overall:.4f})")
         ax.axhline(overall, color=colour, lw=1, ls=":", zorder=2)
 
     ax.grid(axis="y", color="#ecebe8", lw=0.8)
     ax.set_axisbelow(True)
     ax.spines[["top", "right"]].set_visible(False)
-    ax.set_xlabel(QUESTION_AXIS_LABELS[rule])
+    ax.set_xlabel(QUESTION_AXIS_LABELS[rule] + (
+        "" if question_lengths is None
+        else "\nQuestion width: its mean answer length over the models, in lemmas"
+    ))
     ax.set_ylabel("Type-token ratio in window")
     ax.legend(loc="upper left", bbox_to_anchor=(1.0, 1.0), frameon=False)
     ax.set_title(
@@ -166,7 +177,10 @@ def main():
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     nlp = spacy.load(SPACY_MODEL)
 
-    results = {model: mattr(nlp, model) for model in MODELS}
+    results, question_lengths = {}, {}
+    for model in MODELS:
+        windows, overall, question_lengths[model] = mattr(nlp, model)
+        results[model] = (windows, overall)
 
     table = pd.concat([windows for windows, _ in results.values()])
     table.to_csv(OUTPUT_DIR / f"mattr_moving_average_{WINDOW}.csv", index=False)
@@ -179,13 +193,15 @@ def main():
     for row in scores.itertuples():
         print(f"{row.model}: MATTR {row.mattr:.4f}")
 
+    # Equal question widths, and widths following the answers' length.
     for rule in QUESTION_RULES:
-        fig = plot(results, rule)
-        for extension in ("png", "pdf"):
-            plot_path = OUTPUT_DIR / f"mattr_moving_average_{WINDOW}_{rule}.{extension}"
-            fig.savefig(plot_path, dpi=200, bbox_inches="tight")
-            print(f"Saved: {plot_path}")
-        plt.close(fig)
+        for lengths, suffix in ((None, ""), (question_lengths, "_by_length")):
+            fig = plot(results, rule, lengths)
+            for extension in ("png", "pdf"):
+                plot_path = OUTPUT_DIR / f"mattr_moving_average_{WINDOW}_{rule}{suffix}.{extension}"
+                fig.savefig(plot_path, dpi=200, bbox_inches="tight")
+                print(f"Saved: {plot_path}")
+            plt.close(fig)
 
     fig = plot_scores(results)
     for extension in ("png", "pdf"):
