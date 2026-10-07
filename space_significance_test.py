@@ -1,4 +1,4 @@
-"""Test whether GPT-4, GPT 5.2 and RAG differ significantly in their share of
+"""Test whether GPT-4o, GPT 5.2 and RAG differ significantly in their share of
 SPACE tokens (spaCy's tag for whitespace, mostly line breaks).
 
 significance_tests.py leaves SPACE out of the POS tag tests, since it marks

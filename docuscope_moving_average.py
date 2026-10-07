@@ -37,7 +37,7 @@ OUTPUT_DIR = PROJECT_DIR / "docuscope_moving_average_output"
 WINDOW = 25  # Sentences per window
 
 # Token CSV / text filename prefix -> plot label.
-MODELS = {"gpt_4": "GPT-4", "gpt_5_2": "GPT 5.2", "rag": "RAG"}
+MODELS = {"gpt_4": "GPT-4o", "gpt_5_2": "GPT 5.2", "rag": "RAG"}
 MODEL_COLOURS = {"gpt_4": "#2a78d6", "gpt_5_2": "#eb6834", "rag": "#1baf7a"}
 
 # DocuScope category -> prefix of its tags in the token CSVs

@@ -1,4 +1,4 @@
-"""Test whether GPT-4, GPT 5.2 and RAG differ significantly in MATTR, POS tags,
+"""Test whether GPT-4o, GPT 5.2 and RAG differ significantly in MATTR, POS tags,
 DocuScope token tags and DocuScope categories.
 
 All three models answered the same 24 questions, so the unit of analysis is
@@ -79,7 +79,7 @@ MIN_RESPONSES = 10
 UNTESTED_POS_TAGS = {"SPACE", "PUNCT"}
 
 # Text filename prefix -> label, as in the other scripts.
-MODELS = {"gpt_4": "GPT-4", "gpt_5_2": "GPT 5.2", "rag": "RAG"}
+MODELS = {"gpt_4": "GPT-4o", "gpt_5_2": "GPT 5.2", "rag": "RAG"}
 PAIRS = list(combinations(MODELS, 2))
 
 # DocuScope category -> prefix of its tags. Summing the token CSVs this way
@@ -248,7 +248,7 @@ def test_features(per_response, features, pooled_weights="tokens"):
 
 
 def significant_pairs(row):
-    """Describe the significant pairs, e.g. "GPT-4 > RAG; GPT 5.2 > RAG"."""
+    """Describe the significant pairs, e.g. "GPT-4o > RAG; GPT 5.2 > RAG"."""
     if not row.get("friedman_q (BH)", 1) < ALPHA:
         return ""
     found = []
