@@ -1,14 +1,14 @@
 import pandas as pd
 from pathlib import Path
 
-folder = Path("qualitative_starter_final_gradings")  # relative path
+folder = (Path(__file__).resolve().parents[2] / "data" / "qualitative")  # relative path
 absolute_folder = folder.resolve()
 
 print("Current working directory:", Path.cwd())
 print("Absolute folder path:", absolute_folder)
 
 def load_csv_files_from_folder(absolute_folder):
-    csv_files = list(absolute_folder.glob("*.csv"))
+    csv_files = list((absolute_folder / "raw_gradings").glob("*.csv"))
     
     if not csv_files:
         print(f"No CSV files found in {absolute_folder}.")
@@ -71,10 +71,10 @@ def drop_rows_with_no_values_after_second_column(df, id_col_name="id", empty_thr
 
 def create_clean_csv_files(absolute_folder):
     
-    cleaned_folder = absolute_folder / "cleaned"
+    cleaned_folder = absolute_folder / "cleaned_gradings"
     cleaned_folder.mkdir(exist_ok=True)
     
-    csv_files = list(absolute_folder.glob("*.csv"))
+    csv_files = list((absolute_folder / "raw_gradings").glob("*.csv"))
     
     if not csv_files:
         print(f"No CSV files found in {absolute_folder}.")
@@ -124,7 +124,7 @@ for i, df in enumerate(dfs_processed):
 create_clean_csv_files(absolute_folder)
 
 def compute_stats_for_cleaned_files(absolute_folder):
-    cleaned_folder = absolute_folder / "cleaned"
+    cleaned_folder = absolute_folder / "cleaned_gradings"
     if not cleaned_folder.exists():
         print(f"No 'cleaned' folder found at {cleaned_folder}. Run create_clean_csv_files() first.")
         return
@@ -256,7 +256,7 @@ def compute_model_criteria_stats(absolute_folder):
     
     Prints a summary table per file.
     """
-    cleaned_folder = absolute_folder / "cleaned"
+    cleaned_folder = absolute_folder / "cleaned_gradings"
     if not cleaned_folder.exists():
         print(f"No 'cleaned' folder found at {cleaned_folder}. Run create_clean_csv_files() first.")
         return
@@ -344,7 +344,7 @@ def save_summary_stats_per_file(absolute_folder):
     """
 
     absolute_folder = Path(absolute_folder)
-    cleaned_folder = absolute_folder / "cleaned"
+    cleaned_folder = absolute_folder / "cleaned_gradings"
     if not cleaned_folder.exists():
         print(f"No 'cleaned' folder found at {cleaned_folder}. Run create_clean_csv_files() first.")
         return
@@ -354,8 +354,8 @@ def save_summary_stats_per_file(absolute_folder):
         print(f"No cleaned CSV files found in {cleaned_folder}.")
         return
 
-    summary_folder = absolute_folder / "summary_stats"
-    summary_folder.mkdir(exist_ok=True)
+    summary_folder = Path(__file__).resolve().parents[2] / "outputs" / "human_evaluation" / "summary_stats"
+    summary_folder.mkdir(parents=True, exist_ok=True)
 
     for file in csv_files:
         print(f"Processing summary stats for: {file.name}")
@@ -529,7 +529,7 @@ def compute_global_means_separate_files(
     - model_criterion_filename
     - model_question_criterion_filename
     """
-    cleaned_folder = absolute_folder / "cleaned"
+    cleaned_folder = absolute_folder / "cleaned_gradings"
     if not cleaned_folder.exists():
         print(f"No 'cleaned' folder found at {cleaned_folder}. Run create_clean_csv_files() first.")
         return

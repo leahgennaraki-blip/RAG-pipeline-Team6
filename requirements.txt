@@ -1,1 +1,10 @@
+matplotlib
+nltk
+numpy
 pandas
+scipy>=1.11
+spacy
+pymupdf
+tqdm
+openai
+faiss-cpu

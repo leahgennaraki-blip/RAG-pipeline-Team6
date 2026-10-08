@@ -1,0 +1,2320 @@
+[
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": ".DS_Store",
+    "destination": ".DS_Store",
+    "sha256": "88398358026fa6d5433c1ebaf95e47600531485ffee6359debe30d32dfb2b30d",
+    "status": "existing"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": ".gitignore",
+    "destination": "archive/pre_integration/.gitignore",
+    "sha256": "13466ccf14acc54ff0eb29b0cabae71c9c25635b0e4de53c854cab89e1545169",
+    "status": "existing"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "LICENSE",
+    "destination": "LICENSE",
+    "sha256": "b0a6adeae7fce90b586fc28687f185dc49ea69a6a4ba0b7f332813353bca29fe",
+    "status": "existing"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "README.md",
+    "destination": "archive/pre_integration/README.md",
+    "sha256": "6688df5bcb1d7b0626faf9a04ab3da154daa1f28c42fa4997f4d6adb9817cbdb",
+    "status": "existing"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "assets/Team6_comparative_analysis.csv",
+    "destination": "assets/Team6_comparative_analysis.csv",
+    "sha256": "4bd6eb3e5f96038bddf8b7bcaa08e5831bccd589129e43ce7b4e1a4aa03f6f63",
+    "status": "existing"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "data/qualitative/cleaned_gradings/A_cleaned.csv",
+    "destination": "data/qualitative/cleaned_gradings/A_cleaned.csv",
+    "sha256": "9255a0f2dec5055109724c0f8e92b0bcf7ea349b8c920542a9a57b668ac5b73a",
+    "status": "existing"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "data/qualitative/cleaned_gradings/K_cleaned.csv",
+    "destination": "data/qualitative/cleaned_gradings/K_cleaned.csv",
+    "sha256": "d13a92714cb0703320052064331205b7845b3f9657ac8dab2f067d967af42564",
+    "status": "existing"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "data/qualitative/cleaned_gradings/L_cleaned.csv",
+    "destination": "data/qualitative/cleaned_gradings/L_cleaned.csv",
+    "sha256": "d3f911d8aa79502a86ea47e1228ad583e53bc8307de0c0746a9b3cce56b655a6",
+    "status": "existing"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "data/qualitative/cleaned_gradings/S_cleaned.csv",
+    "destination": "data/qualitative/cleaned_gradings/S_cleaned.csv",
+    "sha256": "7f7453001c66e6d3940cdded3542a2f9951287b199646947107908bbd8e7be33",
+    "status": "existing"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "data/qualitative/cleaned_gradings/Y_cleaned.csv",
+    "destination": "data/qualitative/cleaned_gradings/Y_cleaned.csv",
+    "sha256": "fd1f645a3850b9bf17363ea03850a05fd7e75ac1989ff645d8ebac6792263870",
+    "status": "existing"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "data/qualitative/global_gradings/global_model_criterion_highest_lowest.csv",
+    "destination": "data/qualitative/global_gradings/global_model_criterion_highest_lowest.csv",
+    "sha256": "919d503b730630bb0bd16a641098a47c83fdbb59b893a3b5c1f964583d08fae8",
+    "status": "existing"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "data/qualitative/global_gradings/global_model_criterion_means.csv",
+    "destination": "data/qualitative/global_gradings/global_model_criterion_means.csv",
+    "sha256": "4b9f3d21ba6fdb00fa254052faa5830d5774975c9e77acb6b2c84befdc6b154d",
+    "status": "existing"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "data/qualitative/global_gradings/global_model_question_criterion_highest_lowest.csv",
+    "destination": "data/qualitative/global_gradings/global_model_question_criterion_highest_lowest.csv",
+    "sha256": "01b9b4476f1c842a0c7df239c655703268a96a42206627205f5588be41c005d6",
+    "status": "existing"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "data/qualitative/global_gradings/global_model_question_criterion_means.csv",
+    "destination": "data/qualitative/global_gradings/global_model_question_criterion_means.csv",
+    "sha256": "b530e603b8afd5bc8565e9a8efe6808f532fbf779bdd3ce254f3a47ec37add95",
+    "status": "existing"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "data/qualitative/global_gradings/lowest_mean_per_model_per_criterion.csv",
+    "destination": "data/qualitative/global_gradings/lowest_mean_per_model_per_criterion.csv",
+    "sha256": "98e6881f731f9eed1b53720c3f5f37546356dbf91636e225cbb8081d826f73fc",
+    "status": "existing"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "data/qualitative/global_gradings/worst_criterion_per_model.csv",
+    "destination": "data/qualitative/global_gradings/worst_criterion_per_model.csv",
+    "sha256": "3de0625f715339c5b0b4e0bd38c0bc9fc5048afb23bed2c1d0db30bdcd961edf",
+    "status": "existing"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "data/qualitative/raw_gradings/A.csv",
+    "destination": "data/qualitative/raw_gradings/A.csv",
+    "sha256": "6260835e7659f4ec6cef1ffcd8f0a8dd9a462aa929a02f6e056808bc05f4ace9",
+    "status": "existing"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "data/qualitative/raw_gradings/K.csv",
+    "destination": "data/qualitative/raw_gradings/K.csv",
+    "sha256": "ab8e5e49d62ef51b50ed48a6e746bef6ecc2d4a78928885aeb6dfb3449d74952",
+    "status": "existing"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "data/qualitative/raw_gradings/L.csv",
+    "destination": "data/qualitative/raw_gradings/L.csv",
+    "sha256": "2da597089a5f405326df10bfcf676e8dd19ed89ca38dab1f2ef8564cdec328ad",
+    "status": "existing"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "data/qualitative/raw_gradings/S.csv",
+    "destination": "data/qualitative/raw_gradings/S.csv",
+    "sha256": "530f00d4e2d0776a3b8e829d0346b1a6f71e04fe868c85f73f49367c5b89bc1c",
+    "status": "existing"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "data/qualitative/raw_gradings/Y.csv",
+    "destination": "data/qualitative/raw_gradings/Y.csv",
+    "sha256": "a68950f3c13ff10fa52f7ff90022dec9ad49bcc220ff089a65cb17b949fa8114",
+    "status": "existing"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "outputs/randomised_forms/random-selection-program.html",
+    "destination": "outputs/randomised_forms/random-selection-program.html",
+    "sha256": "5c5d737e85e36f5552883d6bc0c07de3809765b055cf07118cc407307e3771a6",
+    "status": "existing"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "requirements.txt",
+    "destination": "archive/pre_integration/requirements.txt",
+    "sha256": "ae4863bdae026314d5994730ad24730434f256c274d8431c53ed537393992be6",
+    "status": "existing"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "src/evaluation/generate_randomised_grading_forms.py",
+    "destination": "archive/before_path_adaptation/src/evaluation/generate_randomised_grading_forms.py",
+    "sha256": "2864dae27f59ee632f30f42b542b3c23de773ad46c7591beae735a722e00f0b3",
+    "status": "existing",
+    "active_destination": "src/evaluation/generate_randomised_grading_forms.py"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "src/evaluation/qualitative_starter.py",
+    "destination": "archive/pre_integration/src/evaluation/qualitative_starter.py",
+    "sha256": "7d36bdd7392b38fc6c16d8f60a54c24dd366e1c76e62632e349f7950acb3f863",
+    "status": "preserved_before_update"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "src/evaluation/significance_tests.py",
+    "destination": "archive/pre_integration/src/evaluation/significance_tests.py",
+    "sha256": "dee0617b193faf696ffecbd5358ca4175603035587998a1a47094d48f9f52703",
+    "status": "preserved_before_update"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "src/pipeline/pdf_to_txt.py",
+    "destination": "archive/pre_integration/src/pipeline/pdf_to_txt.py",
+    "sha256": "5187a719979e0ebd14f8d42b2abf483870b9808ada2e8f7c121e4915f1447934",
+    "status": "preserved_before_update"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "src/pipeline/rag_pipeline.py",
+    "destination": "archive/pre_integration/src/pipeline/rag_pipeline.py",
+    "sha256": "42f0efe08b040432a0e53430cf9a16210440e762a00a4c3005bb4f2bd5fb581a",
+    "status": "preserved_before_update"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "src/pipeline/text_cleaning_openai.py",
+    "destination": "archive/pre_integration/src/pipeline/text_cleaning_openai.py",
+    "sha256": "6a6a4cb08a12fc52071819b0de094cb1d3cf329ef95b93e5151382b26647b784",
+    "status": "preserved_before_update"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "src/text_analysis/docuscope_categories_plot.py",
+    "destination": "archive/pre_integration/src/text_analysis/docuscope_categories_plot.py",
+    "sha256": "2a9f60ab641bdebf864e7661d185d78cdaa56535a498728b47feddc103f63ec3",
+    "status": "preserved_before_update"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "src/text_analysis/docuscope_moving_average.py",
+    "destination": "archive/pre_integration/src/text_analysis/docuscope_moving_average.py",
+    "sha256": "1227a161dd57f504533786926a5ee6c971b8c6682ee18aac91e71bc7fbc25fd8",
+    "status": "preserved_before_update"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "src/text_analysis/low_high_per_model.py",
+    "destination": "archive/pre_integration/src/text_analysis/low_high_per_model.py",
+    "sha256": "5fc9275696a054879e0c0e45a038a66a2486a67047cfb016f56436e170e0a58f",
+    "status": "preserved_before_update"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "src/text_analysis/mattr_moving_average.py",
+    "destination": "archive/pre_integration/src/text_analysis/mattr_moving_average.py",
+    "sha256": "5de380fe82189593c1a938bd3ac95834cadd6c9227540b9fab932c06774e0c5c",
+    "status": "preserved_before_update"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "src/text_analysis/pos_tags.py",
+    "destination": "archive/pre_integration/src/text_analysis/pos_tags.py",
+    "sha256": "a9aafcb5996f704e0e96dceee1d6463a213bab7eea6e3849201ab26531ec8de8",
+    "status": "preserved_before_update"
+  },
+  {
+    "branch": "restructured",
+    "commit": "52a1fd1c5249f5b37700a1f6c09b9f84eb780d07",
+    "source": "src/text_analysis/top_token_tags.py",
+    "destination": "archive/pre_integration/src/text_analysis/top_token_tags.py",
+    "sha256": "11c03938fb2f0be9a0f9d6c1374c68a9cc4f7e44ae664e441ea71822a9e778d2",
+    "status": "preserved_before_update"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "assets/Team6_comparative_analysis.csv",
+    "destination": "data/responses/Team6_comparative_analysis.csv",
+    "sha256": "27d1a25137c34f8b765dd086bb0123d5870207db288921decf944a81e9db024d",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "assets/Team6_comparative_analysis_debris.csv",
+    "destination": "data/responses/source_with_debris.csv",
+    "sha256": "4bd6eb3e5f96038bddf8b7bcaa08e5831bccd589129e43ce7b4e1a4aa03f6f63",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "cleaned_model_responses.py",
+    "destination": "archive/before_path_adaptation/src/text_analysis/cleaned_model_responses.py",
+    "sha256": "dd490c27c48398142c74df35a6cc5c5e433d375aefdef376167089d80f7b4865",
+    "status": "copied",
+    "active_destination": "src/text_analysis/cleaned_model_responses.py"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_categories_output/top_20_docuscope_categories.csv",
+    "destination": "outputs/docuscope/categories/top_20_docuscope_categories.csv",
+    "sha256": "8c6833442f6b5f30b883edeaf4e25f207e048c7a2510e41386091866b62fde0c",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_categories_output/top_20_docuscope_categories.pdf",
+    "destination": "outputs/docuscope/categories/top_20_docuscope_categories.pdf",
+    "sha256": "3ad31d2ffc403760e7506542194a04250044a741c1331f1b91d506fe3c6bec75",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_categories_output/top_20_docuscope_categories.png",
+    "destination": "outputs/docuscope/categories/top_20_docuscope_categories.png",
+    "sha256": "fbe85b693010ffb591d9a8145fdd91615342d484c911f62a56eb38b69d1dba67",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_categories_plot.py",
+    "destination": "archive/before_path_adaptation/src/text_analysis/docuscope_categories_plot.py",
+    "sha256": "15e7b0402c143546d1e0139095188d744859c248dbf685b7720c891aed4acf0c",
+    "status": "updated_with_original_preserved",
+    "active_destination": "src/text_analysis/docuscope_categories_plot.py"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_input/gpt_4.txt",
+    "destination": "data/processed/docuscope_input/gpt_4.txt",
+    "sha256": "f9b33b99bc5c3c56f39256b01a8135918a3de4c44f8d6e1977bbc76d9d0fbf86",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_input/gpt_5_2.txt",
+    "destination": "data/processed/docuscope_input/gpt_5_2.txt",
+    "sha256": "69e79959d0edcade818e2db4ad32146f78403aaea841fde4ad2ac1a01ef2e829",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_input/rag.txt",
+    "destination": "data/processed/docuscope_input/rag.txt",
+    "sha256": "f121713a36b38fa1c464c5f54c32ced761680f0ea3e641993cb51ed883f8ba9a",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_input_output/docuscope_input-2026-10-01-164856/csv/C_docuscope_input.csv",
+    "destination": "data/processed/docuscope_runs/docuscope_input-2026-10-01-164856/csv/C_docuscope_input.csv",
+    "sha256": "8b3d017af4d0affc7647c1be2cddb7960f6390a6d9d45c835c5b13fa09587eae",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_input_output/docuscope_input-2026-10-01-164856/csv/N_docuscope_input.csv",
+    "destination": "data/processed/docuscope_runs/docuscope_input-2026-10-01-164856/csv/N_docuscope_input.csv",
+    "sha256": "0262d5df567005030ac71914d5c0793278abc1abf43d09de26efe4921fe5eb4f",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_input_output/docuscope_input-2026-10-01-164856/info.txt",
+    "destination": "data/processed/docuscope_runs/docuscope_input-2026-10-01-164856/info.txt",
+    "sha256": "e40823c9e20b8240100058b14fc57866d20c1be4354e59265260f9c0a344d340",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_input_output/docuscope_input-2026-10-01-164856/token_csv/gpt_4_tokens.csv",
+    "destination": "data/processed/docuscope_runs/docuscope_input-2026-10-01-164856/token_csv/gpt_4_tokens.csv",
+    "sha256": "615325c5866d69811a3417c70a032e408d52de2e0012fa20b71ead5a0ffff0a2",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_input_output/docuscope_input-2026-10-01-164856/token_csv/gpt_5_2_tokens.csv",
+    "destination": "data/processed/docuscope_runs/docuscope_input-2026-10-01-164856/token_csv/gpt_5_2_tokens.csv",
+    "sha256": "2ea8564519fec619a2c1b629eeb664a62fb27f26b7775c5a58bc47f61a1587c6",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_input_output/docuscope_input-2026-10-01-164856/token_csv/rag_tokens.csv",
+    "destination": "data/processed/docuscope_runs/docuscope_input-2026-10-01-164856/token_csv/rag_tokens.csv",
+    "sha256": "7f5226293d0389784c10577a219945d2eee1901facf0554344946843209192cb",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average.py",
+    "destination": "archive/before_path_adaptation/src/text_analysis/docuscope_moving_average.py",
+    "sha256": "008bb0eed63a9240d7d72bff449b828b7eeb6d495607c5ff82ccb13008f1c0c2",
+    "status": "updated_with_original_preserved",
+    "active_destination": "src/text_analysis/docuscope_moving_average.py"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25.csv",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25.csv",
+    "sha256": "4592e3d8ce237b46af4c57f30a24dffa51416a737603315c98e13aa2971bcea3",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_majority.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_majority.pdf",
+    "sha256": "425760ffa9ca395eea798a686f6387021b9d6bc8f483e9a8e7512451bf7045c3",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_majority.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_majority.png",
+    "sha256": "46fad36127cb3d37a6fe514646b4421ab5bdb61d054a83dc2d4519a9bafbb16b",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_majority_citation_forceful_confidence.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_majority_citation_forceful_confidence.pdf",
+    "sha256": "114facac3ee8aedff1933edd8f1ca552e66b65d6f443a3840ef732dca121c5c5",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_majority_citation_forceful_confidence.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_majority_citation_forceful_confidence.png",
+    "sha256": "ec50ec23246d33a12bb2a660de6b908d7a58fa273dfec2cdd058624d0cfce96d",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_middle.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_middle.pdf",
+    "sha256": "d7852192e98deff550da3cc2574af304433f80073ceda2c40745f568c2d86124",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_middle.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_middle.png",
+    "sha256": "eaea8513a8aab2b642799abe1c94c4037bf65ddec94d8c3c575aedd909d6f935",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_middle_citation_forceful_confidence.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_middle_citation_forceful_confidence.pdf",
+    "sha256": "d83820f590d959fe922ca2673370f4e4187ec73f423a8125d0247538ea1c92bd",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_middle_citation_forceful_confidence.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_middle_citation_forceful_confidence.png",
+    "sha256": "914448ca3f3d503a5a279cafdadb859906f8e5a9657387648f70e0cc5b14e403",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_citation_majority.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_citation_majority.pdf",
+    "sha256": "5c8a630abfe30702bbaaf66a849d710a3b7b828db6ae51a9bce8b7b60e69c2b3",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_citation_majority.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_citation_majority.png",
+    "sha256": "3e8d0ca5a592175a4c7a4f2c4b886a567f7da29cba4a237aef9c3928e9ba65fb",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_citation_majority_by_length.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_citation_majority_by_length.pdf",
+    "sha256": "449e2b6bf223eddeaa5165a58cf1d07c306681cfd972e52905599b5fc99fbffb",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_citation_majority_by_length.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_citation_majority_by_length.png",
+    "sha256": "78ac2a2dab2ef92d630f86508842ed74a454324a515128f58e93be5f5128db4c",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_citation_middle.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_citation_middle.pdf",
+    "sha256": "cfd4fce9541e2da879526c85b22eb9e7bb3c41c7d509e72f8d39a77adeaad243",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_citation_middle.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_citation_middle.png",
+    "sha256": "5ff2ea0cc362be5d59be9a52fad5e46bcb0c7dbb6ea6aa4767b5da47ae0514b5",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_citation_middle_by_length.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_citation_middle_by_length.pdf",
+    "sha256": "30312679b7f41a111970235355608c0384b318b2031711a02fd8ad257310001f",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_citation_middle_by_length.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_citation_middle_by_length.png",
+    "sha256": "d6541b7868ca118bb850bad69cd0c812bb934947b723d859f8eab4e78e523fb7",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_confidence_majority.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_confidence_majority.pdf",
+    "sha256": "0d52de433254cf6c407ea01a2ca157eaba231942e14fe1090afe5a35d6df1d1f",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_confidence_majority.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_confidence_majority.png",
+    "sha256": "47a2925e85565d42bd750c99291db1e290223870b539c3cc4163bbd5da54c484",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_confidence_majority_by_length.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_confidence_majority_by_length.pdf",
+    "sha256": "2845649bfafcd76c746604ff6bcf09d18bb99b39f4fb52c3caf33b8f6f853a82",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_confidence_majority_by_length.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_confidence_majority_by_length.png",
+    "sha256": "234466a818056fc3c8f53bd585110f2a55ae87aefe5829805f853918445d9b21",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_confidence_middle.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_confidence_middle.pdf",
+    "sha256": "84568ee86ab222fa6c62f43fb862e05e051f15ac338f66c78b5441b3af58ca19",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_confidence_middle.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_confidence_middle.png",
+    "sha256": "943b1760fec6c0a4f1dea9f74aae7fbe08d40047e77ce95440a6e5fadb88d36b",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_confidence_middle_by_length.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_confidence_middle_by_length.pdf",
+    "sha256": "cf2da243742f53c17addb9479a524a5279dff3dc7f25cd8bcb2f8eead5d7c69b",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_confidence_middle_by_length.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_confidence_middle_by_length.png",
+    "sha256": "5b469eecf419fa33aed62658b02b3a403ac48ecb62992260eef543e3d4868a5d",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_description_majority.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_description_majority.pdf",
+    "sha256": "460be501060afd25a50d9fb10c2e8ac485c16845f8ab2cffd457a4e193768c71",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_description_majority.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_description_majority.png",
+    "sha256": "efd2bb2addeb5f614ea86e785f606c0f22b4f30b8651a3c418bacdb534e9b16c",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_description_majority_by_length.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_description_majority_by_length.pdf",
+    "sha256": "07a17282d88a433e7097f95e1c901e066e404777d9a1ee5171f82675e0f0e60f",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_description_majority_by_length.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_description_majority_by_length.png",
+    "sha256": "3f031e9abfed7fafa9d39b984d38c539e80f49a04d80c98a4b016c8cbb4bf6e8",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_description_middle.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_description_middle.pdf",
+    "sha256": "20b5d1aa11e679d9ff199d85d63b65ea0854456d30938d8869cf1f881809e882",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_description_middle.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_description_middle.png",
+    "sha256": "20f83283957a3aff53a93fd88a4d3afa980d2af16c8245ac39cdb221cdd77c42",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_description_middle_by_length.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_description_middle_by_length.pdf",
+    "sha256": "a5f6c927b70b62f2483de905e41c1a2f78929e236a9d57652c9cdf8d1bd04d81",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_description_middle_by_length.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_description_middle_by_length.png",
+    "sha256": "6eee13565d5a5d81c2e84473296df93ae4dd17021d4ca6ac9c4da046e9b268e0",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_exposition_majority.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_exposition_majority.pdf",
+    "sha256": "c35ba4523b6df82f9f0f979df61f8a1c2ed09f6c19f144deff8551d3056ed8b4",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_exposition_majority.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_exposition_majority.png",
+    "sha256": "d2ded63d5a2ad9f3ffcbf5a65dbb164d2c2974b04c79ddb6f5e37bd2bc9b1496",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_exposition_majority_by_length.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_exposition_majority_by_length.pdf",
+    "sha256": "97345b3c43ecb46adf279cdb69d93b35c4b4305495d37c0b8d47dabf4487a71f",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_exposition_majority_by_length.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_exposition_majority_by_length.png",
+    "sha256": "7eb8e690d0f85b4e05ae57b632386bb2351be57ff975791362950438d9b7c53a",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_exposition_middle.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_exposition_middle.pdf",
+    "sha256": "630f46ed421d72f714ece49bf3e47aa0df40bbfd83bcb0e39fdcaf962bab4a22",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_exposition_middle.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_exposition_middle.png",
+    "sha256": "255df35b594032a69d24bfabe6ef7e205cbdd9d3632ca361a86aec573e40ab09",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_exposition_middle_by_length.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_exposition_middle_by_length.pdf",
+    "sha256": "17eceffba608ff94ea1d513a32e142110f1a103f6bb56eed66ac7bf643c1db07",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_exposition_middle_by_length.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_exposition_middle_by_length.png",
+    "sha256": "00811af8d848653801ba7de788ba554db3f1ddd98b91e2bfe9671e427ae6c65d",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_forceful_majority.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_forceful_majority.pdf",
+    "sha256": "5689612a49a97db76311cbef282ea650b6ad049a3a891a9973472b9aa2aa7254",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_forceful_majority.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_forceful_majority.png",
+    "sha256": "bc59164e6de1f3caab9ea3ca40389bb6a42cfaff193fa7342d8a9614c00f8058",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_forceful_majority_by_length.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_forceful_majority_by_length.pdf",
+    "sha256": "ddfd169f7d511f246858f535caf01be7dc684d83f867c714d36f51817ded761a",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_forceful_majority_by_length.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_forceful_majority_by_length.png",
+    "sha256": "27dc7c54a97e7d071fc8f85d96ad7ec5f7cde6cae60b944eaa5c57c8b597bf6e",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_forceful_middle.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_forceful_middle.pdf",
+    "sha256": "59fe893660695c041177a088f878946ca230360d6af20d7a8c0ddcdd6fb6c3ec",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_forceful_middle.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_forceful_middle.png",
+    "sha256": "69ac2101d2156ad3efdc54e7b63222cc561ad451288c532e9bc5327c3c33f1f4",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_forceful_middle_by_length.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_forceful_middle_by_length.pdf",
+    "sha256": "9d23cc7a243e9a3865c0a949827129813397ec02761ff747113e4fed97d1b430",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_forceful_middle_by_length.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_forceful_middle_by_length.png",
+    "sha256": "a4fae90de44ac134f184de918e99fdd2233ac4d6ba8373d0328d7ef6d0036370",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_narrative_majority.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_narrative_majority.pdf",
+    "sha256": "603bfbf06f86cec06579f3eae3c1c529d1ced583cffab6077d17a93ad154bb0e",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_narrative_majority.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_narrative_majority.png",
+    "sha256": "3b84300ab7d9a99937d6c3d7f9767f3249514b5c2f2be97978c5c5fbb856a271",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_narrative_majority_by_length.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_narrative_majority_by_length.pdf",
+    "sha256": "200759013fcb07f2e553419341b2c6de26922a62b999967b3a0e4ce17d8f72d9",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_narrative_majority_by_length.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_narrative_majority_by_length.png",
+    "sha256": "4dfb52ada13bbf1b1553120dfad7dadb4f027dd8a20d38b6203fd01b707de155",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_narrative_middle.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_narrative_middle.pdf",
+    "sha256": "9d10691fd3e18ff3cdffe29bdf2ee929edcf04fd9c2f639ec3c2454978ad31ab",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_narrative_middle.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_narrative_middle.png",
+    "sha256": "1677c0cfbeec925fda75603937c393a419397c24f6dce5398dd91202f5e1fdb3",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_narrative_middle_by_length.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_narrative_middle_by_length.pdf",
+    "sha256": "d60e69d7daec4c6d8f1a6bda4c93b6e7862ba22d0898a1d8d9bce5bde4548fdd",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_narrative_middle_by_length.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_narrative_middle_by_length.png",
+    "sha256": "6a15c09aa5ccd5ac664bf506853dd0671bd4e2775c82d38080fb883dac2b0830",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_negative_majority.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_negative_majority.pdf",
+    "sha256": "85434e4c2516f0d98fe8b87bf7db583b3c813b6799f0067815b983e781dcb204",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_negative_majority.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_negative_majority.png",
+    "sha256": "4c8544f5766ad4eb618231cee216cafe8ec4eb7f1ffd44a4fc657a8aea89d3c4",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_negative_majority_by_length.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_negative_majority_by_length.pdf",
+    "sha256": "2dc4043689d3383d1a69032ac01221310eb6a2709d56b6ac53bd6b68f7d72836",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_negative_majority_by_length.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_negative_majority_by_length.png",
+    "sha256": "356949445fd6149e6ba2de4fd805ee8b6c159550058fea5d8c14c0712436794d",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_negative_middle.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_negative_middle.pdf",
+    "sha256": "504ba4aca9d102348e3403322ca9153c32743d41dd96e331b31d0ca4b36a6974",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_negative_middle.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_negative_middle.png",
+    "sha256": "1138c3ecc22f1c28f5117df6807d8f47b32682f819333c44f872470d96e7cb7a",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_negative_middle_by_length.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_negative_middle_by_length.pdf",
+    "sha256": "a1586abd867afe63e871223bde4c3962637dbfdd651e90042becc3dc8b84c934",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_negative_middle_by_length.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_negative_middle_by_length.png",
+    "sha256": "8b326ca713216ac22732a55e24e0609b0cab59595be25d4b531e1ed017eb49a1",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "low_high_per_model.py",
+    "destination": "archive/before_path_adaptation/src/text_analysis/low_high_per_model.py",
+    "sha256": "5fc9275696a054879e0c0e45a038a66a2486a67047cfb016f56436e170e0a58f",
+    "status": "updated_with_original_preserved",
+    "active_destination": "src/text_analysis/low_high_per_model.py"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "mattr_moving_average.py",
+    "destination": "archive/before_path_adaptation/src/text_analysis/mattr_moving_average.py",
+    "sha256": "a33ad7ac07e42ec83f34867d600f605823a33050161953e697cb7268cfe207d8",
+    "status": "updated_with_original_preserved",
+    "active_destination": "src/text_analysis/mattr_moving_average.py"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "mattr_output/mattr_500.csv",
+    "destination": "outputs/mattr/mattr_500.csv",
+    "sha256": "3b9dfaad7131983d9ff15f91ef4a98ba0bfdfa1d2f8eba646590e68b915b6379",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "mattr_output/mattr_500.pdf",
+    "destination": "outputs/mattr/mattr_500.pdf",
+    "sha256": "0c288d7c85b7d69c3429ea8c5e87d772e9b7d0a58cf5b2b8ebec654db479626f",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "mattr_output/mattr_500.png",
+    "destination": "outputs/mattr/mattr_500.png",
+    "sha256": "b79a0a32f3c669edef70ec0ef042033650f2772a859b07747228d4471cac4d3b",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "mattr_output/mattr_moving_average_500.csv",
+    "destination": "outputs/mattr/mattr_moving_average_500.csv",
+    "sha256": "872aaa8ca7c7f5cd601fd501427b26ccd273dfd3c4fb74282128c50befadd6a9",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "mattr_output/mattr_moving_average_500_majority.pdf",
+    "destination": "outputs/mattr/mattr_moving_average_500_majority.pdf",
+    "sha256": "018f89efcbf03f4ba905350ed227edc66c62ab54a86d62170c195390062c9fbe",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "mattr_output/mattr_moving_average_500_majority.png",
+    "destination": "outputs/mattr/mattr_moving_average_500_majority.png",
+    "sha256": "fd19576d578a35549d292501ea6785c74e7596909bca31f986b9d14531c9dd91",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "mattr_output/mattr_moving_average_500_majority_by_length.pdf",
+    "destination": "outputs/mattr/mattr_moving_average_500_majority_by_length.pdf",
+    "sha256": "3da95bb05a7a0f808f031a44e55309811e7d83cd30ca0e8c283b14420ff439ed",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "mattr_output/mattr_moving_average_500_majority_by_length.png",
+    "destination": "outputs/mattr/mattr_moving_average_500_majority_by_length.png",
+    "sha256": "1c386a7294d44b460a26cf4e83d8446bb3053c6ee71122657bedacf32b2ce45f",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "mattr_output/mattr_moving_average_500_middle.pdf",
+    "destination": "outputs/mattr/mattr_moving_average_500_middle.pdf",
+    "sha256": "e1fe98bd32ea278f53f29c0227fa8888791923ed54db061bc85d459ba3bc9589",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "mattr_output/mattr_moving_average_500_middle.png",
+    "destination": "outputs/mattr/mattr_moving_average_500_middle.png",
+    "sha256": "cf3cc61c61c6a23eb508612fccb17d16fccba25cad977df10ab2465adb5205af",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "mattr_output/mattr_moving_average_500_middle_by_length.pdf",
+    "destination": "outputs/mattr/mattr_moving_average_500_middle_by_length.pdf",
+    "sha256": "a96149c930105d33942c7de321f5265f46abc4ea9ad9f7a9fd5497eef17b19bb",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "mattr_output/mattr_moving_average_500_middle_by_length.png",
+    "destination": "outputs/mattr/mattr_moving_average_500_middle_by_length.png",
+    "sha256": "78818b32c5334588a7828feb2d94dffa33125d80dcf743a06fdd6c4e8ded865b",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "pdf_to_txt.py",
+    "destination": "src/pipeline/pdf_to_txt.py",
+    "sha256": "5187a719979e0ebd14f8d42b2abf483870b9808ada2e8f7c121e4915f1447934",
+    "status": "updated_with_original_preserved"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "pos_tags.py",
+    "destination": "archive/before_path_adaptation/src/text_analysis/pos_tags.py",
+    "sha256": "fed033ee5e705ea8f2f1c5ff47b6e558ae458ed17c66e4cd0befc66053f8fbcc",
+    "status": "updated_with_original_preserved",
+    "active_destination": "src/text_analysis/pos_tags.py"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "pos_tags_output/pos_tag_deltas.csv",
+    "destination": "outputs/pos/pos_tag_deltas.csv",
+    "sha256": "6e7fc3b71b48d85771cd674424a827ba51c9b5c81571b6ff53ddc8dfe269cf9e",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "pos_tags_output/pos_tag_deltas.pdf",
+    "destination": "outputs/pos/pos_tag_deltas.pdf",
+    "sha256": "60d3f0c7908e062eea217d421764a1bbc0742cb5a0cc27b3e4c23e5b941d1ae6",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "pos_tags_output/pos_tag_deltas.png",
+    "destination": "outputs/pos/pos_tag_deltas.png",
+    "sha256": "fba7a26cc1cb3a0dcc70dd63f4ad094ad890db4e8626fc7159e67ff4adfe38de",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "pos_tags_output/pos_tag_distribution.csv",
+    "destination": "outputs/pos/pos_tag_distribution.csv",
+    "sha256": "3cdb22355753824a0c434daf90d7a7dfe21fb1ffaa64d4bae08fd4506623ffce",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "pos_tags_output/pos_tag_distribution.pdf",
+    "destination": "outputs/pos/pos_tag_distribution.pdf",
+    "sha256": "c8018763c4183bd5f6295537a8259dad1b9dd6a6e7bb750c853189f758f1c7dd",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "pos_tags_output/pos_tag_distribution.png",
+    "destination": "outputs/pos/pos_tag_distribution.png",
+    "sha256": "0cb1c45beb3dff8c68fb4b6a6934754b4761312a84a580dee8658bd06cced521",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter.py",
+    "destination": "archive/before_path_adaptation/src/evaluation/qualitative_starter.py",
+    "sha256": "7d36bdd7392b38fc6c16d8f60a54c24dd366e1c76e62632e349f7950acb3f863",
+    "status": "updated_with_original_preserved",
+    "active_destination": "src/evaluation/qualitative_starter.py"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/A.csv",
+    "destination": "archive/question-dividers/qualitative_starter_final_gradings/A.csv",
+    "sha256": "ab3a6394e91df851d8e1c8fb70af2ef4afb4c9fa1e11f66a1712403e9487be31",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/K.csv",
+    "destination": "archive/question-dividers/qualitative_starter_final_gradings/K.csv",
+    "sha256": "2936408251b5e0e5ba006cfa4ed4270e2a4760238e71d8fe84a868719e8b69d2",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/L.csv",
+    "destination": "archive/question-dividers/qualitative_starter_final_gradings/L.csv",
+    "sha256": "8f85d24a517b9ab7759aec43d7ac95f182ae2a30cd69b8c4128e82d3b0631ba4",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/S.csv",
+    "destination": "archive/question-dividers/qualitative_starter_final_gradings/S.csv",
+    "sha256": "6ea94f45664fcd883fa47273916f5f1484b5ce02cdb36710ba56e064b1ec4f16",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/Y.csv",
+    "destination": "archive/question-dividers/qualitative_starter_final_gradings/Y.csv",
+    "sha256": "22d243030e8b045dc99d1687c7da2810216ba470cc44884747e4b410eec483b5",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/cleaned/A_cleaned.csv",
+    "destination": "archive/question-dividers/qualitative_starter_final_gradings/cleaned/A_cleaned.csv",
+    "sha256": "9255a0f2dec5055109724c0f8e92b0bcf7ea349b8c920542a9a57b668ac5b73a",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/cleaned/K_cleaned.csv",
+    "destination": "archive/question-dividers/qualitative_starter_final_gradings/cleaned/K_cleaned.csv",
+    "sha256": "d13a92714cb0703320052064331205b7845b3f9657ac8dab2f067d967af42564",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/cleaned/L_cleaned.csv",
+    "destination": "archive/question-dividers/qualitative_starter_final_gradings/cleaned/L_cleaned.csv",
+    "sha256": "d3f911d8aa79502a86ea47e1228ad583e53bc8307de0c0746a9b3cce56b655a6",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/cleaned/S_cleaned.csv",
+    "destination": "archive/question-dividers/qualitative_starter_final_gradings/cleaned/S_cleaned.csv",
+    "sha256": "7f7453001c66e6d3940cdded3542a2f9951287b199646947107908bbd8e7be33",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/cleaned/Y_cleaned.csv",
+    "destination": "archive/question-dividers/qualitative_starter_final_gradings/cleaned/Y_cleaned.csv",
+    "sha256": "fd1f645a3850b9bf17363ea03850a05fd7e75ac1989ff645d8ebac6792263870",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/global_gradings/global_model_criterion_highest_lowest.csv",
+    "destination": "archive/question-dividers/qualitative_starter_final_gradings/global_gradings/global_model_criterion_highest_lowest.csv",
+    "sha256": "919d503b730630bb0bd16a641098a47c83fdbb59b893a3b5c1f964583d08fae8",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/global_gradings/global_model_criterion_means.csv",
+    "destination": "archive/question-dividers/qualitative_starter_final_gradings/global_gradings/global_model_criterion_means.csv",
+    "sha256": "4b9f3d21ba6fdb00fa254052faa5830d5774975c9e77acb6b2c84befdc6b154d",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/global_gradings/global_model_question_criterion_highest_lowest.csv",
+    "destination": "archive/question-dividers/qualitative_starter_final_gradings/global_gradings/global_model_question_criterion_highest_lowest.csv",
+    "sha256": "01b9b4476f1c842a0c7df239c655703268a96a42206627205f5588be41c005d6",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/global_gradings/global_model_question_criterion_means.csv",
+    "destination": "archive/question-dividers/qualitative_starter_final_gradings/global_gradings/global_model_question_criterion_means.csv",
+    "sha256": "b530e603b8afd5bc8565e9a8efe6808f532fbf779bdd3ce254f3a47ec37add95",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/global_gradings/lowest_mean_per_model_per_criterion.csv",
+    "destination": "archive/question-dividers/qualitative_starter_final_gradings/global_gradings/lowest_mean_per_model_per_criterion.csv",
+    "sha256": "98e6881f731f9eed1b53720c3f5f37546356dbf91636e225cbb8081d826f73fc",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/global_gradings/worst_criterion_per_model.csv",
+    "destination": "archive/question-dividers/qualitative_starter_final_gradings/global_gradings/worst_criterion_per_model.csv",
+    "sha256": "3de0625f715339c5b0b4e0bd38c0bc9fc5048afb23bed2c1d0db30bdcd961edf",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/random-selection-program.html",
+    "destination": "archive/question-dividers/qualitative_starter_final_gradings/random-selection-program.html",
+    "sha256": "5c5d737e85e36f5552883d6bc0c07de3809765b055cf07118cc407307e3771a6",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/summary_stats/A_cleaned_column_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/A_cleaned_column_stats.csv",
+    "sha256": "5aec08334fabd755cf89e832c36c278025837ce9cc383e6654d7f70e060104bf",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/summary_stats/A_cleaned_model_criteria_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/A_cleaned_model_criteria_stats.csv",
+    "sha256": "ceed33ed5bbd42c04c764552992b4ed18aec7d08a00369c7c8f6d3a0b793c088",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/summary_stats/A_cleaned_row_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/A_cleaned_row_stats.csv",
+    "sha256": "d2f126be25d0570cb4070c243182acf062ecae87ee6f26090baed04be72dfb53",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/summary_stats/K_cleaned_column_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/K_cleaned_column_stats.csv",
+    "sha256": "3f6e089b485f8d829dddc4ad440499616ff9f3fe747a7679be125e42ed2c38f5",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/summary_stats/K_cleaned_model_criteria_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/K_cleaned_model_criteria_stats.csv",
+    "sha256": "3335872837fc79d66d05ebbeec9f09f7d978dcd44633427f54d67e969b9f555f",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/summary_stats/K_cleaned_row_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/K_cleaned_row_stats.csv",
+    "sha256": "5facf5af6ddaf597fb1591b5ca88bd53c90c704dc743d1de4545f4617fbbeaae",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/summary_stats/L_cleaned_column_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/L_cleaned_column_stats.csv",
+    "sha256": "709be77aa6ea962c30a07c45d65ab29774a0e0d5bd53a0cca7a0df54884d0c2d",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/summary_stats/L_cleaned_model_criteria_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/L_cleaned_model_criteria_stats.csv",
+    "sha256": "0c4938af6b90a0e8d9f01d50263ebb634df5a169e7b321b3f28508e44a782a9e",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/summary_stats/L_cleaned_row_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/L_cleaned_row_stats.csv",
+    "sha256": "a16d0a78f77b6af260a703c8c623162fe55928b2c115bb84f0f4d2beb0087d95",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/summary_stats/S_cleaned_column_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/S_cleaned_column_stats.csv",
+    "sha256": "7b477be515a4a4c8c56202cd34ac5532d2af3cf16d864e120956f89ca15a001f",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/summary_stats/S_cleaned_model_criteria_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/S_cleaned_model_criteria_stats.csv",
+    "sha256": "d8746c2e54c7ed79d49d85b060b27762582316530425d121402fc8f21253029c",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/summary_stats/S_cleaned_row_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/S_cleaned_row_stats.csv",
+    "sha256": "89a11bb413758a31e4687db593be7888776bcfa18512901f6c411e40ab51a84c",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/summary_stats/Y_cleaned_column_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/Y_cleaned_column_stats.csv",
+    "sha256": "7508c6973629d00db4f42efd2ab335caa7d5425ea187dc1c5787f8fc87fba30b",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/summary_stats/Y_cleaned_model_criteria_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/Y_cleaned_model_criteria_stats.csv",
+    "sha256": "17ee166f020fded7dd3fe0d36d34d861b477e0de6964c689c4aeaabd994cc81c",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "qualitative_starter_final_gradings/summary_stats/Y_cleaned_row_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/Y_cleaned_row_stats.csv",
+    "sha256": "0cdc8c5e633716760777172589e002a0fc4582ee49f679d914b3e7e6e7ddd20d",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "rag_pipeline.py",
+    "destination": "src/pipeline/rag_pipeline.py",
+    "sha256": "42f0efe08b040432a0e53430cf9a16210440e762a00a4c3005bb4f2bd5fb581a",
+    "status": "updated_with_original_preserved"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "significance_tests.py",
+    "destination": "archive/before_path_adaptation/src/evaluation/significance_tests.py",
+    "sha256": "7d450c9b007fc58b79f47859dc67b03fd5cdeb9459e0096ab8af36ab54a8c23e",
+    "status": "updated_with_original_preserved",
+    "active_destination": "src/evaluation/significance_tests.py"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "significance_tests_output/docuscope_categories_per_response_values.csv",
+    "destination": "outputs/significance_tests/docuscope_categories_per_response_values.csv",
+    "sha256": "f17bead4ea4ce2c98bdb254cfeefe87b3b7fe1133d06fa77e1db9e39fdf811c0",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "significance_tests_output/docuscope_categories_tests.csv",
+    "destination": "outputs/significance_tests/docuscope_categories_tests.csv",
+    "sha256": "d58aa2a49cf1d81d5673a66ee658d484e0db148ae8d9b34852061df4c45e4762",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "significance_tests_output/docuscope_tags_per_response_values.csv",
+    "destination": "outputs/significance_tests/docuscope_tags_per_response_values.csv",
+    "sha256": "a9316b1f47276a893d56dd2d16e6339082ad4970e066115cd8ddcdfbb9ce0524",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "significance_tests_output/docuscope_tags_tests.csv",
+    "destination": "outputs/significance_tests/docuscope_tags_tests.csv",
+    "sha256": "e8675e0b3fc0a9d736c803244494e9929b73591e3483c71f3f283b5d54dc3437",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "significance_tests_output/mattr_100_per_response_values.csv",
+    "destination": "outputs/significance_tests/mattr_100_per_response_values.csv",
+    "sha256": "f1907f2fe234d131a6e6d1206f4843793980efb498d622390ccbf46ae08035de",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "significance_tests_output/mattr_100_tests.csv",
+    "destination": "outputs/significance_tests/mattr_100_tests.csv",
+    "sha256": "e9dd6337774b5eac183076e6d346964bec6f37c0d68bad7e135516687a5ff8c4",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "significance_tests_output/mattr_500_permutation_pairwise.csv",
+    "destination": "outputs/significance_tests/mattr_500_permutation_pairwise.csv",
+    "sha256": "bf8046a341b95dd63cf7277a5602b93b94fc7fe02a37b40a95ae23608964ca6d",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "significance_tests_output/mattr_500_permutation_per_model.csv",
+    "destination": "outputs/significance_tests/mattr_500_permutation_per_model.csv",
+    "sha256": "1953fe74aa4253255cfd111e0cb838444428f30ae9e3be03dddcb51ff477aa81",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "significance_tests_output/pos_tags_per_response_values.csv",
+    "destination": "outputs/significance_tests/pos_tags_per_response_values.csv",
+    "sha256": "7736172a1b4c28bf373ce776bbf9aa4605d259e17782891219bc39c4b8ffa28b",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "significance_tests_output/pos_tags_tests.csv",
+    "destination": "outputs/significance_tests/pos_tags_tests.csv",
+    "sha256": "34ef920b5ff3bd41f8bc995e663f67482dc0f0dc1db603324ffdf5629a39d0f1",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "significance_tests_output/space_tests.csv",
+    "destination": "outputs/significance_tests/space_tests.csv",
+    "sha256": "77da52698559858ba2d761450ea2572f096d1d41de131e4f06fcea00f6c43309",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "space_significance_test.py",
+    "destination": "archive/before_path_adaptation/src/evaluation/space_significance_test.py",
+    "sha256": "ff3170e0c2b32ae36fc7ffe6bbc10ffb059b3b69c1b7e4a64668e0d36cc85bab",
+    "status": "copied",
+    "active_destination": "src/evaluation/space_significance_test.py"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "text_cleaning_openai.py",
+    "destination": "src/pipeline/text_cleaning_openai.py",
+    "sha256": "6a6a4cb08a12fc52071819b0de094cb1d3cf329ef95b93e5151382b26647b784",
+    "status": "updated_with_original_preserved"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "top_token_tags.py",
+    "destination": "archive/before_path_adaptation/src/text_analysis/top_token_tags.py",
+    "sha256": "4d15bf0849687ed97c384a62e21cc69bd4b8ac73a0606d44e0442c4f64011977",
+    "status": "updated_with_original_preserved",
+    "active_destination": "src/text_analysis/top_token_tags.py"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "top_token_tags_output/top_20_token_tags.csv",
+    "destination": "outputs/docuscope/token_tags/top_20_token_tags.csv",
+    "sha256": "fe9f071b442e56bccc7443ffdc8f4f23670b80cb656b672a27b24a826789615c",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "top_token_tags_output/top_20_token_tags.pdf",
+    "destination": "outputs/docuscope/token_tags/top_20_token_tags.pdf",
+    "sha256": "b7e3142ac02b1681076ccfde0282ec082f71fad5b24dda1cba37bc7572a13524",
+    "status": "copied"
+  },
+  {
+    "branch": "question-dividers",
+    "commit": "956376990030b056e1e068757940625805f3e379",
+    "source": "top_token_tags_output/top_20_token_tags.png",
+    "destination": "outputs/docuscope/token_tags/top_20_token_tags.png",
+    "sha256": "8ccd32720cf8abc9d0e5119edde29eba0bcf5d679494e6eb7de03a4a6042b4c9",
+    "status": "copied"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "assets/Team6_comparative_analysis.csv",
+    "destination": "data/responses/Team6_comparative_analysis.csv",
+    "sha256": "27d1a25137c34f8b765dd086bb0123d5870207db288921decf944a81e9db024d",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "assets/Team6_comparative_analysis_debris.csv",
+    "destination": "data/responses/source_with_debris.csv",
+    "sha256": "4bd6eb3e5f96038bddf8b7bcaa08e5831bccd589129e43ce7b4e1a4aa03f6f63",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "cleaned_model_responses.py",
+    "destination": "archive/before_path_adaptation/src/text_analysis/cleaned_model_responses.py",
+    "sha256": "dd490c27c48398142c74df35a6cc5c5e433d375aefdef376167089d80f7b4865",
+    "status": "identical",
+    "active_destination": "src/text_analysis/cleaned_model_responses.py"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "docuscope_categories_output/top_20_docuscope_categories.csv",
+    "destination": "archive/qualitative_starter/docuscope_categories_output/top_20_docuscope_categories.csv",
+    "sha256": "9d45a3ca05c1a0c39b4c98aa0d9e58113cb5b166a5dbf56fda937c08b71bce88",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "docuscope_categories_output/top_20_docuscope_categories.pdf",
+    "destination": "archive/qualitative_starter/docuscope_categories_output/top_20_docuscope_categories.pdf",
+    "sha256": "42b5d524edd19daa571db6fe33c85d168010b4dcb7e2736ee62b7222d95ff13d",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "docuscope_categories_output/top_20_docuscope_categories.png",
+    "destination": "archive/qualitative_starter/docuscope_categories_output/top_20_docuscope_categories.png",
+    "sha256": "cc0e6d949cf4ce01640658d25922e8dcd96da1420a1f7eb3c4a6733e79d5e271",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "docuscope_categories_plot.py",
+    "destination": "archive/qualitative_starter/docuscope_categories_plot.py",
+    "sha256": "2a9f60ab641bdebf864e7661d185d78cdaa56535a498728b47feddc103f63ec3",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "docuscope_input/gpt_4.txt",
+    "destination": "data/processed/docuscope_input/gpt_4.txt",
+    "sha256": "f9b33b99bc5c3c56f39256b01a8135918a3de4c44f8d6e1977bbc76d9d0fbf86",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "docuscope_input/gpt_5_2.txt",
+    "destination": "data/processed/docuscope_input/gpt_5_2.txt",
+    "sha256": "69e79959d0edcade818e2db4ad32146f78403aaea841fde4ad2ac1a01ef2e829",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "docuscope_input/rag.txt",
+    "destination": "data/processed/docuscope_input/rag.txt",
+    "sha256": "f121713a36b38fa1c464c5f54c32ced761680f0ea3e641993cb51ed883f8ba9a",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "docuscope_input_output/docuscope_input-2026-10-01-164856/csv/C_docuscope_input.csv",
+    "destination": "data/processed/docuscope_runs/docuscope_input-2026-10-01-164856/csv/C_docuscope_input.csv",
+    "sha256": "8b3d017af4d0affc7647c1be2cddb7960f6390a6d9d45c835c5b13fa09587eae",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "docuscope_input_output/docuscope_input-2026-10-01-164856/csv/N_docuscope_input.csv",
+    "destination": "data/processed/docuscope_runs/docuscope_input-2026-10-01-164856/csv/N_docuscope_input.csv",
+    "sha256": "0262d5df567005030ac71914d5c0793278abc1abf43d09de26efe4921fe5eb4f",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "docuscope_input_output/docuscope_input-2026-10-01-164856/info.txt",
+    "destination": "data/processed/docuscope_runs/docuscope_input-2026-10-01-164856/info.txt",
+    "sha256": "e40823c9e20b8240100058b14fc57866d20c1be4354e59265260f9c0a344d340",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "docuscope_input_output/docuscope_input-2026-10-01-164856/token_csv/gpt_4_tokens.csv",
+    "destination": "data/processed/docuscope_runs/docuscope_input-2026-10-01-164856/token_csv/gpt_4_tokens.csv",
+    "sha256": "615325c5866d69811a3417c70a032e408d52de2e0012fa20b71ead5a0ffff0a2",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "docuscope_input_output/docuscope_input-2026-10-01-164856/token_csv/gpt_5_2_tokens.csv",
+    "destination": "data/processed/docuscope_runs/docuscope_input-2026-10-01-164856/token_csv/gpt_5_2_tokens.csv",
+    "sha256": "2ea8564519fec619a2c1b629eeb664a62fb27f26b7775c5a58bc47f61a1587c6",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "docuscope_input_output/docuscope_input-2026-10-01-164856/token_csv/rag_tokens.csv",
+    "destination": "data/processed/docuscope_runs/docuscope_input-2026-10-01-164856/token_csv/rag_tokens.csv",
+    "sha256": "7f5226293d0389784c10577a219945d2eee1901facf0554344946843209192cb",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "docuscope_moving_average.py",
+    "destination": "archive/qualitative_starter/docuscope_moving_average.py",
+    "sha256": "1227a161dd57f504533786926a5ee6c971b8c6682ee18aac91e71bc7fbc25fd8",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25.csv",
+    "destination": "archive/qualitative_starter/docuscope_moving_average_output/docuscope_moving_average_25.csv",
+    "sha256": "14ea7676fd2e45a279e4ea19d68d64dc2f73159d8d1cf4a7192722325c8e8f38",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25.pdf",
+    "sha256": "0eff544227fcfe7c5cb09727053a57b9d5ef7ec75e18d780e19af7b7b17f5fae",
+    "status": "copied"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25.png",
+    "sha256": "65fce63523dd732729f438fc57ae0ce6ff63792f019d64ddefd4bcd0e9fe7bec",
+    "status": "copied"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_description.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_description.pdf",
+    "sha256": "01650ca6bc6b6b1a6fe1d6c26f0748c82d85f32d6b1a7df2b912caf85414b396",
+    "status": "copied"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_description.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_description.png",
+    "sha256": "fbea3f609cc0cef26506cdf2fda6ee2d7a07e43716ed2d3c2309218a6c3a4a58",
+    "status": "copied"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_exposition.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_exposition.pdf",
+    "sha256": "a3045ac770933b83ee608e151e642340546ef2aee91436017f9ccb6cf1e0c8b0",
+    "status": "copied"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_exposition.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_exposition.png",
+    "sha256": "796e434fd9a1457c18fa41ec9093d7518f65b59911ae25f36cd0e8056e001504",
+    "status": "copied"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_narrative.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_narrative.pdf",
+    "sha256": "603687961e7057404e1b265c9e426d5e260089b4b6db04512fbcce8817c02054",
+    "status": "copied"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_narrative.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_narrative.png",
+    "sha256": "26e49664bb1cb39133c600b8aed971a3f7fe80761b3579e842ab0dbcc6d5fd59",
+    "status": "copied"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_negative.pdf",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_negative.pdf",
+    "sha256": "3c9b63371ea183748afb9d8624ea5b4d2766bde8824799ce60fc139179b5c56c",
+    "status": "copied"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "docuscope_moving_average_output/docuscope_moving_average_25_models_compared_negative.png",
+    "destination": "outputs/docuscope/moving_average/docuscope_moving_average_25_models_compared_negative.png",
+    "sha256": "cabd72d03ee5798dd6bb2fcd97d10300d4201583279cc42bcffca605eb39ca7e",
+    "status": "copied"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "low_high_per_model.py",
+    "destination": "archive/before_path_adaptation/src/text_analysis/low_high_per_model.py",
+    "sha256": "5fc9275696a054879e0c0e45a038a66a2486a67047cfb016f56436e170e0a58f",
+    "status": "identical",
+    "active_destination": "src/text_analysis/low_high_per_model.py"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "mattr_moving_average.py",
+    "destination": "archive/qualitative_starter/mattr_moving_average.py",
+    "sha256": "5de380fe82189593c1a938bd3ac95834cadd6c9227540b9fab932c06774e0c5c",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "mattr_output/mattr_500.csv",
+    "destination": "archive/qualitative_starter/mattr_output/mattr_500.csv",
+    "sha256": "35e4354da5914ce7da5d08d91db9db55603442bd21582e90fe7772ffc1bed97a",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "mattr_output/mattr_500.pdf",
+    "destination": "archive/qualitative_starter/mattr_output/mattr_500.pdf",
+    "sha256": "269a1e6ceeba42f96a510134c764571578d2c14c6071afd5cc6d5e7aa691d4fe",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "mattr_output/mattr_500.png",
+    "destination": "archive/qualitative_starter/mattr_output/mattr_500.png",
+    "sha256": "260ebe935ecf0137ea4fef9a5f55f9a1eb6e023f06b223490adaf2d4abcc3138",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "mattr_output/mattr_moving_average_500.csv",
+    "destination": "archive/qualitative_starter/mattr_output/mattr_moving_average_500.csv",
+    "sha256": "95ac652841f31469c0c4e0c0f9ecf01e175330d2198f55430372287f57345e6b",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "mattr_output/mattr_moving_average_500.pdf",
+    "destination": "outputs/mattr/mattr_moving_average_500.pdf",
+    "sha256": "7f6b6b13401ec49f8bb298f83ff3fa3c92b3a70ee139bc1f6ee56129c9d64aaa",
+    "status": "copied"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "mattr_output/mattr_moving_average_500.png",
+    "destination": "outputs/mattr/mattr_moving_average_500.png",
+    "sha256": "2fad4c7e16a95a966c5721cd9ffa0b576bb0e66a54b69b9f1cd3c39a8de045ac",
+    "status": "copied"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "pdf_to_txt.py",
+    "destination": "src/pipeline/pdf_to_txt.py",
+    "sha256": "5187a719979e0ebd14f8d42b2abf483870b9808ada2e8f7c121e4915f1447934",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "pos_tags.py",
+    "destination": "archive/qualitative_starter/pos_tags.py",
+    "sha256": "a9aafcb5996f704e0e96dceee1d6463a213bab7eea6e3849201ab26531ec8de8",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "pos_tags_output/pos_tag_distribution.csv",
+    "destination": "archive/qualitative_starter/pos_tags_output/pos_tag_distribution.csv",
+    "sha256": "5567e50a681103f4166fdf30c1d543c1c8ae8531c0eb85dae413b31e42afb618",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "pos_tags_output/pos_tag_distribution.pdf",
+    "destination": "archive/qualitative_starter/pos_tags_output/pos_tag_distribution.pdf",
+    "sha256": "af2ac98bbc5f790b8c69a129c2629e4a9d72abefdfed8ef602862d98422774c3",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "pos_tags_output/pos_tag_distribution.png",
+    "destination": "archive/qualitative_starter/pos_tags_output/pos_tag_distribution.png",
+    "sha256": "50674d478bf1b25e2f14ee303f7d8fd232ea674ffc61ef3345940c1c696dd499",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter.py",
+    "destination": "archive/before_path_adaptation/src/evaluation/qualitative_starter.py",
+    "sha256": "7d36bdd7392b38fc6c16d8f60a54c24dd366e1c76e62632e349f7950acb3f863",
+    "status": "identical",
+    "active_destination": "src/evaluation/qualitative_starter.py"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/A.csv",
+    "destination": "archive/qualitative_starter/qualitative_starter_final_gradings/A.csv",
+    "sha256": "ab3a6394e91df851d8e1c8fb70af2ef4afb4c9fa1e11f66a1712403e9487be31",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/K.csv",
+    "destination": "archive/qualitative_starter/qualitative_starter_final_gradings/K.csv",
+    "sha256": "2936408251b5e0e5ba006cfa4ed4270e2a4760238e71d8fe84a868719e8b69d2",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/L.csv",
+    "destination": "archive/qualitative_starter/qualitative_starter_final_gradings/L.csv",
+    "sha256": "8f85d24a517b9ab7759aec43d7ac95f182ae2a30cd69b8c4128e82d3b0631ba4",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/S.csv",
+    "destination": "archive/qualitative_starter/qualitative_starter_final_gradings/S.csv",
+    "sha256": "6ea94f45664fcd883fa47273916f5f1484b5ce02cdb36710ba56e064b1ec4f16",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/Y.csv",
+    "destination": "archive/qualitative_starter/qualitative_starter_final_gradings/Y.csv",
+    "sha256": "22d243030e8b045dc99d1687c7da2810216ba470cc44884747e4b410eec483b5",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/cleaned/A_cleaned.csv",
+    "destination": "archive/qualitative_starter/qualitative_starter_final_gradings/cleaned/A_cleaned.csv",
+    "sha256": "9255a0f2dec5055109724c0f8e92b0bcf7ea349b8c920542a9a57b668ac5b73a",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/cleaned/K_cleaned.csv",
+    "destination": "archive/qualitative_starter/qualitative_starter_final_gradings/cleaned/K_cleaned.csv",
+    "sha256": "d13a92714cb0703320052064331205b7845b3f9657ac8dab2f067d967af42564",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/cleaned/L_cleaned.csv",
+    "destination": "archive/qualitative_starter/qualitative_starter_final_gradings/cleaned/L_cleaned.csv",
+    "sha256": "d3f911d8aa79502a86ea47e1228ad583e53bc8307de0c0746a9b3cce56b655a6",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/cleaned/S_cleaned.csv",
+    "destination": "archive/qualitative_starter/qualitative_starter_final_gradings/cleaned/S_cleaned.csv",
+    "sha256": "7f7453001c66e6d3940cdded3542a2f9951287b199646947107908bbd8e7be33",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/cleaned/Y_cleaned.csv",
+    "destination": "archive/qualitative_starter/qualitative_starter_final_gradings/cleaned/Y_cleaned.csv",
+    "sha256": "fd1f645a3850b9bf17363ea03850a05fd7e75ac1989ff645d8ebac6792263870",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/global_gradings/global_model_criterion_highest_lowest.csv",
+    "destination": "archive/qualitative_starter/qualitative_starter_final_gradings/global_gradings/global_model_criterion_highest_lowest.csv",
+    "sha256": "919d503b730630bb0bd16a641098a47c83fdbb59b893a3b5c1f964583d08fae8",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/global_gradings/global_model_criterion_means.csv",
+    "destination": "archive/qualitative_starter/qualitative_starter_final_gradings/global_gradings/global_model_criterion_means.csv",
+    "sha256": "4b9f3d21ba6fdb00fa254052faa5830d5774975c9e77acb6b2c84befdc6b154d",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/global_gradings/global_model_question_criterion_highest_lowest.csv",
+    "destination": "archive/qualitative_starter/qualitative_starter_final_gradings/global_gradings/global_model_question_criterion_highest_lowest.csv",
+    "sha256": "01b9b4476f1c842a0c7df239c655703268a96a42206627205f5588be41c005d6",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/global_gradings/global_model_question_criterion_means.csv",
+    "destination": "archive/qualitative_starter/qualitative_starter_final_gradings/global_gradings/global_model_question_criterion_means.csv",
+    "sha256": "b530e603b8afd5bc8565e9a8efe6808f532fbf779bdd3ce254f3a47ec37add95",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/global_gradings/lowest_mean_per_model_per_criterion.csv",
+    "destination": "archive/qualitative_starter/qualitative_starter_final_gradings/global_gradings/lowest_mean_per_model_per_criterion.csv",
+    "sha256": "98e6881f731f9eed1b53720c3f5f37546356dbf91636e225cbb8081d826f73fc",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/global_gradings/worst_criterion_per_model.csv",
+    "destination": "archive/qualitative_starter/qualitative_starter_final_gradings/global_gradings/worst_criterion_per_model.csv",
+    "sha256": "3de0625f715339c5b0b4e0bd38c0bc9fc5048afb23bed2c1d0db30bdcd961edf",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/random-selection-program.html",
+    "destination": "archive/qualitative_starter/qualitative_starter_final_gradings/random-selection-program.html",
+    "sha256": "5c5d737e85e36f5552883d6bc0c07de3809765b055cf07118cc407307e3771a6",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/summary_stats/A_cleaned_column_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/A_cleaned_column_stats.csv",
+    "sha256": "5aec08334fabd755cf89e832c36c278025837ce9cc383e6654d7f70e060104bf",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/summary_stats/A_cleaned_model_criteria_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/A_cleaned_model_criteria_stats.csv",
+    "sha256": "ceed33ed5bbd42c04c764552992b4ed18aec7d08a00369c7c8f6d3a0b793c088",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/summary_stats/A_cleaned_row_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/A_cleaned_row_stats.csv",
+    "sha256": "d2f126be25d0570cb4070c243182acf062ecae87ee6f26090baed04be72dfb53",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/summary_stats/K_cleaned_column_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/K_cleaned_column_stats.csv",
+    "sha256": "3f6e089b485f8d829dddc4ad440499616ff9f3fe747a7679be125e42ed2c38f5",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/summary_stats/K_cleaned_model_criteria_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/K_cleaned_model_criteria_stats.csv",
+    "sha256": "3335872837fc79d66d05ebbeec9f09f7d978dcd44633427f54d67e969b9f555f",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/summary_stats/K_cleaned_row_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/K_cleaned_row_stats.csv",
+    "sha256": "5facf5af6ddaf597fb1591b5ca88bd53c90c704dc743d1de4545f4617fbbeaae",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/summary_stats/L_cleaned_column_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/L_cleaned_column_stats.csv",
+    "sha256": "709be77aa6ea962c30a07c45d65ab29774a0e0d5bd53a0cca7a0df54884d0c2d",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/summary_stats/L_cleaned_model_criteria_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/L_cleaned_model_criteria_stats.csv",
+    "sha256": "0c4938af6b90a0e8d9f01d50263ebb634df5a169e7b321b3f28508e44a782a9e",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/summary_stats/L_cleaned_row_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/L_cleaned_row_stats.csv",
+    "sha256": "a16d0a78f77b6af260a703c8c623162fe55928b2c115bb84f0f4d2beb0087d95",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/summary_stats/S_cleaned_column_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/S_cleaned_column_stats.csv",
+    "sha256": "7b477be515a4a4c8c56202cd34ac5532d2af3cf16d864e120956f89ca15a001f",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/summary_stats/S_cleaned_model_criteria_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/S_cleaned_model_criteria_stats.csv",
+    "sha256": "d8746c2e54c7ed79d49d85b060b27762582316530425d121402fc8f21253029c",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/summary_stats/S_cleaned_row_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/S_cleaned_row_stats.csv",
+    "sha256": "89a11bb413758a31e4687db593be7888776bcfa18512901f6c411e40ab51a84c",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/summary_stats/Y_cleaned_column_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/Y_cleaned_column_stats.csv",
+    "sha256": "7508c6973629d00db4f42efd2ab335caa7d5425ea187dc1c5787f8fc87fba30b",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/summary_stats/Y_cleaned_model_criteria_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/Y_cleaned_model_criteria_stats.csv",
+    "sha256": "17ee166f020fded7dd3fe0d36d34d861b477e0de6964c689c4aeaabd994cc81c",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "qualitative_starter_final_gradings/summary_stats/Y_cleaned_row_stats.csv",
+    "destination": "outputs/human_evaluation/summary_stats/Y_cleaned_row_stats.csv",
+    "sha256": "0cdc8c5e633716760777172589e002a0fc4582ee49f679d914b3e7e6e7ddd20d",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "rag_pipeline.py",
+    "destination": "src/pipeline/rag_pipeline.py",
+    "sha256": "42f0efe08b040432a0e53430cf9a16210440e762a00a4c3005bb4f2bd5fb581a",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "significance_tests.py",
+    "destination": "archive/qualitative_starter/significance_tests.py",
+    "sha256": "dee0617b193faf696ffecbd5358ca4175603035587998a1a47094d48f9f52703",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "significance_tests_output/docuscope_categories_per_response_values.csv",
+    "destination": "archive/qualitative_starter/significance_tests_output/docuscope_categories_per_response_values.csv",
+    "sha256": "df5d0153fb37c00f37c8abc3172ec52c1026ccfe98c28e037770811d02e3dd4d",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "significance_tests_output/docuscope_categories_tests.csv",
+    "destination": "archive/qualitative_starter/significance_tests_output/docuscope_categories_tests.csv",
+    "sha256": "7cb2bda86adecf0b97c2101cdcea83cf3f3ac6a346b2a4e1578ddb7ee9097de5",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "significance_tests_output/docuscope_tags_per_response_values.csv",
+    "destination": "archive/qualitative_starter/significance_tests_output/docuscope_tags_per_response_values.csv",
+    "sha256": "168c9e285532ff16808a2c993f1dd9fd783903fd05f0ff5dd8cd3eb97b2a6eb2",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "significance_tests_output/docuscope_tags_tests.csv",
+    "destination": "archive/qualitative_starter/significance_tests_output/docuscope_tags_tests.csv",
+    "sha256": "eeb15c68f1d31995308d2e72ac8d39cb1fd9c0cdc74e8cac888ded162d3be5a8",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "significance_tests_output/mattr_100_per_response_values.csv",
+    "destination": "archive/qualitative_starter/significance_tests_output/mattr_100_per_response_values.csv",
+    "sha256": "852c124981ff80823038932bd94119a0fdb63fad39cbfa14b6248751775084f7",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "significance_tests_output/mattr_100_tests.csv",
+    "destination": "archive/qualitative_starter/significance_tests_output/mattr_100_tests.csv",
+    "sha256": "d14801f98b61f5e1aac5d9e656a5ab04d588c6390301def1dc8f252216a62083",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "significance_tests_output/mattr_500_permutation_pairwise.csv",
+    "destination": "archive/qualitative_starter/significance_tests_output/mattr_500_permutation_pairwise.csv",
+    "sha256": "76d6ec07d7cf5b62d1500e14f22a59044f5f0718bf608571822f84b45905e26d",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "significance_tests_output/mattr_500_permutation_per_model.csv",
+    "destination": "archive/qualitative_starter/significance_tests_output/mattr_500_permutation_per_model.csv",
+    "sha256": "1d1b46972d5b6a620469ac9e572652d9b25592f282c8f45b2291ee298b2187c5",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "significance_tests_output/pos_tags_per_response_values.csv",
+    "destination": "archive/qualitative_starter/significance_tests_output/pos_tags_per_response_values.csv",
+    "sha256": "6872b4009388090e40f1ba57ca22f9bd7a8fb7a9f6ef8b1c9083dc657973b938",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "significance_tests_output/pos_tags_tests.csv",
+    "destination": "archive/qualitative_starter/significance_tests_output/pos_tags_tests.csv",
+    "sha256": "2512472d353e1601a7b14a39c30603cdc0685f53f94dbb804921235444d824b3",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "text_cleaning_openai.py",
+    "destination": "src/pipeline/text_cleaning_openai.py",
+    "sha256": "6a6a4cb08a12fc52071819b0de094cb1d3cf329ef95b93e5151382b26647b784",
+    "status": "identical"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "top_token_tags.py",
+    "destination": "archive/qualitative_starter/top_token_tags.py",
+    "sha256": "11c03938fb2f0be9a0f9d6c1374c68a9cc4f7e44ae664e441ea71822a9e778d2",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "top_token_tags_output/top_20_token_tags.csv",
+    "destination": "archive/qualitative_starter/top_token_tags_output/top_20_token_tags.csv",
+    "sha256": "36c09701b0a5e6b78a086392082823b66857e9eace553a109e33c14faf963780",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "top_token_tags_output/top_20_token_tags.pdf",
+    "destination": "archive/qualitative_starter/top_token_tags_output/top_20_token_tags.pdf",
+    "sha256": "4db83771dd985279efe69806378cde78d46682f3a1e7fb5e00941f5303ce45cd",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "qualitative_starter",
+    "commit": "9fecf66c05c69d236f38d57da1c261b8531aac3e",
+    "source": "top_token_tags_output/top_20_token_tags.png",
+    "destination": "archive/qualitative_starter/top_token_tags_output/top_20_token_tags.png",
+    "sha256": "d6c6c29f9ca4f25543c63352cbc2c687481be86b4c3d2012f68974e827000c19",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "alt_randomization",
+    "commit": "91d55d44504f9d5f62cd89b5f785aab507e3fc6f",
+    "source": "assets/Team6_comparative_analysis.csv",
+    "destination": "archive/alt_randomization/assets/Team6_comparative_analysis.csv",
+    "sha256": "4bd6eb3e5f96038bddf8b7bcaa08e5831bccd589129e43ce7b4e1a4aa03f6f63",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "alt_randomization",
+    "commit": "91d55d44504f9d5f62cd89b5f785aab507e3fc6f",
+    "source": "pdf_to_txt.py",
+    "destination": "src/pipeline/pdf_to_txt.py",
+    "sha256": "5187a719979e0ebd14f8d42b2abf483870b9808ada2e8f7c121e4915f1447934",
+    "status": "identical"
+  },
+  {
+    "branch": "alt_randomization",
+    "commit": "91d55d44504f9d5f62cd89b5f785aab507e3fc6f",
+    "source": "rag_pipeline.py",
+    "destination": "src/pipeline/rag_pipeline.py",
+    "sha256": "42f0efe08b040432a0e53430cf9a16210440e762a00a4c3005bb4f2bd5fb581a",
+    "status": "identical"
+  },
+  {
+    "branch": "alt_randomization",
+    "commit": "91d55d44504f9d5f62cd89b5f785aab507e3fc6f",
+    "source": "text_cleaning_openai.py",
+    "destination": "src/pipeline/text_cleaning_openai.py",
+    "sha256": "6a6a4cb08a12fc52071819b0de094cb1d3cf329ef95b93e5151382b26647b784",
+    "status": "identical"
+  },
+  {
+    "branch": "alt_randomization",
+    "commit": "91d55d44504f9d5f62cd89b5f785aab507e3fc6f",
+    "source": "utils/generate_randomised_grading_forms.py",
+    "destination": "archive/alt_randomization/utils/generate_randomised_grading_forms.py",
+    "sha256": "2864dae27f59ee632f30f42b542b3c23de773ad46c7591beae735a722e00f0b3",
+    "status": "preserved_variant"
+  },
+  {
+    "branch": "main",
+    "commit": "b46c51913441ff66606638c95e18281bfbf2d4ca",
+    "source": "assets/Team6_comparative_analysis.csv",
+    "destination": "archive/main/assets/Team6_comparative_analysis.csv",
+    "sha256": "4bd6eb3e5f96038bddf8b7bcaa08e5831bccd589129e43ce7b4e1a4aa03f6f63",
+    "status": "preserved_variant"
+  }
+]

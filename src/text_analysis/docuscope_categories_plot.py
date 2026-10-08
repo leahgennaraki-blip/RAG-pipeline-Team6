@@ -12,14 +12,14 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pandas as pd
 
-PROJECT_DIR = Path.cwd()
-DOCUSCOPE_OUTPUT = PROJECT_DIR / "docuscope_input_output"
-OUTPUT_DIR = PROJECT_DIR / "docuscope_categories_output"
+PROJECT_DIR = Path(__file__).resolve().parents[2]
+DOCUSCOPE_OUTPUT = PROJECT_DIR / "data" / "processed" / "docuscope_runs"
+OUTPUT_DIR = PROJECT_DIR / "outputs" / "docuscope" / "categories"
 
 TOP_N = 20
 
 # DocuScope filename -> plot label.
-MODELS = {"gpt_4.txt": "GPT-4", "gpt_5_2.txt": "GPT 5.2", "rag.txt": "RAG"}
+MODELS = {"gpt_4.txt": "GPT-4o", "gpt_5_2.txt": "GPT 5.2", "rag.txt": "RAG"}
 MODEL_COLOURS = {"gpt_4.txt": "#2a78d6", "gpt_5_2.txt": "#eb6834", "rag.txt": "#1baf7a"}
 MODEL_MARKERS = {"gpt_4.txt": "o", "gpt_5_2.txt": "s", "rag.txt": "D"}
 

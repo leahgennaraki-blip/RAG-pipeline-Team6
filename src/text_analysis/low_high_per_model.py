@@ -1,7 +1,7 @@
 import pandas as pd
 from pathlib import Path
 
-folder = Path("qualitative_starter_final_gradings")
+folder = (Path(__file__).resolve().parents[2] / "data" / "qualitative")
 absolute_folder = folder.resolve()
 
 # Paste get_highest_lowest_per_model() here

@@ -1,74 +1,64 @@
-# RAG-pipeline
-This repository contains the code used in my master's thesis for processing historical book PDFs, cleaning the extracted text with AI, and implementing a Retrieval-Augmented Generation (RAG) pipeline for querying historical content. 
+# Team 6 — AI, historical texts and collective memory
 
-### Required Packages
+`restructured` consolidates the group's research and is the intended future main branch. Inclusion of a result here does not mean it has been selected for the paper.
+
+## Directory guide
+
+| Location | Contents |
+| --- | --- |
+| src/pipeline/ | Original PDF extraction, LLM cleaning and RAG scripts |
+| src/text_analysis/ | Response cleaning, DocuScope, MATTR, POS and rating extrema |
+| src/evaluation/ | Rating aggregation, significance tests, SPACE test, randomization |
+| data/responses/ | Current semicolon-delimited response table and source with debris |
+| data/qualitative/ | Raw ratings, cleaned ratings, combined rating tables |
+| data/processed/docuscope_input/ | Three cleaned model-response texts |
+| data/processed/docuscope_runs/ | Imported DocuScope run and token-level exports |
+| outputs/docuscope/ | Categories, token tags and moving-average results |
+| outputs/mattr/, outputs/pos/ | MATTR and POS result tables and figures |
+| outputs/significance_tests/ | Statistical tables and per-response values |
+| outputs/human_evaluation/summary_stats/ | Individual-rater summaries |
+| outputs/randomised_forms/ | Existing HTML selection tool and optional generated forms |
+| archive/ | Previous variants and scripts before path adaptation |
+| assets/ | Original response table retained; current analysis uses data/responses/ |
+| docs/ | Integration decisions, source provenance, validation and figure inventory |
+
+Matching CSV/PDF/PNG results stay together by analysis and filename. Numerical rating summaries are distinct from close reading, despite the inherited qualitative directory names.
+
+## Running analyses
+
+Install `requirements.txt` in your Python environment. NLP scripts also require the spaCy `en_core_web_lg` model and NLTK sentence-tokenization resources. DocuScope is an external processing step; an existing export is included.
+
+From the project root:
+
 ```bash
-pip install pymupdf tqdm openai faiss-cpu
+python src/text_analysis/cleaned_model_responses.py
+# If input texts change, rerun DocuScope externally before continuing.
+python src/text_analysis/docuscope_categories_plot.py
+python src/text_analysis/top_token_tags.py
+python src/text_analysis/docuscope_moving_average.py
+python src/text_analysis/mattr_moving_average.py
+python src/text_analysis/pos_tags.py
+python src/evaluation/significance_tests.py
+python src/evaluation/space_significance_test.py
+```
 
-Note: faiss-cpu is for FAISS vector search. Use faiss-gpu if you have GPU support.
+For human-rating summaries:
 
+```bash
+python src/evaluation/qualitative_starter.py
+python src/text_analysis/low_high_per_model.py
+```
 
-Step 1: Convert PDF to Text (1_pdf_to_txt.py)
+Commands regenerate their output files. Save a result snapshot first when retaining every version matters. Significance tests include 10,000 permutations and 5,000 bootstrap samples.
 
-This script extracts text from PDFs and performs basic cleaning, such as:
-Normalizing Unicode characters
-Fixing unusual numeric characters
-Removing hyphenation at line breaks
-Removing extra whitespace and newlines
+The optional `src/evaluation/generate_randomised_grading_forms.py` writes five ordering lists into `outputs/randomised_forms/generated/`. It displays model names, omits answer text and has no fixed seed; it is not a validated blinded-evaluation protocol.
 
-Usage
-Upload your PDF file via Google Colab or adjust the script to use a local path.
-Run the script: pdf_to_txt.py
-The cleaned text will be saved as <original_filename>_cleaned.txt.
+## RAG reproduction boundary
 
-Step 2: Clean Text using OpenAI GPT (2_text_cleaning_openai.py)
+The original pipeline requires Colab/Google Drive configuration, API credentials and external FAISS index/metadata. The corpus and index-construction workflow are not included. Its original experimental parameters have been retained.
 
-This step uses GPT-4o-mini to remove irrelevant elements such as:
-Page numbers
-Footnotes
-Headers and footers
-Copyright and publisher info
-Table of contents
+## Adding work
 
-It retains only:
-Book title
-Author(s)
-Chapter names
-Chapter text
+Copy new work into the corresponding folder on this branch and retain its source branch. Record the source commit/path, preserve differing older versions in `archive/`, and keep scripts, inputs and results consistent. Mark selected manuscript figures in [figure inventory](docs/figure_inventory.csv).
 
-Instructions-
-Place your .txt files from Step 1 into input_folder.
-Update your OpenAI API key in the script.
-Run the script: text_cleaning_openai.py
-
-Cleaned .txt files will be saved in the specified output_folder.
-
-Step 3: RAG Pipeline
-
-This step sets up a Retrieval-Augmented Generation (RAG) pipeline using:
-FAISS for vector-based retrieval
-OpenAI GPT-4o for generating detailed answers based on retrieved context
-
-Features
-Load precomputed FAISS index and metadata
-Query the historical book texts interactively
-Retrieve top-k relevant chunks and generate a detailed AI answer
-Display sources used for transparency
-
-Usage
-
-Ensure you have:
-A FAISS index (index.faiss) saved at INDEX_SAVE_PATH
-Metadata JSONL (chunks_with_metadata.jsonl) containing chunks and sources
-Update your OpenAI API key in the script.
-
-Run the script: python 3_rag_pipeline.py
-Type your question and receive a detailed AI-generated response.
-
-Notes & Recommendations
-
-Always keep your OpenAI API key secure. Consider using environment variables or a .env file.
-The chunk size in Step 2 can be adjusted depending on token limits for GPT.
-For large datasets, FAISS is recommended for efficient vector retrieval.
-
-This pipeline is designed specifically for historical texts (e.g., Suriname history books) but can be adapted for other corpora.
+See [integration notes](docs/integration_notes.md), [exact provenance](docs/file_provenance.json) and [validation](docs/validation_report.json). No source branch or research file has been deleted by this integration.

@@ -1,0 +1,5 @@
+# Preserve exact imported data, figures and historical source bytes.
+archive/** -text
+data/** -text
+outputs/** -text
+assets/** -text

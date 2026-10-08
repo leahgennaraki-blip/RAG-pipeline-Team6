@@ -1,13 +1,15 @@
 from random import random
 import pandas as pd
+from pathlib import Path
+PROJECT_DIR = Path(__file__).resolve().parents[2]
 
 FORM_COUNT = 5
-OUTPUT_DIR = "./dist/"
-CSV_FILE_PATH = "./assets/Team6_comparative_analysis.csv"
+OUTPUT_DIR = PROJECT_DIR / "outputs" / "randomised_forms" / "generated"
+CSV_FILE_PATH = PROJECT_DIR / "data" / "responses" / "Team6_comparative_analysis.csv"
 QUESTION_COLUMN = 0
 MODEL_ROW = 1
 
-df = pd.read_csv(CSV_FILE_PATH, header=None)
+df = pd.read_csv(CSV_FILE_PATH, header=None, sep=";")
 
 def get_questions_from_csv():
     return df.iloc[MODEL_ROW + 1 :, QUESTION_COLUMN].dropna().tolist()
@@ -21,10 +23,11 @@ def randomise_list(input_list):
     return randomised_list
 
 def save_form_to_file(form_content, form_number):
-    with open(f"{OUTPUT_DIR}form_{form_number}.txt", "w") as file:
+    with (OUTPUT_DIR / f"form_{form_number}.txt").open("w", encoding="utf-8") as file:
         file.write(form_content)
 
 def generate_randomised_forms():
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     models = get_models_from_csv()
     questions = get_questions_from_csv()
 
