@@ -1,0 +1,9 @@
+Model,value_type,criterion,mean_value
+GPT4,highest,Irrelevance,4.036363636363636
+GPT4,lowest,Factuality,2.84
+GPT5,highest,Irrelevance,3.857142857142857
+GPT5,lowest,Narrativity,2.8933333333333335
+RAG,highest,Factuality,5.0
+RAG,highest,Irrelevance,5.0
+RAG,highest,Reduction,5.0
+RAG,lowest,Narrativity,4.466666666666667

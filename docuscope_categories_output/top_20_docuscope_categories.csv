@@ -1,0 +1,23 @@
+category,GPT-4,GPT 5.2,RAG
+Special Topics,0.1014,0.1088,0.0871
+Narrative,0.0735,0.0727,0.0557
+Character,0.0642,0.0543,0.0475
+Negative,0.0348,0.0588,0.029
+Description,0.0376,0.0467,0.0318
+Public,0.0329,0.0442,0.0331
+Exposition,0.0301,0.0314,0.0198
+Positive,0.0154,0.018,0.0128
+Strategic,0.0114,0.0143,0.0108
+Forceful,0.0121,0.0162,0.0076
+Metadiscourse,0.0128,0.013,0.0079
+Reasoning,0.006,0.0085,0.0067
+Contingent,0.0085,0.0051,0.0055
+Citation,0.0022,0.004,0.0103
+Interactive,0.0033,0.0082,0.0024
+Confidence,0.0041,0.006,0.0023
+Facilitate,0.0033,0.0026,0.005
+Responsibility,,0.0035,0.0027
+Updates,0.0027,,
+Inquiry,0.0019,0.0039,0.0014
+First Person,0.0017,0.0028,
+Future,,,0.0014
