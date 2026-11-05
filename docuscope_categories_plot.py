@@ -19,7 +19,7 @@ OUTPUT_DIR = PROJECT_DIR / "docuscope_categories_output"
 TOP_N = 20
 
 # DocuScope filename -> plot label.
-MODELS = {"gpt_4.txt": "GPT-4", "gpt_5_2.txt": "GPT 5.2", "rag.txt": "RAG"}
+MODELS = {"gpt_4.txt": "GPT-4o", "gpt_5_2.txt": "GPT 5.2", "rag.txt": "RAG"}
 MODEL_COLOURS = {"gpt_4.txt": "#2a78d6", "gpt_5_2.txt": "#eb6834", "rag.txt": "#1baf7a"}
 MODEL_MARKERS = {"gpt_4.txt": "o", "gpt_5_2.txt": "s", "rag.txt": "D"}
 
