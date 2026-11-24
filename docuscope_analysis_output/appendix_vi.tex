@@ -1,0 +1,46 @@
+% Requires \usepackage{booktabs,longtable}. Use in one-column mode.
+\begingroup
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{@{}p{0.34\textwidth}rrrrrrr@{}}
+\caption{DocuScope LAT composition and matched comparisons: 7 of 148 eligible tags, grouped by category. Of 14 tags passing the corrected overall test, 7 also pass at least one corrected pairwise test and are displayed. Pooled shares are percentages of all DocuScope tokens carrying the specified LAT. Tests use the 24 question-matched per-response token proportions. Tags occurring in fewer than 10 of the 72 responses are excluded from testing. $W$ is Kendall's concordance effect size; its stars denote Friedman $p$-values after Bonferroni correction across all 148 eligible tags. Pairwise $r$ is the matched-pairs rank-biserial effect size; positive values indicate higher proportions for the first-named system. Pairwise stars denote two-sided Wilcoxon $p$-values after Bonferroni correction across all 444 pairwise comparisons and additionally require a significant corrected omnibus test. A tag is listed only when the corrected omnibus test and at least one corrected pairwise test are significant; no minimum $W$ is imposed. $^{*}p_{\mathrm{adj}}<.05$, $^{**}p_{\mathrm{adj}}<.01$, and $^{***}p_{\mathrm{adj}}<.001$.}\label{tab:docuscope-lats}\\
+\toprule
+ & \multicolumn{3}{c}{Pooled share (\%)} & \multicolumn{1}{c}{Overall} & \multicolumn{3}{c}{Pairwise effect ($r$)} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-5}\cmidrule(lr){6-8}
+Category / LAT & GPT-4o & GPT-5.2 & RAG & $W$ & 4o--5.2 & 4o--RAG & 5.2--RAG \\
+\midrule
+\endfirsthead
+\caption[]{DocuScope LAT composition and matched comparisons (continued).}\\
+\toprule
+ & \multicolumn{3}{c}{Pooled share (\%)} & \multicolumn{1}{c}{Overall} & \multicolumn{3}{c}{Pairwise effect ($r$)} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-5}\cmidrule(lr){6-8}
+Category / LAT & GPT-4o & GPT-5.2 & RAG & $W$ & 4o--5.2 & 4o--RAG & 5.2--RAG \\
+\midrule
+\endhead
+\midrule
+\multicolumn{8}{r}{Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+\addlinespace[3pt]
+\multicolumn{8}{@{}l}{\textbf{Character}}\\*
+\hspace*{.5em}Char\allowbreak{}Names\allowbreak{}Neutral & 0.83 & 0.30 & 1.16 & $0.72^{***}$ & $0.94^{**}$ & $-0.47$ & $-1.00^{***}$ \\
+\hspace*{.5em}Char\allowbreak{}Types\allowbreak{}Neutral & 4.98 & 4.16 & 3.03 & $0.47^{**}$ & $0.56$ & $0.99^{***}$ & $0.72$ \\
+\addlinespace[3pt]
+\multicolumn{8}{@{}l}{\textbf{Citation}}\\*
+\hspace*{.5em}Citation\allowbreak{}Reference\allowbreak{}Neutral & 0.09 & 0.16 & 2.39 & $0.88^{***}$ & $0.02$ & $-1.00^{***}$ & $-1.00^{***}$ \\
+\addlinespace[3pt]
+\multicolumn{8}{@{}l}{\textbf{Exposition}}\\*
+\hspace*{.5em}Expo\allowbreak{}Other\allowbreak{}Neutral & 2.33 & 3.32 & 1.84 & $0.35^{*}$ & $-0.59$ & $0.58$ & $0.96^{***}$ \\
+\addlinespace[3pt]
+\multicolumn{8}{@{}l}{\textbf{Narrative}}\\*
+\hspace*{.5em}Narr\allowbreak{}Other\allowbreak{}Neutral & 3.24 & 2.35 & 1.77 & $0.37^{*}$ & $0.60$ & $0.92^{**}$ & $0.51$ \\
+\addlinespace[3pt]
+\multicolumn{8}{@{}l}{\textbf{Negative}}\\*
+\hspace*{.5em}Neg\allowbreak{}Acts\allowbreak{}Resist & 1.11 & 2.69 & 0.85 & $0.51^{***}$ & $-0.94^{**}$ & $0.47$ & $0.96^{***}$ \\
+\addlinespace[3pt]
+\multicolumn{8}{@{}l}{\textbf{Public}}\\*
+\hspace*{.5em}Pub\allowbreak{}Law\allowbreak{}Neutral & 1.54 & 2.40 & 1.71 & $0.40^{*}$ & $-0.90^{**}$ & $-0.27$ & $0.65$ \\
+\end{longtable}
+\endgroup
