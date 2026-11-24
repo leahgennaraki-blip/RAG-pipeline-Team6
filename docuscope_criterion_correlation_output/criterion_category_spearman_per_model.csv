@@ -1,0 +1,97 @@
+model,criterion,category,r,p,q
+GPT-4o,Ambiguity,Description,-0.059138,0.783708,0.944156
+GPT-4o,Ambiguity,Forceful,-0.206073,0.334006,0.793282
+GPT-4o,Ambiguity,Narrative,0.0400319,0.852664,0.944156
+GPT-4o,Ambiguity,Negative,-0.270215,0.201594,0.703206
+GPT-4o,Factuality,Description,-0.148588,0.488351,0.890381
+GPT-4o,Factuality,Forceful,0.29762,0.157819,0.703206
+GPT-4o,Factuality,Narrative,-0.197379,0.35524,0.793988
+GPT-4o,Factuality,Negative,-0.143266,0.504231,0.890381
+GPT-4o,Generalization,Description,-0.295622,0.160763,0.703206
+GPT-4o,Generalization,Forceful,-0.113735,0.596693,0.90915
+GPT-4o,Generalization,Narrative,-0.13896,0.517261,0.890381
+GPT-4o,Generalization,Negative,0.00309783,0.988538,0.993333
+GPT-4o,Irrelevance,Description,-0.00663821,0.975441,0.993333
+GPT-4o,Irrelevance,Forceful,0.445202,0.029252,0.520782
+GPT-4o,Irrelevance,Narrative,-0.0398292,0.853402,0.944156
+GPT-4o,Irrelevance,Negative,-0.0734628,0.732997,0.90915
+GPT-4o,Narrativity,Description,-0.147584,0.491328,0.890381
+GPT-4o,Narrativity,Forceful,0.139113,0.516796,0.890381
+GPT-4o,Narrativity,Narrative,-0.609509,0.0015682,0.131729
+GPT-4o,Narrativity,Negative,-0.264403,0.21184,0.703206
+GPT-4o,Recall,Description,-0.179077,0.402445,0.866804
+GPT-4o,Recall,Forceful,0.379537,0.0673663,0.565877
+GPT-4o,Recall,Narrative,-0.150122,0.483822,0.890381
+GPT-4o,Recall,Negative,-0.0374192,0.862188,0.944156
+GPT-4o,Reduction,Description,-0.139182,0.516584,0.890381
+GPT-4o,Reduction,Forceful,0.348631,0.0949956,0.664969
+GPT-4o,Reduction,Narrative,-0.525199,0.00840546,0.353029
+GPT-4o,Reduction,Negative,0.00180171,0.993333,0.993333
+GPT-4o,Repetetion,Description,0.3189,0.128798,0.703206
+GPT-4o,Repetetion,Forceful,-0.0874977,0.68434,0.90915
+GPT-4o,Repetetion,Narrative,0.40773,0.0479584,0.520782
+GPT-4o,Repetetion,Negative,0.241174,0.256254,0.726703
+GPT 5.2,Ambiguity,Description,0.208193,0.328945,0.793282
+GPT 5.2,Ambiguity,Forceful,-0.420835,0.0405776,0.520782
+GPT 5.2,Ambiguity,Narrative,0.0738464,0.731653,0.90915
+GPT 5.2,Ambiguity,Negative,-0.338982,0.105145,0.679402
+GPT 5.2,Factuality,Description,-0.310993,0.139091,0.703206
+GPT 5.2,Factuality,Forceful,-0.00750978,0.972218,0.993333
+GPT 5.2,Factuality,Narrative,0.108671,0.613237,0.90915
+GPT 5.2,Factuality,Negative,-0.256658,0.226031,0.703206
+GPT 5.2,Generalization,Description,-0.110875,0.606015,0.90915
+GPT 5.2,Generalization,Forceful,-0.0365182,0.865476,0.944156
+GPT 5.2,Generalization,Narrative,0.0796361,0.711459,0.90915
+GPT 5.2,Generalization,Negative,-0.104715,0.626292,0.90915
+GPT 5.2,Irrelevance,Description,0.0542868,0.801089,0.944156
+GPT 5.2,Irrelevance,Forceful,-0.35485,0.0888523,0.664969
+GPT 5.2,Irrelevance,Narrative,0.268344,0.204854,0.703206
+GPT 5.2,Irrelevance,Negative,-0.455038,0.0254686,0.520782
+GPT 5.2,Narrativity,Description,0.0991882,0.644712,0.90915
+GPT 5.2,Narrativity,Forceful,-0.25914,0.221415,0.703206
+GPT 5.2,Narrativity,Narrative,0.155931,0.466863,0.890381
+GPT 5.2,Narrativity,Negative,-0.256906,0.225566,0.703206
+GPT 5.2,Recall,Description,0.405036,0.0495982,0.520782
+GPT 5.2,Recall,Forceful,-0.138262,0.519389,0.890381
+GPT 5.2,Recall,Narrative,0.383765,0.0641256,0.565877
+GPT 5.2,Recall,Negative,-0.272092,0.198358,0.703206
+GPT 5.2,Reduction,Description,0.0743729,0.729809,0.90915
+GPT 5.2,Reduction,Forceful,-0.0897756,0.676551,0.90915
+GPT 5.2,Reduction,Narrative,0.0726126,0.735979,0.90915
+GPT 5.2,Reduction,Negative,-0.207716,0.330081,0.793282
+GPT 5.2,Repetetion,Description,0.046942,0.827576,0.944156
+GPT 5.2,Repetetion,Forceful,-0.206633,0.332666,0.793282
+GPT 5.2,Repetetion,Narrative,0.267613,0.206138,0.703206
+GPT 5.2,Repetetion,Negative,-0.277265,0.189622,0.703206
+RAG,Ambiguity,Description,0.203595,0.339978,0.793282
+RAG,Ambiguity,Forceful,0.096878,0.652473,0.90915
+RAG,Ambiguity,Narrative,0.0151372,0.944033,0.993333
+RAG,Ambiguity,Negative,-0.232356,0.274579,0.74402
+RAG,Factuality,Description,,,
+RAG,Factuality,Forceful,,,
+RAG,Factuality,Narrative,,,
+RAG,Factuality,Negative,,,
+RAG,Generalization,Description,0.0462686,0.830015,0.944156
+RAG,Generalization,Forceful,0.104104,0.628317,0.90915
+RAG,Generalization,Narrative,-0.0135788,0.949787,0.993333
+RAG,Generalization,Negative,0.112151,0.601847,0.90915
+RAG,Irrelevance,Description,,,
+RAG,Irrelevance,Forceful,,,
+RAG,Irrelevance,Narrative,,,
+RAG,Irrelevance,Negative,,,
+RAG,Narrativity,Description,-0.0832574,0.698923,0.90915
+RAG,Narrativity,Forceful,-0.240202,0.258233,0.726703
+RAG,Narrativity,Narrative,0.15838,0.459806,0.890381
+RAG,Narrativity,Negative,0.0732091,0.733886,0.90915
+RAG,Recall,Description,0.130672,0.542788,0.90915
+RAG,Recall,Forceful,-0.108893,0.612508,0.90915
+RAG,Recall,Narrative,0.239565,0.259537,0.726703
+RAG,Recall,Negative,-0.413794,0.0444231,0.520782
+RAG,Reduction,Description,,,
+RAG,Reduction,Forceful,,,
+RAG,Reduction,Narrative,,,
+RAG,Reduction,Negative,,,
+RAG,Repetetion,Description,0.0451839,0.833945,0.944156
+RAG,Repetetion,Forceful,0.0150613,0.944313,0.993333
+RAG,Repetetion,Narrative,0.316288,0.132136,0.703206
+RAG,Repetetion,Negative,-0.195797,0.359185,0.793988
