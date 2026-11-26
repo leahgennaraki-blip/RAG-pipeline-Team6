@@ -9,7 +9,7 @@ Each analysis lives in its own folder and writes to its own `output/` folder.
 | `1_pos/` | POS tag comparison (`output/table4.tex`) | Table 4 |
 | `2_mattr/` | Lexical diversity (`output/analysis/mattr_table.tex`) and moving-window plots | MATTR table |
 | `3_docuscope/` | DocuScope categories (`output/analysis/table6.tex`, `appendix_vi.tex`) and plots | Table 6, Appendix VI |
-| `4_grading/` | Seeded randomiser used to assign answers to reviewers | Grading |
+| `4_grading/` | Seeded randomiser used to assign answers to reviewers; the reviewers' gradings and their summaries (`qualitative_starter.py`) | Grading |
 | `common/` | Code shared by the analyses (paths, model labels, cleaning, stats, plot axes) | — |
 | `data/` | Inputs: the model responses CSV, DocuScope input and export | — |
 

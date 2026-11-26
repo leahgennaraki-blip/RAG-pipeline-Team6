@@ -1,0 +1,9 @@
+column,col_mean,col_min,col_max,min_id,max_id
+Recall,3.429,2.0,5.0,Q20 GPT4,Q1 GPT5
+Factuality,2.893,2.0,4.0,Q4 GPT4,Q1 GPT4
+Narrativity,3.607,3.0,5.0,Q2 GPT5,Q1 GPT4
+Reduction,3.143,2.0,4.0,Q11 GPT5,Q1 GPT5
+Generalization,2.929,2.0,4.0,Q4 GPT5,Q1 GPT4
+Ambiguity,3.179,2.0,5.0,Q6 GPT5,Q1 GPT4
+Repetetion,3.565,2.0,5.0,Q7 GPT5,Q1 GPT4
+Irrelevance,3.81,2.0,5.0,Q13 GPT5,Q1 GPT4
