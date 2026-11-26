@@ -1,0 +1,5 @@
+{
+  "model": "en_core_web_lg",
+  "spacy_version": "3.8.16",
+  "model_version": "3.8.0"
+}

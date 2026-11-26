@@ -1,0 +1,4 @@
+model,tokens,unmatched_lexical_tokens,unmatched_fraction,allowed_fraction
+GPT-4o,21828,0,0,0.01
+GPT-5.2,16523,0,0,0.01
+RAG,22097,3,0.000135765035977735,0.01

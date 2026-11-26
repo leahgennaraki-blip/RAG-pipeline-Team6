@@ -1,0 +1,33 @@
+% Requires \usepackage{booktabs} in the preamble.
+% For a two-column manuscript, change table to table* if necessary.
+\begin{table}[tbp]
+\centering
+\caption{Corpus-level lexical diversity and matched comparisons across
+24 questions (72 responses). The three system columns report mean MATTR
+over all overlapping 500-lemma windows in each system's concatenated
+responses, in question order. All inferential results use only the
+24 question-matched, per-response MATTR-100 scores. $W$ is Kendall's
+concordance effect size for the Friedman test. Pairwise $r$ is the
+matched-pairs rank-biserial effect size; positive values indicate higher
+scores for the first-named system and negative values for the second.
+Stars on $W$ denote the overall Friedman $p$-value (one test, unadjusted);
+stars on $r$ denote two-sided paired Wilcoxon $p$-values after Bonferroni
+correction across the three MATTR comparisons.
+$^{*}p<.05$, $^{**}p<.01$, and $^{***}p<.001$, using adjusted $p$-values
+for pairwise comparisons.}
+\label{tab:mattr}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrrrr}
+\toprule
+ & \multicolumn{3}{c}{Corpus MATTR-500}
+ & \multicolumn{1}{c}{Overall}
+ & \multicolumn{3}{c}{Pairwise effect ($r$)} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-5}\cmidrule(lr){6-8}
+Measure & GPT-4o & GPT-5.2 & RAG & $W$
+ & 4o--5.2 & 4o--RAG & 5.2--RAG \\
+\midrule
+MATTR & 0.4472 & 0.5539 & 0.5208 & $0.57^{***}$ & $-0.99^{***}$ & $-0.55^{*}$ & $0.93^{***}$ \\
+\bottomrule
+\end{tabular}
+\end{table}

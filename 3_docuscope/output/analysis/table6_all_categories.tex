@@ -1,0 +1,39 @@
+% Requires \usepackage{booktabs}. For two columns, use table* if needed.
+\begin{table}[tbp]
+\centering
+\caption{DocuScope category composition and matched comparisons across 24 questions (72 responses). Pooled shares are 100 times the number of category pattern starts divided by all tokens counted by DocuScope in each system's corpus; they are not percentages of tokens carrying a category tag. Tests use the 24 question-matched per-response proportions. Categories present in fewer than 10 responses are excluded from testing. $W$ is Kendall's concordance effect size; its stars denote Friedman $p$-values after Bonferroni correction across 23 eligible categories. Pairwise $r$ is the matched-pairs rank-biserial effect size, with positive values indicating higher proportions for the first-named system. Its stars denote two-sided paired Wilcoxon $p$-values after Bonferroni correction across all 69 pairwise comparisons. Pairwise significance stars additionally require a significant corrected overall test for that category. $^{*}p_{\mathrm{adj}}<.05$, $^{**}p_{\mathrm{adj}}<.01$, and $^{***}p_{\mathrm{adj}}<.001$. All categories are shown.}
+\label{tab:docuscope}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrrrr}
+\toprule
+ & \multicolumn{3}{c}{Pooled share (\%)} & \multicolumn{1}{c}{Overall} & \multicolumn{3}{c}{Pairwise effect ($r$)} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-5}\cmidrule(lr){6-8}
+Category & GPT-4o & GPT-5.2 & RAG & $W$ & 4o--5.2 & 4o--RAG & 5.2--RAG \\
+\midrule
+Citation & 0.22 & 0.40 & 1.03 & $0.70^{***}$ & $-0.29$ & $-1.00^{***}$ & $-0.97^{***}$ \\
+Public & 3.29 & 4.42 & 3.31 & $0.66^{***}$ & $-1.00^{***}$ & $-0.31$ & $0.91^{***}$ \\
+Exposition & 3.01 & 3.14 & 1.98 & $0.55^{***}$ & $-0.27$ & $0.93^{***}$ & $0.97^{***}$ \\
+Negative & 3.48 & 5.88 & 2.90 & $0.54^{***}$ & $-0.97^{***}$ & $0.51$ & $0.94^{***}$ \\
+Forceful & 1.21 & 1.62 & 0.76 & $0.51^{***}$ & $-0.61$ & $0.67$ & $0.97^{***}$ \\
+Narrative & 7.35 & 7.27 & 5.57 & $0.44^{***}$ & $0.31$ & $0.93^{***}$ & $0.87^{**}$ \\
+Description & 3.76 & 4.67 & 3.18 & $0.38^{**}$ & $-0.58$ & $0.55$ & $0.91^{***}$ \\
+Confidence & 0.41 & 0.60 & 0.23 & $0.35^{**}$ & $-0.62$ & $0.44$ & $0.89^{**}$ \\
+Special Topics & 10.14 & 10.88 & 8.71 & $0.34^{**}$ & $-0.62$ & $0.51$ & $0.91^{***}$ \\
+Character & 6.42 & 5.43 & 4.75 & $0.30^{*}$ & $0.66$ & $0.81^{*}$ & $0.51$ \\
+Metadiscourse & 1.28 & 1.30 & 0.79 & $0.30^{*}$ & $-0.43$ & $0.57$ & $0.80^{*}$ \\
+Updates & 0.27 & 0.16 & 0.04 & $0.27^{*}$ & $0.57$ & $0.89^{*}$ & $0.78$ \\
+Interactive & 0.33 & 0.82 & 0.24 & $0.23$ & $-0.63$ & $0.35$ & $0.86$ \\
+First Person & 0.17 & 0.28 & 0.00 & $0.22$ & $-0.50$ & $1.00$ & $1.00$ \\
+Responsibility & 0.17 & 0.35 & 0.27 & $0.20$ & $-0.63$ & $-0.77$ & $-0.08$ \\
+Contingent & 0.85 & 0.51 & 0.55 & $0.19$ & $0.70$ & $0.71$ & $-0.07$ \\
+Positive & 1.54 & 1.80 & 1.28 & $0.13$ & $-0.39$ & $0.36$ & $0.51$ \\
+Facilitate & 0.33 & 0.26 & 0.50 & $0.13$ & $0.41$ & $-0.31$ & $-0.64$ \\
+Inquiry & 0.19 & 0.39 & 0.14 & $0.11$ & $-0.46$ & $0.48$ & $0.59$ \\
+Strategic & 1.14 & 1.43 & 1.08 & $0.10$ & $-0.56$ & $-0.24$ & $0.50$ \\
+Reasoning & 0.60 & 0.85 & 0.67 & $0.09$ & $-0.53$ & $0.01$ & $0.49$ \\
+Uncertainty & 0.14 & 0.20 & 0.10 & $0.07$ & $-0.32$ & $0.29$ & $0.45$ \\
+Future & 0.14 & 0.24 & 0.14 & $0.04$ & $-0.36$ & $0.02$ & $0.40$ \\
+\bottomrule
+\end{tabular}
+\end{table}

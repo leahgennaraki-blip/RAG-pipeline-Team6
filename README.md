@@ -1,74 +1,49 @@
-# RAG-pipeline
-This repository contains the code used in my master's thesis for processing historical book PDFs, cleaning the extracted text with AI, and implementing a Retrieval-Augmented Generation (RAG) pipeline for querying historical content. 
+# RAG pipeline: Team 6
 
-### Required Packages
+Code and outputs for the paper's comparison of GPT-4o, GPT-5.2 and a RAG system on 24 questions.
+Each analysis lives in its own folder and writes to its own `output/` folder.
+
+| Folder | What it produces | Paper |
+|---|---|---|
+| `0_preprocessing/` | PDF → text → RAG answers (Colab), and the DocuScope input files | — |
+| `1_pos/` | POS tag comparison (`output/table4.tex`) | Table 4 |
+| `2_mattr/` | Lexical diversity (`output/analysis/mattr_table.tex`) and moving-window plots | MATTR table |
+| `3_docuscope/` | DocuScope categories (`output/analysis/table6.tex`, `appendix_vi.tex`) and plots | Table 6, Appendix VI |
+| `4_grading/` | Seeded randomiser used to assign answers to reviewers; the reviewers' gradings and their summaries (`qualitative_starter.py`) | Grading |
+| `common/` | Code shared by the analyses (paths, model labels, cleaning, stats, plot axes) | — |
+| `data/` | Inputs: the model responses CSV, DocuScope input and export | — |
+
+## Setup
+
 ```bash
-pip install pymupdf tqdm openai faiss-cpu
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+python -m spacy download en_core_web_lg
+```
 
-Note: faiss-cpu is for FAISS vector search. Use faiss-gpu if you have GPU support.
+## Reproduce the results
 
+Scripts can be run from any folder.
 
-Step 1: Convert PDF to Text (1_pdf_to_txt.py)
+```bash
+# 1. Write the cleaned responses that DocuScope tags
+python 0_preprocessing/prepare_docuscope_input.py
 
-This script extracts text from PDFs and performs basic cleaning, such as:
-Normalizing Unicode characters
-Fixing unusual numeric characters
-Removing hyphenation at line breaks
-Removing extra whitespace and newlines
+# 2. Manual: run DocuScope on data/docuscope_input/ and put its export in
+#    data/docuscope_export/ (the committed export used dictionary ds_dict 2024.01.11)
 
-Usage
-Upload your PDF file via Google Colab or adjust the script to use a local path.
-Run the script: pdf_to_txt.py
-The cleaned text will be saved as <original_filename>_cleaned.txt.
+# 3. Analyses (independent of each other)
+python 1_pos/pos_analysis.py && python 1_pos/pos_plot.py
+python 2_mattr/mattr_analysis.py && python 2_mattr/mattr_moving_average.py
+python 3_docuscope/docuscope_analysis.py
+python 3_docuscope/docuscope_moving_average.py
+python 3_docuscope/top_token_tags.py
+```
 
-Step 2: Clean Text using OpenAI GPT (2_text_cleaning_openai.py)
+`--from-saved` on the three `*_analysis.py` scripts rebuilds the tables from an earlier run's saved output, without re-tagging the text.
 
-This step uses GPT-4o-mini to remove irrelevant elements such as:
-Page numbers
-Footnotes
-Headers and footers
-Copyright and publisher info
-Table of contents
+## Notes
 
-It retains only:
-Book title
-Author(s)
-Chapter names
-Chapter text
-
-Instructions-
-Place your .txt files from Step 1 into input_folder.
-Update your OpenAI API key in the script.
-Run the script: text_cleaning_openai.py
-
-Cleaned .txt files will be saved in the specified output_folder.
-
-Step 3: RAG Pipeline
-
-This step sets up a Retrieval-Augmented Generation (RAG) pipeline using:
-FAISS for vector-based retrieval
-OpenAI GPT-4o for generating detailed answers based on retrieved context
-
-Features
-Load precomputed FAISS index and metadata
-Query the historical book texts interactively
-Retrieve top-k relevant chunks and generate a detailed AI answer
-Display sources used for transparency
-
-Usage
-
-Ensure you have:
-A FAISS index (index.faiss) saved at INDEX_SAVE_PATH
-Metadata JSONL (chunks_with_metadata.jsonl) containing chunks and sources
-Update your OpenAI API key in the script.
-
-Run the script: python 3_rag_pipeline.py
-Type your question and receive a detailed AI-generated response.
-
-Notes & Recommendations
-
-Always keep your OpenAI API key secure. Consider using environment variables or a .env file.
-The chunk size in Step 2 can be adjusted depending on token limits for GPT.
-For large datasets, FAISS is recommended for efficient vector retrieval.
-
-This pipeline is designed specifically for historical texts (e.g., Suriname history books) but can be adapted for other corpora.
+- The source responses were collected by hand into `data/Team6_comparative_analysis.csv`. `_debris.csv` is the uncleaned version and isn't used by any script.
+- `0_preprocessing/pdf_to_txt.py`, `text_cleaning_openai.py` and `rag_pipeline.py` are Colab scripts. They need Google Drive paths and an OpenAI API key, and the FAISS index they read is not in this repository.
+- The DocuScope scripts use the newest run in `data/docuscope_export/`. `docuscope_analysis.py --run-dir` selects a specific one.

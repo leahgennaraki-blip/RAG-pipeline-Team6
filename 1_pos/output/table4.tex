@@ -1,0 +1,32 @@
+% Requires \usepackage{booktabs}. Use table* for a two-column span.
+\begin{table}[tbp]
+\centering
+\caption{POS composition and matched comparisons across 24 questions (72 responses). Pooled shares are percentages of each system's non-punctuation tokens, including SPACE in the denominator. Tests use the 24 question-matched response proportions. Kendall's $W\in[0,1]$ measures the consistency of system rankings across questions, with 1 indicating perfect consistency. Stars on $W$ denote Friedman $p$-values after Bonferroni correction across 15 eligible tags. Pairwise $r\in[-1,1]$ is the matched-pairs rank-biserial effect size: positive values indicate higher proportions for the first-named system and negative values for the second; $r=\pm1$ means all nonzero paired differences have the same direction. Stars on $r$ denote two-sided Wilcoxon $p$-values after Bonferroni correction across all 45 pairwise comparisons. Pairwise stars are shown only when the corrected overall test is also significant. $^{*}p_{\mathrm{adj}}<.05$, $^{**}p_{\mathrm{adj}}<.01$, $^{***}p_{\mathrm{adj}}<.001$. Tags occurring in fewer than 10 responses are not tested. SPACE and PUNCT are excluded from this family of tests.}
+\label{tab:pos}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lrrrrrrr}
+\toprule
+ & \multicolumn{3}{c}{Pooled share (\%)} & Overall & \multicolumn{3}{c}{Pairwise effect ($r$)} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-5}\cmidrule(lr){6-8}
+Tag & GPT-4o & GPT-5.2 & RAG & $W$ & 4o--5.2 & 4o--RAG & 5.2--RAG \\
+\midrule
+PROPN & 6.26 & 8.24 & 14.38 & $0.76^{***}$ & $-0.85^{*}$ & $-0.99^{***}$ & $-0.99^{***}$ \\
+NUM & 0.40 & 0.70 & 2.22 & $0.79^{***}$ & $-0.46$ & $-1.00^{***}$ & $-1.00^{***}$ \\
+NOUN & 25.04 & 25.02 & 23.36 & $0.27^{*}$ & $0.12$ & $0.87^{**}$ & $0.71$ \\
+VERB & 10.36 & 10.86 & 8.55 & $0.60^{***}$ & $-0.26$ & $0.87^{**}$ & $0.88^{**}$ \\
+AUX & 3.47 & 3.41 & 1.86 & $0.60^{***}$ & $0.13$ & $1.00^{***}$ & $0.96^{***}$ \\
+ADJ & 12.35 & 10.73 & 11.88 & $0.05$ & $0.48$ & $0.08$ & $-0.34$ \\
+ADV & 3.90 & 3.82 & 2.72 & $0.38^{**}$ & $0.22$ & $0.77^{*}$ & $0.88^{**}$ \\
+DET & 8.67 & 4.32 & 8.06 & $0.79^{***}$ & $1.00^{***}$ & $0.29$ & $-1.00^{***}$ \\
+ADP & 12.80 & 9.48 & 12.27 & $0.48^{***}$ & $0.86^{**}$ & $0.13$ & $-0.97^{***}$ \\
+PRON & 4.09 & 3.03 & 2.80 & $0.47^{***}$ & $0.90^{***}$ & $0.74^{*}$ & $-0.13$ \\
+CCONJ & 5.19 & 3.96 & 5.13 & $0.27^{*}$ & $0.55$ & $-0.33$ & $-0.83^{**}$ \\
+SCONJ & 1.54 & 1.47 & 1.10 & $0.11$ & $0.11$ & $0.73$ & $0.50$ \\
+PART & 1.85 & 1.91 & 1.33 & $0.13$ & $0.13$ & $0.61$ & $0.47$ \\
+SYM & 0.00 & 0.04 & 0.06 & $0.24^{*}$ & $-1.00$ & $-1.00$ & $-0.27$ \\
+X & 0.55 & 0.67 & 0.65 & $0.09$ & $-0.31$ & $-0.29$ & $0.01$ \\
+INTJ & 0.03 & 0.02 & 0.00 & \multicolumn{4}{l}{\emph{Not tested: fewer than 10 responses}} \\
+\bottomrule
+\end{tabular}
+\end{table}

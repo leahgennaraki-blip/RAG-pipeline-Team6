@@ -1,0 +1,18 @@
+{
+  "source_mode": "token exports",
+  "docuscope_run": "data/docuscope_export/docuscope_input-2026-10-01-164856",
+  "questions": 24,
+  "minimum_responses": 10,
+  "bonferroni_omnibus_family": 23,
+  "bonferroni_pairwise_family": 69,
+  "categories_passing_omnibus": 12,
+  "pairwise_significance_requires_omnibus": true,
+  "lat_bonferroni_omnibus_family": 148,
+  "lat_bonferroni_pairwise_family": 444,
+  "lat_display_rows": 7,
+  "python_packages": {
+    "numpy": "2.4.6",
+    "pandas": "3.0.3",
+    "scipy": "1.18.1"
+  }
+}
