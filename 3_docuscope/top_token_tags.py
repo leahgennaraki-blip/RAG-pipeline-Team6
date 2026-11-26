@@ -11,7 +11,7 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from common.docuscope_io import read_tokens, select_run
-from common.models import COLOURS as MODEL_COLOURS
+from common.models import COLOURS as MODEL_COLOURS, LABELS as MODELS
 
 OUTPUT_DIR = Path(__file__).resolve().parent / "output" / "top_token_tags"
 
@@ -20,9 +20,6 @@ TOP_N = 20
 # DocuScope's catch-all "Other..." tags (e.g. OtherOrphanedOther) are not
 # rhetorical categories; set to False to include them in the ranking.
 EXCLUDE_OTHER_TAGS = True
-
-# Token CSV filename prefix -> plot label.
-MODELS = {"gpt_4": "GPT-4", "gpt_5_2": "GPT 5.2", "rag": "RAG"}
 
 
 def top_tags(token_file):

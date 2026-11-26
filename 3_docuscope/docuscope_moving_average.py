@@ -27,7 +27,7 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from common.docuscope_io import align_tokens, read_tokens, select_run
-from common.models import COLOURS as MODEL_COLOURS
+from common.models import COLOURS as MODEL_COLOURS, LABELS as MODELS
 from common.plotting import (
     majority_question_position, middle_question_position, question_axis,
     question_slots, slot_position,
@@ -37,9 +37,6 @@ from common.responses import numbered_responses
 OUTPUT_DIR = Path(__file__).resolve().parent / "output" / "moving_average"
 
 WINDOW = 25  # Sentences per window
-
-# Token CSV / text filename prefix -> plot label.
-MODELS = {"gpt_4": "GPT-4o", "gpt_5_2": "GPT 5.2", "rag": "RAG"}
 
 # DocuScope category -> prefix of its tags in the token CSVs
 # (e.g. NarrSceneShiftNeutral belongs to Narrative).
