@@ -12,33 +12,34 @@ Each window is also assigned a question, by two rules (QUESTION_RULES): the
 question whose response most of its tokens come from (majority), and the
 question its middle sentence comes from (middle). Every plot is made once
 per rule; dashed lines mark where the window's question changes. The
-responses are rebuilt from the source CSV with cleaned_model_responses.py's
+responses are rebuilt from the source CSV with common/responses.py's
 cleaning, since the .txt files don't mark where one response ends.
 
 Needs NLTK for sentence splitting: pip install nltk
-Run this script from the overall project folder.
 """
-import re
+import sys
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 from matplotlib.ticker import PercentFormatter
 import nltk
-import numpy as np
 import pandas as pd
 
-from cleaned_model_responses import INPUT_FILE, MODELS as RESPONSE_COLUMNS, clean_text
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from common.docuscope_io import align_tokens, read_tokens, select_run
+from common.models import COLOURS as MODEL_COLOURS
+from common.plotting import (
+    majority_question_position, middle_question_position, question_axis,
+    question_slots, slot_position,
+)
+from common.responses import numbered_responses
 
-PROJECT_DIR = Path.cwd()
-DOCUSCOPE_INPUT = PROJECT_DIR / "docuscope_input"
-DOCUSCOPE_OUTPUT = PROJECT_DIR / "docuscope_input_output"
-OUTPUT_DIR = PROJECT_DIR / "docuscope_moving_average_output"
+OUTPUT_DIR = Path(__file__).resolve().parent / "output" / "moving_average"
 
 WINDOW = 25  # Sentences per window
 
 # Token CSV / text filename prefix -> plot label.
 MODELS = {"gpt_4": "GPT-4o", "gpt_5_2": "GPT 5.2", "rag": "RAG"}
-MODEL_COLOURS = {"gpt_4": "#2a78d6", "gpt_5_2": "#eb6834", "rag": "#1baf7a"}
 
 # DocuScope category -> prefix of its tags in the token CSVs
 # (e.g. NarrSceneShiftNeutral belongs to Narrative).
@@ -70,39 +71,6 @@ QUESTION_AXIS_LABELS = {
     "middle": "Question (window placed by where its middle sentence falls in that answer)",
 }
 
-# How many characters ahead to look for a token that doesn't line up with the
-# text right away (e.g. a character DocuScope dropped or changed).
-ALIGN_LOOKAHEAD = 50
-
-
-def latest_run_folder():
-    runs = sorted(DOCUSCOPE_OUTPUT.glob("docuscope_input-*"))
-    if not runs:
-        raise FileNotFoundError(f"No DocuScope runs found in {DOCUSCOPE_OUTPUT}")
-    return runs[-1]  # Folder names end in a timestamp, so the last is newest
-
-
-def load_responses(model):
-    """Return the model's cleaned responses as (question number, text) pairs.
-
-    Rebuilt the same way as cleaned_model_responses.py, and checked against
-    the .txt DocuScope read, so the two can't silently drift apart.
-    """
-    df = pd.read_csv(INPUT_FILE, sep=";", dtype=str, keep_default_na=False)
-    data = df.iloc[1:]  # Row 0 holds the model labels
-    data = data[data["Question"].str.strip().ne("")]
-
-    responses = data[RESPONSE_COLUMNS[model]].map(clean_text).tolist()
-    pairs = [(q, text) for q, text in enumerate(responses, start=1) if text]
-
-    text = (DOCUSCOPE_INPUT / f"{model}.txt").read_text(encoding="utf-8")
-    if "\n\n".join(r for _, r in pairs) != text:
-        raise ValueError(
-            f"{model}.txt doesn't match the responses in {INPUT_FILE.name}; "
-            "re-run cleaned_model_responses.py (and DocuScope) first."
-        )
-    return pairs
-
 
 def split_sentences(text):
     """Split text into sentences, treating line breaks as boundaries too.
@@ -117,111 +85,20 @@ def split_sentences(text):
     return sentences
 
 
-def first_field(head):
-    """Return the token (first column) from the "token,token_lower" part of a row."""
-    # Tokens containing a comma are quoted, e.g. ",",","
-    quoted = re.match(r'"((?:[^"]|"")*)",', head)
-    if quoted:
-        return quoted.group(1).replace('""', '"')
-    return head.split(",", 1)[0]
-
-
-def read_tokens(token_file):
-    """Return one row per token: token text and tag, plus whether it starts a pattern.
-
-    Not read with pd.read_csv: DocuScope lowercases curly quotes to a bare,
-    unescaped " in token_lower, which breaks CSV quoting. The last three
-    columns never contain commas, so split each line from the right instead.
-    """
-    rows = []
-    with open(token_file, encoding="utf-8") as f:
-        for line in f:
-            if not line.strip():
-                continue
-            head, _token_type, tag, position = line.rstrip("\n").rsplit(",", 3)
-            rows.append({
-                "token": first_field(head),
-                "tag": tag,
-                "pattern_start": tag != "" and position == "0",
-            })
-    return pd.DataFrame(rows)
-
-
-def assign_sentences(tokens, sentences):
-    """Return the sentence index of every token.
-
-    Matches tokens to the sentence text character by character, ignoring
-    whitespace, since DocuScope's tokens don't keep it.
-    """
-    chars, sentence_of_char = [], []
-    for i, sentence in enumerate(sentences):
-        compact = re.sub(r"\s+", "", sentence)
-        chars.append(compact)
-        sentence_of_char.extend([i] * len(compact))
-    text = "".join(chars)
-
-    sentence_ids, pos, unmatched = [], 0, 0
-    for token in tokens:
-        token = re.sub(r"\s+", "", token)
-        found = text.find(token, pos, pos + ALIGN_LOOKAHEAD + len(token)) if token else -1
-        if found == -1:
-            # Keep it in the current sentence. Only count tokens with letters
-            # or digits: DocuScope changes some punctuation (straight quotes
-            # become curly, "###" becomes six "#" tokens), which is harmless.
-            if re.search(r"\w", token):
-                unmatched += 1
-        else:
-            pos = found + len(token)
-        sentence_ids.append(sentence_of_char[min(max(pos - 1, 0), len(text) - 1)])
-
-    return sentence_ids, unmatched
-
-
-def middle_question_position(question_of_unit, middle_ids):
-    """Return each window's position on an x-axis aligned to the questions,
-    placed by its middle unit (sentence or lemma).
-
-    Question q spans q - 0.5 to q + 0.5, and the window sits inside it by
-    where its middle unit falls within that question's answer.
-    question_of_unit: the question of every unit, in text order.
-    """
-    question = pd.Series(question_of_unit)
-    index_in_question = question.groupby(question).cumcount()
-    question_length = question.map(question.value_counts())
-    return (
-        question[middle_ids].values - 0.5
-        + (index_in_question[middle_ids].values + 0.5) / question_length[middle_ids].values
-    )
-
-
-def majority_question_position(window_questions):
-    """Return each window's position on an x-axis aligned to the questions,
-    placed by its majority question.
-
-    Question q spans q - 0.5 to q + 0.5, and the windows assigned to it are
-    spread evenly over that span in text order. A question that no window
-    mostly consists of gets no windows.
-    """
-    question = pd.Series(window_questions).reset_index(drop=True)
-    rank = question.groupby(question).cumcount()
-    count = question.map(question.value_counts())
-    return (question - 0.5 + (rank + 0.5) / count).values
-
-
 def moving_average(model, token_dir):
     tokens = read_tokens(token_dir / f"{model}_tokens.csv")
 
     # Responses are separated by line breaks, so splitting each response
     # gives the same sentences as splitting the whole text.
     sentences, question_of_sentence = [], []
-    for question, response in load_responses(model):
+    for question, response in numbered_responses(model):
         response_sentences = split_sentences(response)
         sentences.extend(response_sentences)
         question_of_sentence.extend([question] * len(response_sentences))
 
-    tokens["sentence"], unmatched = assign_sentences(tokens["token"], sentences)
-    if unmatched > 0.01 * len(tokens):
-        print(f"Warning: {model}: {unmatched} of {len(tokens)} tokens did not "
+    tokens["sentence"], unmatched = align_tokens(tokens["token"], sentences)
+    if len(unmatched) > 0.01 * len(tokens):
+        print(f"Warning: {model}: {len(unmatched)} of {len(tokens)} tokens did not "
               "line up with the text; sentence assignment may be off.")
 
     for category, prefix in CATEGORIES.items():
@@ -279,49 +156,6 @@ def question_segments(windows, rule):
         (group["position"].iloc[0], group["position"].iloc[-1], group[column].iloc[0])
         for _, group in windows.groupby(run)
     ]
-
-
-def question_slots(results, question_lengths=None):
-    """Return each question's span on the x-axis, as (start, width) Series
-    indexed by question.
-
-    Without question_lengths, question q spans q - 0.5 to q + 0.5. With them
-    ({model: answer length per question}), a question is as wide as its mean
-    answer length over the models. Uses the questions found by either rule,
-    so both rules' plots get the same axis.
-    """
-    questions = pd.Index(sorted(set().union(*(
-        windows[column] for windows, _ in results.values()
-        for column in ("majority_question", "middle_question")
-    ))))
-    if question_lengths is None:
-        return pd.Series(questions - 0.5, index=questions), pd.Series(1.0, index=questions)
-    widths = pd.DataFrame(question_lengths).mean(axis=1).loc[questions]
-    return widths.cumsum() - widths, widths
-
-
-def slot_position(question_position, slots):
-    """Move positions from the one-wide question spans (q - 0.5 to q + 0.5)
-    into the given spans, keeping where they sit within their question."""
-    starts, widths = slots
-    question_position = np.asarray(question_position)
-    question = np.floor(question_position + 0.5).astype(int)
-    within = question_position - (question - 0.5)
-    return starts.loc[question].values + within * widths.loc[question].values
-
-
-def question_axis(ax, slots):
-    """Lay out the x-axis by question, with every other question shaded and
-    dashed lines between them."""
-    starts, widths = slots
-    for i, q in enumerate(starts.index):
-        if q % 2 == 0:
-            ax.axvspan(starts[q], starts[q] + widths[q], color="#f4f3f0", lw=0, zorder=0)
-        if i > 0:
-            ax.axvline(starts[q], color="#b5b4af", lw=0.7, ls="--", zorder=1)
-    ax.set_xlim(starts.iloc[0], starts.iloc[-1] + widths.iloc[-1])
-    ax.set_xticks(starts + widths / 2, starts.index)
-    ax.tick_params(axis="x", length=0)
 
 
 def plot(results, rule, categories):
@@ -430,7 +264,7 @@ def main():
             )
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    token_dir = latest_run_folder() / "token_csv"
+    token_dir = select_run() / "token_csv"
 
     results, question_lengths = {}, {}
     for model in MODELS:

@@ -1,29 +1,32 @@
 #!/usr/bin/env python3
 """Plot the POS tag distribution per model from pos_analysis.py's output.
 
-Reads pos_analysis_output/pos_pooled_values.csv (written by pos_analysis.py),
+Reads 1_pos/output/pos_pooled_values.csv (written by pos_analysis.py),
 so the figure shows exactly the pooled percentages reported in Table 4.
-Run pos_analysis.py first, then, from the repository root:
-    python -m pip install pandas matplotlib
-    python pos_plot.py
+Run pos_analysis.py first, then:
+    python 1_pos/pos_plot.py
 
 Writes pos_tag_distribution.png and .pdf next to the input CSV. SPACE tokens
 are plotted too (they are part of the denominator, as in pos_analysis.py).
 """
 import argparse
+import sys
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 from matplotlib.ticker import PercentFormatter
 import pandas as pd
 
-# Same model labels and tag set as pos_analysis.py.
-MODELS = ("GPT-4o", "GPT-5.2", "RAG")
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from common.models import LABEL_COLOURS as MODEL_COLOURS, MODELS
+
+OUTPUT_DIR = Path(__file__).resolve().parent / "output"
+
+# Same tag set as pos_analysis.py.
 TAGS = ("PROPN", "NUM", "NOUN", "VERB", "AUX", "ADJ", "ADV", "DET",
         "ADP", "PRON", "CCONJ", "SCONJ", "PART", "SYM", "X", "INTJ")
 # SPACE is in pos_analysis.py's denominator but not in its TAGS, so add it here.
 PLOT_TAGS = (*TAGS, "SPACE")
-MODEL_COLOURS = dict(zip(MODELS, ("#2a78d6", "#eb6834", "#1baf7a")))
 
 
 def load_shares(path):
@@ -69,12 +72,10 @@ def plot(shares):
 def main():
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--repo-root", type=Path, default=Path(__file__).resolve().parent)
     parser.add_argument("--output-dir", type=Path,
-                        help="pos_analysis.py output folder. "
-                             "Default: REPO_ROOT/pos_analysis_output")
+                        help="pos_analysis.py output folder. Default: 1_pos/output")
     args = parser.parse_args()
-    output = args.output_dir or args.repo_root.resolve() / "pos_analysis_output"
+    output = args.output_dir or OUTPUT_DIR
 
     fig = plot(load_shares(output / "pos_pooled_values.csv"))
     for extension in ("png", "pdf"):

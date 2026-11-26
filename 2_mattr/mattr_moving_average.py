@@ -13,29 +13,31 @@ question, and the models' MATTR scores side by side.
 Each window is assigned a question, by two rules (QUESTION_RULES): the
 question whose response most of its lemmas come from (majority), and the
 question its middle lemma comes from (middle). The windows plot is made once
-per rule. The responses come from docuscope_moving_average.load_responses,
-which also checks they match the .txt files.
+per rule. The responses come from common/responses.py, which also checks
+they match the .txt files.
 
 Needs spaCy and its large English model:
     pip install spacy
     python -m spacy download en_core_web_lg
-Run this script from the overall project folder.
 """
 import bisect
+import sys
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 import pandas as pd
 import spacy
 
-from docuscope_moving_average import (
-    load_responses, majority_question_position, middle_question_position, question_axis,
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from common.models import COLOURS as MODEL_COLOURS
+from common.paths import DOCUSCOPE_INPUT as TEXT_INPUT
+from common.plotting import (
+    majority_question_position, middle_question_position, question_axis,
     question_slots, slot_position,
 )
+from common.responses import numbered_responses
 
-PROJECT_DIR = Path.cwd()
-TEXT_INPUT = PROJECT_DIR / "docuscope_input"
-OUTPUT_DIR = PROJECT_DIR / "mattr_output"
+OUTPUT_DIR = Path(__file__).resolve().parent / "output" / "moving_average"
 
 SPACY_MODEL = "en_core_web_lg"
 
@@ -43,7 +45,6 @@ WINDOW = 500  # Lemmas per window
 
 # Text filename prefix -> plot label.
 MODELS = {"gpt_4": "GPT-4o", "gpt_5_2": "GPT 5.2", "rag": "RAG"}
-MODEL_COLOURS = {"gpt_4": "#2a78d6", "gpt_5_2": "#eb6834", "rag": "#1baf7a"}
 
 # How a window is assigned to a question. The windows plot is made once per rule.
 QUESTION_RULES = {
@@ -60,10 +61,10 @@ QUESTION_AXIS_LABELS = {
 def lemmas(nlp, model):
     """Return the text's lemmas, and the question of the response each comes from.
 
-    The text is the responses joined by blank lines (load_responses checks
-    this), so a lemma's question follows from where its token starts.
+    The text is the responses joined by blank lines (numbered_responses
+    checks this), so a lemma's question follows from where its token starts.
     """
-    pairs = load_responses(model)
+    pairs = numbered_responses(model)
     text = (TEXT_INPUT / f"{model}.txt").read_text(encoding="utf-8")
     starts, start = [], 0
     for _, response in pairs:

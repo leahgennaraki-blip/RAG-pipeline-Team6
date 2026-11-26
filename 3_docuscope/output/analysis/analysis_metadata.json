@@ -1,6 +1,6 @@
 {
   "source_mode": "token exports",
-  "docuscope_run": "/Users/leah/coding-humanities/rag-pipeline-team-6/docuscope_input_output/docuscope_input-2026-10-01-164856",
+  "docuscope_run": "data/docuscope_export/docuscope_input-2026-10-01-164856",
   "questions": 24,
   "minimum_responses": 10,
   "bonferroni_omnibus_family": 23,
