@@ -1,6 +1,11 @@
-matplotlib
-nltk
-numpy
-pandas
-scipy>=1.11
-spacy
+# Analyses (1_pos, 2_mattr, 3_docuscope). Versions used for the committed outputs.
+matplotlib==3.11.2
+nltk==3.10.3
+numpy==2.4.6
+pandas==3.0.3
+scipy==1.18.1
+spacy==3.8.16
+# Also run once: python -m spacy download en_core_web_lg   (3.8.0)
+
+# 0_preprocessing Colab scripts only (not needed for the analyses):
+# pymupdf tqdm openai faiss-cpu
