@@ -1,0 +1,23 @@
+,GPT-4o,GPT-4o,GPT-4o,GPT 5.2,GPT 5.2,GPT 5.2,RAG,RAG,RAG
+,tag,tokens,share,tag,tokens,share,tag,tokens,share
+rank,,,,,,,,,
+1,SpecialTopicsMiscellanyNeutral,2333,0.1069,SpecialTopicsMiscellanyNeutral,1838,0.1112,SpecialTopicsMiscellanyNeutral,1971,0.0892
+2,CharTypesNeutral,1087,0.0498,CharTypesNeutral,688,0.0416,CharTypesNeutral,669,0.0303
+3,NarrOtherNeutral,708,0.0324,ExpoOtherNeutral,548,0.0332,NarrDurationNeutral,587,0.0266
+4,NarrDurationNeutral,668,0.0306,NegActsResist,445,0.0269,CitationReferenceNeutral,529,0.0239
+5,ExpoOtherNeutral,508,0.0233,PubLawNeutral,396,0.024,PubAdministrationNeutral,465,0.021
+6,PubAdministrationNeutral,494,0.0226,PubAdministrationNeutral,395,0.0239,ExpoOtherNeutral,406,0.0184
+7,DescriptVisualNeutral,454,0.0208,NarrOtherNeutral,388,0.0235,DescriptVisualNeutral,404,0.0183
+8,NarrActsNeutral,409,0.0187,NarrDurationNeutral,362,0.0219,NarrOtherNeutral,392,0.0177
+9,SpecialTopicsPlaceNeutral,401,0.0184,DescriptVisualNeutral,333,0.0202,PubLawNeutral,378,0.0171
+10,PubLawNeutral,337,0.0154,ForcefulEmphaticNeutral,306,0.0185,SpecialTopicsPlaceNeutral,334,0.0151
+11,ForcefulEmphaticNeutral,319,0.0146,NarrActsNeutral,283,0.0171,NarrActsNeutral,292,0.0132
+12,DescriptChangeNeutral,267,0.0122,SpecialTopicsPlaceNeutral,264,0.016,CharNamesNeutral,256,0.0116
+13,MetadiscourseContrastNeutral,249,0.0114,DescriptChangeNeutral,230,0.0139,NarrSequenceNeutral,199,0.009
+14,ExpoComparisonNeutral,246,0.0113,NarrSequenceNeutral,206,0.0125,DescriptChangeNeutral,198,0.009
+15,NegActsResist,242,0.0111,MetadiscourseContrastNeutral,199,0.012,ForcefulEmphaticNeutral,187,0.0085
+16,ExpoExampleNeutral,229,0.0105,ExpoComparisonNeutral,177,0.0107,NegActsResist,187,0.0085
+17,NarrSequenceNeutral,220,0.0101,DescriptObjectsNeutral,176,0.0107,ReasoningOtherNeutral,176,0.008
+18,DescriptObjectsNeutral,193,0.0088,NegActsAggressive,126,0.0076,MetadiscourseContrastNeutral,145,0.0066
+19,CharTraitsNeutral,187,0.0086,StratCoordinationNeutral,122,0.0074,CharTraitsNeutral,145,0.0066
+20,CharNamesNeutral,181,0.0083,CharMentalStatesNeutral,114,0.0069,DescriptObjectsNeutral,141,0.0064
