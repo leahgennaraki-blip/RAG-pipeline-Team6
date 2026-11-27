@@ -24,8 +24,8 @@ complete$Rating <- as.numeric(complete$Rating)
 
 complete <- complete |>
   mutate(Model = factor(Model,
-    levels = c("GPT4", "GPT5"),
-    labels = c("GPT-4o", "GPT-5.2")
+    levels = c("GPT4", "GPT5", "RAG"),
+    labels = c("GPT-4o", "GPT-5.2", "RAG")
   ))
 
 view(complete)
@@ -39,6 +39,10 @@ complete |>
     na.rm = TRUE
   ))
 
+## filter rag values for one rater
+complete_1rater_rag <- complete |>
+  filter(Model != "RAG" | Rater == "r6")
+
 ## rating distribution per criteria
 complete.filtered <- complete |>
   filter(Model %in% c("GPT-4o", "GPT-5.2")) |>
@@ -46,7 +50,11 @@ complete.filtered <- complete |>
 
 ## Overall histogram (all criteria combined)
 
-ggplot(complete.filtered, aes(x = Rating, fill = Model)) +
+green <- "#52AC7E"
+orange <- "#DB7043"
+blue <- "#4174CF"
+
+ggplot(complete_1rater_rag, aes(x = Rating, fill = Model)) +
   geom_histogram(
     binwidth = 1,
     boundary = -0.5,
@@ -55,28 +63,28 @@ ggplot(complete.filtered, aes(x = Rating, fill = Model)) +
   ) +
   facet_wrap(~Model) +
   scale_x_continuous(breaks = c(1, 2, 3, 4, 5)) +
-  scale_fill_manual(values = c("GPT-4o" = "steelblue", "GPT-5.2" = "tomato")) +
+  scale_fill_manual(values = c("GPT-4o" = blue, "GPT-5.2" = orange, "RAG" = green)) +
   geom_vline(
-    data = complete.filtered |>
+    data = complete_1rater_rag |>
       group_by(Model) |>
       summarise(mean = mean(Rating, na.rm = TRUE)),
     aes(xintercept = mean, color = Model),
     linewidth = 0.8, linetype = "dashed"
   ) +
-  scale_color_manual(values = c("GPT-4o" = "steelblue", "GPT-5.2" = "tomato")) +
+  scale_color_manual(values = c("GPT-4o" = blue, "GPT-5.2" = orange, "RAG" = green)) +
   theme_pubr(base_family = "Helvetica") +
   labs(
-    title = "Rating Distribution for GPT-4o and GPT-5.2",
+    # title = "Rating Distribution for GPT-4o, GPT-5.2, RAG",
     x = "Ratings (1-5)",
     y = "Count"
   )
 
-ggsave("plots/rating_dist.pdf",
+ggsave("plots/rating_dist_withRAG_1rater.pdf",
   device = "pdf",
   width = 5, height = 5
 )
 
-plot <- function(data, title) {
+plot <- function(data, title, colour) {
   stats <- data |>
     group_by(Criteria) |>
     summarise(
@@ -88,7 +96,7 @@ plot <- function(data, title) {
     geom_histogram(
       binwidth = 1,
       boundary = -0.5,
-      fill = "steelblue",
+      fill = colour,
       color = "white"
     ) +
     scale_x_continuous(
@@ -120,18 +128,76 @@ plot <- function(data, title) {
     )
 }
 
-plot(filter(complete, Model == "GPT-4o"), "GPT-4o")
+plot(filter(complete, Model == "GPT-4o"), "GPT-4o", blue)
 ggsave("plots/criteria_ratings_4o.pdf",
   device = "pdf",
   width = 8, height = 5
 )
 
-plot(filter(complete, Model == "GPT-5.2"), "GPT-5.2")
+plot(filter(complete, Model == "GPT-5.2"), "GPT-5.2", orange)
 ggsave("plots/criteria_ratings_5.2.pdf",
   device = "pdf",
   width = 8, height = 5
 )
 
+plot(filter(complete_1rater_rag, Model == "RAG"), "RAG", green)
+ggsave("plots/criteria_ratings_rag_1rater.pdf",
+  device = "pdf",
+  width = 8, height = 5
+)
+
+## Criteria x criteria correlation heatmap
+
+# one row per Rater x Question x Model, one column per criterion
+cor_mat <- complete.filtered |> # change df according to filter
+  # filter(Model == "RAG") |>  # uncomment for individual model
+  pivot_wider(
+    id_cols     = c(Rater, Question, Model),
+    names_from  = Criteria,
+    values_from = Rating
+  ) |>
+  select(all_of(unique(complete.filtered$Criteria))) |> # change df...
+  cor(use = "pairwise.complete.obs")
+
+# long format, keep lower triangle (upper right stays empty)
+cor_long <- as_tibble(cor_mat, rownames = "row") |>
+  pivot_longer(-row, names_to = "col", values_to = "r") |>
+  mutate(
+    row = factor(row, levels = crit_order),
+    col = factor(col, levels = crit_order)
+  ) |>
+  filter(as.integer(col) <= as.integer(row))
+
+ggplot(cor_long, aes(x = col, y = row, fill = r)) +
+  geom_tile(color = "grey70", linewidth = 0.4) +
+  geom_text(aes(label = sprintf("%.2f", r), color = r > 0.5), size = 3) +
+  scale_color_manual(values = c("TRUE" = "white", "FALSE" = "black"), guide = "none") +
+  scale_fill_gradient(
+    low = "white",
+    high = "black",
+    labels = \(x) sprintf("%.2f", x),
+    oob = scales::squish,
+    name = NULL,
+    guide = guide_colorbar(
+      theme = theme(
+        legend.key.height = unit(6, "cm"),
+        legend.key.width  = unit(0.5, "cm"),
+        legend.ticks      = element_line(colour = "grey50"),
+        legend.frame      = element_rect(colour = "black", fill = NA)
+      )
+    )
+  ) +
+  scale_y_discrete(limits = rev) +
+  labs(y = NULL, x = NULL) +
+  theme_pubr(base_family = "Helvetica") +
+  theme(
+    legend.position = "right",
+    axis.line       = element_blank(),
+    axis.ticks      = element_blank(),
+    axis.text.x     = element_text(angle = 45, hjust = 1)
+  )
+
+ggsave("plots/criteria_correlation_gpt.pdf", device = "pdf", width = 8, height = 7)
 
 ## Highest rated questions
 complete.filtered |>

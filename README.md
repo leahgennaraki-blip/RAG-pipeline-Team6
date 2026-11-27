@@ -2,6 +2,10 @@
 
 `restructured` consolidates the group's research and is the intended future main branch. Inclusion of a result here does not mean it has been selected for the paper.
 
+## 2026-11-27 — Drive update
+
+On 27 November we compared 123 Drive files with the 29 October import on restructured. We added 16 files (nine criterion-heatmap files, four RAG rating plots and three legends) and updated 92 (two R scripts, six Typst layouts and 84 PDFs). The six rating datasets matched the October originals. Nine files in plots/old matched figures already archived in Git. The [shared appendices](https://docs.google.com/document/d/1SkKVLeOai-l9Fh4gg6tW7rtvPGqMSx309lvrHVGFeKU/edit) are linked for reference. The team still needs to confirm manuscript figure selection. [Bilingual file-by-file report](docs/drive_sync_2026-11-27.md).
+
 ## 2026-10-29 — Google Drive research materials imported
 
 Copied the `analysis/final/` materials from the group Drive into this branch: Pearson correlation and paired-samples t-test R scripts, six numbered rating datasets (`r1.csv`–`r6.csv`), correlation plots and their Typst layout sources, and overall/per-criterion rating-distribution plots. Earlier `processing.Rmd`, processing reports and quantitative write-up files were preserved separately under `archive/drive_import/analysis/`.

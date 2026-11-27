@@ -1,6 +1,6 @@
 # Imported human-rating figures
 
-Copied from the group Drive `analysis/final/` on 2026-10-29. Figure contents and statistical results await team review.
+Copied from the group Drive `analysis/final/` on 2026-10-29 and updated on 2026-11-27. Figure contents and statistical results await team review.
 
 | Files/folders | Purpose |
 | --- | --- |
@@ -13,3 +13,5 @@ Copied from the group Drive `analysis/final/` on 2026-10-29. Figure contents and
 | plots/criteria_ratings_4o.pdf, plots/criteria_ratings_5.2.pdf | Per-criterion rating distributions |
 
 Correlation figures correspond to correlation.R. Rating-distribution figures correspond to paired_t.R but do not directly visualize t-test statistics. Original source files and download hashes are listed in the import manifest. Rerunning the adapted R scripts writes to a separate reruns directory.
+
+The November update adds criterion heatmaps, RAG rating distributions and plot legends. See the [file-by-file update report](../../../docs/drive_sync_2026-11-27.md).

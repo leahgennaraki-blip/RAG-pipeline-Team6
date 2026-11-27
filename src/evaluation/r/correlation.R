@@ -182,7 +182,9 @@ save_pairs <- function(pair_data, folder, plot_fn, width = 8) {
     stats <- plot_df |>
       slice(1) |>
       select(r, rmse)
-    subtitle <- paste0("*r* = ", stats$r, ", RMSE = ", stats$rmse)
+    subtitle <- bquote(
+      italic(r) ~ "=" ~ .(sprintf("%.3f", stats$r)) * ", RMSE =" ~ .(sprintf("%.3f", stats$rmse))
+    )
 
     p <- plot_fn(plot_df, ra, rb, subtitle)
 
@@ -201,6 +203,14 @@ save_pairs <- function(pair_data, folder, plot_fn, width = 8) {
 
 # ── Plot functions ─────────────────────────────────────────────────────────────
 
+pair_theme <- theme(
+  aspect.ratio    = 1,
+  plot.title      = element_text(hjust = 0.5, size = 16, margin = margin(b = 6)),
+  axis.title      = element_text(size = 16, face = "bold"),
+  axis.text       = element_text(size = 13),
+  legend.position = "none"
+)
+
 plot_qxc <- function(plot_df, ra, rb, subtitle) {
   ggplot(plot_df, aes(x = x, y = y, color = Q_num, shape = Criteria)) +
     geom_abline(slope = 1, intercept = 0, color = alpha("#444444", 0.3), linewidth = 0.6, linetype = "dashed") +
@@ -213,18 +223,13 @@ plot_qxc <- function(plot_df, ra, rb, subtitle) {
     scale_shape_manual(values = criteria_shapes, name = "Criteria") +
     scale_x_continuous(limits = c(0.5, 5.5), breaks = 1:5) +
     scale_y_continuous(limits = c(0.5, 5.5), breaks = 1:5) +
-    labs(title = paste(ra, "vs", rb), subtitle = subtitle, x = ra, y = rb) +
+    labs(title = subtitle, x = ra, y = rb) +
     theme_pubr(base_size = 11) +
-    theme(
-      aspect.ratio    = 1,
-      plot.title      = element_text(hjust = 0.5),
-      plot.subtitle   = element_markdown(hjust = 0.5, color = "grey40", size = 8),
-      legend.position = "none"
-    )
+    pair_theme
 }
 
 plot_criteria <- function(plot_df, ra, rb, subtitle) {
-  ggplot(plot_df, aes(x = x, y = y, color = Criteria)) +
+  ggplot(plot_df, aes(x = x, y = y, color = Criteria, shape = Criteria)) +
     geom_abline(slope = 1, intercept = 0, color = alpha("#444444", 0.3), linewidth = 0.6, linetype = "dashed") +
     geom_smooth(
       inherit.aes = FALSE, aes(x = x, y = y),
@@ -232,16 +237,12 @@ plot_criteria <- function(plot_df, ra, rb, subtitle) {
     ) +
     geom_point(size = 2) +
     scale_color_manual(values = criteria_colors, name = "Criteria") +
+    scale_shape_manual(values = criteria_shapes, name = "Criteria") +
     scale_x_continuous(limits = c(1.5, 5.5), breaks = 2:5) +
     scale_y_continuous(limits = c(1.5, 5.5), breaks = 2:5) +
-    labs(title = paste(ra, "vs", rb), subtitle = subtitle, x = ra, y = rb) +
+    labs(title = subtitle, x = ra, y = rb) +
     theme_pubr(base_size = 11) +
-    theme(
-      aspect.ratio    = 1,
-      plot.title      = element_text(hjust = 0.5),
-      plot.subtitle   = element_markdown(hjust = 0.5, color = "grey40", size = 8),
-      legend.position = "none"
-    )
+    pair_theme
 }
 
 plot_questions <- function(plot_df, ra, rb, subtitle) {
@@ -252,14 +253,9 @@ plot_questions <- function(plot_df, ra, rb, subtitle) {
     scale_color_viridis_c(option = "plasma", name = "Question", breaks = seq(1, 24, by = 4)) +
     scale_x_continuous(limits = c(1.5, 5.5), breaks = 2:5) +
     scale_y_continuous(limits = c(1.5, 5.5), breaks = 2:5) +
-    labs(title = paste(ra, "vs", rb), subtitle = subtitle, x = ra, y = rb) +
+    labs(title = subtitle, x = ra, y = rb) +
     theme_pubr(base_size = 11) +
-    theme(
-      aspect.ratio    = 1,
-      plot.title      = element_text(hjust = 0.5),
-      plot.subtitle   = element_markdown(hjust = 0.5, color = "grey40", size = 8),
-      legend.position = "none"
-    )
+    pair_theme
 }
 
 # ── (0a) Q x C — GPT4 ─────────────────────────────────────────────────────────
@@ -318,7 +314,7 @@ data2a <- all_by_unique_model_questions |>
 pairdata2a <- make_pairs(data2a, id_cols = "Question") |>
   mutate(Q_num = as.numeric(str_extract(Question, "\\d+")))
 
-save_pairs(pairdata2a, "2a_q_gpt4", plot_questions, width = 10)
+save_pairs(pairdata2a, "2a_q_gpt4", plot_questions)
 
 # ── (2b) Questions — GPT5 ─────────────────────────────────────────────────────
 
@@ -330,4 +326,72 @@ data2b <- all_by_unique_model_questions |>
 pairdata2b <- make_pairs(data2b, id_cols = "Question") |>
   mutate(Q_num = as.numeric(str_extract(Question, "\\d+")))
 
-save_pairs(pairdata2b, "2b_q_gpt5", plot_questions, width = 10)
+save_pairs(pairdata2b, "2b_q_gpt5", plot_questions)
+
+# ── Keys (legends as separate PDFs) ──────────────────────────────────────────
+
+dir.create(file.path(output_dir, "keys"), showWarnings = FALSE, recursive = TRUE)
+
+key_theme <- theme_pubr(base_size = 11) +
+  theme(
+    legend.position = "right",
+    legend.box      = "vertical",
+    legend.title    = element_text(size = 14),
+    legend.text     = element_text(size = 13)
+  )
+
+# colour bar for questions (same scale as in the plots, vertical)
+q_scale <- function(bar_h = 4) {
+  scale_color_viridis_c(
+    option = "plasma", name = "Question", breaks = seq(1, 24, by = 4),
+    guide = guide_colorbar(
+      order = 1,
+      theme = theme(
+        legend.key.height = unit(bar_h, "cm"),
+        legend.key.width  = unit(0.5, "cm")
+      )
+    )
+  )
+}
+
+save_key <- function(p, file) {
+  leg <- ggpubr::get_legend(p)
+  w <- grid::convertWidth(sum(leg$widths), "cm", valueOnly = TRUE)
+  h <- grid::convertHeight(sum(leg$heights), "cm", valueOnly = TRUE)
+  ggsave(file, ggpubr::as_ggplot(leg),
+    device = "pdf",
+    width = w, height = h, units = "cm"
+  )
+}
+
+# (0) Q x C: colour bar and shapes SIDE BY SIDE
+key_qxc <- ggplot(key_df_qxc, aes(x, y, color = Q_num, shape = Criteria)) +
+  geom_point(size = 2) +
+  q_scale(bar_h = 8) +
+  scale_shape_manual(
+    values = criteria_shapes, name = "Criteria",
+    guide = guide_legend(order = 2, override.aes = list(colour = "black", size = 3))
+  ) +
+  key_theme +
+  theme(legend.box = "horizontal", legend.box.just = "top")
+
+save_key(key_qxc, file.path(output_dir, "keys/key_qxc.pdf"))
+
+# (1) Criteria: coloured points
+key_df_crit <- tibble(x = 1, y = 1, Criteria = names(criteria_colors))
+
+key_crit <- ggplot(key_df_crit, aes(x, y, color = Criteria, shape = Criteria)) +
+  geom_point(size = 3) +
+  scale_color_manual(values = criteria_colors, name = "Criteria") +
+  scale_shape_manual(values = criteria_shapes, name = "Criteria") +
+  key_theme
+
+save_key(key_crit, file.path(output_dir, "keys/key_crit.pdf"))
+
+# (2) Questions: colour bar only (tall, for the 2-row cell)
+key_ques <- ggplot(key_df_ques, aes(x, y, color = Q_num)) +
+  geom_point(size = 2) +
+  q_scale(bar_h = 12) +
+  key_theme
+
+save_key(key_ques, file.path(output_dir, "keys/key_ques.pdf"))
